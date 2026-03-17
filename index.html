@@ -130,17 +130,8 @@
   }
 
   .chart-source {
-    font-size: 0.7rem;
-    color: var(--cg-text-secondary);
-    margin-bottom: 1rem;
+    display: none;
   }
-
-  .chart-source a {
-    color: var(--cg-blue);
-    text-decoration: none;
-  }
-
-  .chart-source a:hover { text-decoration: underline; }
 
   .chart-wrap {
     position: relative;
@@ -153,6 +144,15 @@
     color: var(--cg-text-secondary);
     margin-top: 0.75rem;
     font-style: italic;
+    line-height: 1.4;
+  }
+
+  .chart-bottom-source {
+    font-size: 0.7rem;
+    color: var(--cg-text-secondary);
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--cg-border);
     line-height: 1.4;
   }
 
@@ -518,9 +518,9 @@ function makeCard(title, source, url, canvasId, note) {
   card.className = 'chart-card';
   card.innerHTML = `
     <h3>${title}</h3>
-    <div class="chart-source">Source: <a href="${url}" target="_blank" rel="noopener">${source}</a></div>
     <div class="chart-wrap"><canvas id="${canvasId}"></canvas></div>
     ${note ? `<div class="chart-note">${note}</div>` : ''}
+    <div class="chart-bottom-source">Source: ${source}. JAOD Analysis</div>
   `;
   return card;
 }
