@@ -412,8 +412,9 @@ td.blue { color:var(--cg-sapphire-500); }
         <h3>Data Pipeline: Store → Ownership → Valuation</h3>
         <table>
           <tr><th>Step</th><th>Source</th><th>What It Gives Us</th></tr>
-          <tr><td><strong>1. Store List</strong></td><td>KSS 10-K FY2024</td><td>1,078 addresses, GLA, format (strip/freestanding)</td></tr>
-          <tr><td><strong>1b. Satellite</strong></td><td>Sentinel-2 imagery + Google Earth</td><td>Verified store footprints, parking lot condition, neighboring tenants, strip vs freestanding</td></tr>
+          <tr><td><strong>1. Store List</strong></td><td>KSS 10-K FY2024</td><td>1,078 addresses, format (strip/freestanding/mall)</td></tr>
+          <tr><td><strong>1b. Footprint SqFt</strong></td><td><a href="https://www.openstreetmap.org/way/27110667" target="_blank" style="color:var(--cg-sapphire-500)">OpenStreetMap Overpass API</a></td><td>680 building polygons queried via <code>out geom</code>. Each polygon's lat/lon vertices converted to m&sup2; via Shoelace formula with cos(lat) projection, then to sqft. Median: 87,239 SF. <a href="https://www.openstreetmap.org/way/27110667" target="_blank" style="color:var(--cg-sapphire-400)">[Example: Jersey City, 83K SF]</a></td></tr>
+          <tr><td><strong>1c. Verification</strong></td><td>OSM polygon → 10-K cross-check</td><td>OSM total: 55.8M SF across 680 stores (avg 82,128). 10-K reports 82M selling SF across 1,175 stores (avg 69,787 selling / ~88K gross). OSM avg of 82K sits between selling and gross — consistent. Stores without OSM polygons assigned 10-K average.</td></tr>
           <tr><td><strong>2. Ownership</strong></td><td>County assessor portals (49 states)</td><td>Parcel owner entity — Kohls Illinois Inc, Kohls Texas LP, etc. vs third-party LLC</td></tr>
           <tr><td><strong>3. Lease Verify</strong></td><td>SEC EDGAR CMBS FWP/ABS-EE</td><td>172 stores confirmed leased via CMBS tenant data + actual rent PSF</td></tr>
           <tr><td><strong>4. Market Rent</strong></td><td>REIT 10-K ABR/SF by metro</td><td>Metro-level rent benchmarks from BRX, KIM, KRG, REG, NNN portfolios</td></tr>
@@ -444,7 +445,7 @@ td.blue { color:var(--cg-sapphire-500); }
       </div>
     </div>
   </div>
-  <div class="callout">Every store was visually verified via satellite imagery and every ownership classification is traceable to a county assessor parcel record or CMBS filing — not a model assumption. The 8.25% cap rate is conservatively calibrated: post-downgrade Kohl's credit (B+/B2) vs pre-downgrade 6.50% Boulder Group benchmark. Actual NNN transactions confirm 5.6-8.1% range depending on lease term and construction vintage.</div>
+  <div class="callout">Building footprints computed from <a href="https://www.openstreetmap.org/way/27110667" target="_blank" style="color:var(--cg-sapphire-400)">OpenStreetMap building polygons</a> — each store's bounding polygon is publicly viewable and auditable. Click any OSM way link to see the exact outline used. Ownership from county assessor parcel records, not model assumptions. Cap rate: post-downgrade 6.50% + 175bps sub-IG spread = 8.25%. NNN transactions confirm 5.6-8.1% range.</div>
 </div>
 
 <div class="slide" id="ai-price">
