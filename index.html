@@ -95,42 +95,42 @@ td.blue { color:var(--cg-sapphire-600); }
 <!-- Navigation -->
 <div class="nav" id="nav">
   <span class="nav-section">INTRO</span>
-  <button class="nav-btn active" onclick="goSlide(0)">Kohl's Customer</button>
-  <button class="nav-btn" onclick="goSlide(1)">Stores Across Americ</button>
-  <button class="nav-btn" onclick="goSlide(2)">Across Six Categorie</button>
-  <button class="nav-btn" onclick="goSlide(3)">SURVIVE</button>
-  <button class="nav-btn" onclick="goSlide(4)">TRACK the Stock</button>
+  <button class="nav-btn active" onclick="goSlide(0)">MEET Customer</button>
+  <button class="nav-btn" onclick="goSlide(1)">MAP Stores</button>
+  <button class="nav-btn" onclick="goSlide(2)">SELL Categories</button>
+  <button class="nav-btn" onclick="goSlide(3)">SURVIVE Decline</button>
+  <button class="nav-btn" onclick="goSlide(4)">TRACK Stock</button>
   <div class="nav-sep"></div>
   <span class="nav-section">REAL ESTATE</span>
-  <button class="nav-btn" onclick="goSlide(5)">in Hidden Real Estat</button>
-  <button class="nav-btn" onclick="goSlide(6)">Public REITs</button>
-  <button class="nav-btn" onclick="goSlide(7)">When Debt Rolls Off </button>
-  <button class="nav-btn" onclick="goSlide(8)">KSS Pays vs Market R</button>
-  <button class="nav-btn" onclick="goSlide(9)">P/B Gap</button>
-  <button class="nav-btn" onclick="goSlide(10)">RE Methodology</button>
+  <button class="nav-btn" onclick="goSlide(5)">OWN Hidden RE</button>
+  <button class="nav-btn" onclick="goSlide(6)">BENCHMARK Strip REITs</button>
+  <button class="nav-btn" onclick="goSlide(7)">UNLOCK 2030</button>
+  <button class="nav-btn" onclick="goSlide(8)">COMPARE Rents</button>
+  <button class="nav-btn" onclick="goSlide(9)">EXPLOIT P/B</button>
+  <button class="nav-btn" onclick="goSlide(10)">RE Method</button>
   <div class="nav-sep"></div>
   <span class="nav-section">AI DISCOVERY</span>
   <button class="nav-btn" onclick="goSlide(11)">PRICE CHECK</button>
-  <button class="nav-btn" onclick="goSlide(12)">Private Label Margin</button>
+  <button class="nav-btn" onclick="goSlide(12)">BUILD PL Mix</button>
   <button class="nav-btn" onclick="goSlide(13)">Brand Mix 18yr</button>
-  <button class="nav-btn" onclick="goSlide(14)">Dollar Store Poverty</button>
-  <button class="nav-btn" onclick="goSlide(15)">Value with AI Shoppi</button>
+  <button class="nav-btn" onclick="goSlide(14)">EXPOSE DG</button>
+  <button class="nav-btn" onclick="goSlide(15)">DISRUPT w/ AI</button>
   <div class="nav-sep"></div>
   <span class="nav-section">CONSUMER</span>
-  <button class="nav-btn" onclick="goSlide(16)">KSS Customer</button>
-  <button class="nav-btn" onclick="goSlide(17)">Performance</button>
-  <button class="nav-btn" onclick="goSlide(18)">the Resilient Consum</button>
-  <button class="nav-btn" onclick="goSlide(19)">Collar, PROTECT Blue</button>
-  <button class="nav-btn" onclick="goSlide(20)">Unit Economics</button>
+  <button class="nav-btn" onclick="goSlide(16)">PROFILE Customer</button>
+  <button class="nav-btn" onclick="goSlide(17)">MEASURE Recession</button>
+  <button class="nav-btn" onclick="goSlide(18)">ANCHOR Consumer</button>
+  <button class="nav-btn" onclick="goSlide(19)">COMPRESS W.Collar</button>
+  <button class="nav-btn" onclick="goSlide(20)">DISSECT Unit Econ</button>
   <div class="nav-sep"></div>
   <span class="nav-section">APPENDIX</span>
   <button class="nav-btn" onclick="goSlide(21)">RISK</button>
-  <button class="nav-btn" onclick="goSlide(22)">FORTIFY</button>
-  <button class="nav-btn" onclick="goSlide(23)">Store Trajectories</button>
+  <button class="nav-btn" onclick="goSlide(22)">FORTIFY Debt</button>
+  <button class="nav-btn" onclick="goSlide(23)">TRACK Stores</button>
   <div class="nav-sep"></div>
   <span class="nav-section">SIDE THESES</span>
-  <button class="nav-btn" onclick="goSlide(24)">Sephora Relationship</button>
-  <button class="nav-btn" onclick="goSlide(25)">to Last-Mile Fulfill</button>
+  <button class="nav-btn" onclick="goSlide(24)">LEVERAGE Sephora</button>
+  <button class="nav-btn" onclick="goSlide(25)">CONVERT to DC</button>
   <div class="nav-sep"></div>
   <span class="nav-section">WORST CASE</span>
   <button class="nav-btn" onclick="goSlide(26)">STRESS TEST</button>
@@ -248,12 +248,14 @@ td.blue { color:var(--cg-sapphire-600); }
       <div class="card">
         <h3>% Change Since Jan 2022 — All Peers</h3>
         <canvas id="chart-stock-pctchg" style="max-height:600px;height:500px"></canvas>
+        <div style="color:var(--cg-gray-400);font-size:10px;margin-top:6px">Source: Yahoo Finance monthly closing prices (Jan 2022 — Mar 2026)</div>
       </div>
     </div>
     <div class="col">
       <div class="card">
-        <h3>% Change Since Jan 2022 — KSS vs REITs</h3>
+        <h3>% Change Since Jan 2022 — KSS vs Strip Center REITs</h3>
         <canvas id="chart-stock-pctchg-reits" style="max-height:600px;height:500px"></canvas>
+        <div style="color:var(--cg-gray-400);font-size:10px;margin-top:6px">Source: Yahoo Finance monthly closing prices. REITs: BRX (Brixmor), KIM (Kimco), NNN (NNN REIT), REG (Regency Centers), SPG (Simon Property Group)</div>
       </div>
     </div>
   </div>
@@ -288,7 +290,7 @@ td.blue { color:var(--cg-sapphire-600); }
 </div>
 
 <div class="slide" id="re-benchmark">
-  <div class="slide-title">BENCHMARK Against Public REITs</div>
+  <div class="slide-title">BENCHMARK Against Strip Center REITs</div>
   <div class="slide-subtitle">Calibrated per-store using BRX, KIM, KRG, REG, NNN as comps</div>
 
   <div class="row">
@@ -347,7 +349,7 @@ td.blue { color:var(--cg-sapphire-600); }
       </div>
     </div>
   </div>
-  <div class="callout">Newport Centre CMBS data: KSS pays $5.58/SF as anchor while mid-tier tenants pay $31-55/SF (AMC $31, Uniqlo $38, H&amp;M $53, Zara $55) and specialty inline pays $58-81/SF (Victoria's Secret $58, Foot Locker $70, Sephora $81). Anchor tenants get 70-90% structural discounts. Low P/B = low effective occupancy cost per square foot vs all competitors.</div>
+  <div class="callout">Anchor dept stores (Macy's ~$5, JCPenney ~$4, KSS $5.58) all pay $4-10/SF — this is structural, not a KSS anomaly. REIT portfolios average $19-21/SF because they blend anchors with inline tenants. Mid-tier inline (AMC $31, Uniqlo $38) pays 3-4x anchor rates. Premium inline (H&amp;M $53) pays 6x. KSS's low rent is the norm for anchors — the low P/B means their effective occupancy cost per SF is among the cheapest in retail.</div>
 </div>
 
 <div class="slide" id="re-pb">
@@ -957,7 +959,7 @@ const navBtns = document.querySelectorAll('.nav-btn');
 let currentSlide = 0;
 const chartCache = {};
 
-function goSlide(n) {
+function goSlide(n, pushHash) {
   if (n < 0 || n >= slides.length) return;
   slides[currentSlide].classList.remove('active');
   navBtns[currentSlide].classList.remove('active');
@@ -966,7 +968,19 @@ function goSlide(n) {
   navBtns[currentSlide].classList.add('active');
   initChartsForSlide(currentSlide);
   navBtns[currentSlide].scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+  if (pushHash !== false) history.replaceState(null, '', '#' + currentSlide);
 }
+
+// Restore slide from URL hash on load
+(function() {
+  const h = parseInt(location.hash.replace('#',''), 10);
+  if (!isNaN(h) && h > 0 && h < slides.length) goSlide(h, false);
+})();
+
+window.addEventListener('hashchange', () => {
+  const h = parseInt(location.hash.replace('#',''), 10);
+  if (!isNaN(h) && h >= 0 && h < slides.length && h !== currentSlide) goSlide(h, false);
+});
 
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goSlide(currentSlide + 1); }
@@ -1282,12 +1296,14 @@ function initReLease() {
     options: { indexAxis:'y', plugins:{ legend:{ display:false } }, scales:{ x:{ title:{ display:true, text:'$/SF Annual' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
   });
   // Rent comparison — CMBS-verified tenants at Newport Centre + REIT portfolio averages
+  // Rent comparison — anchors at left, REIT avg in middle, inline at right
+  // Macy's ~$6/SF from SPG/TCO 10-K anchor disclosures; Dick's $7.21 CMBS-verified Newport Centre
   new Chart(document.getElementById('chart-rent-compare'), {
     type: 'bar',
     data: {
-      labels: ['KSS Avg\n(anchor)', 'BRX\nPortfolio', 'KIM\nPortfolio', 'REG\nPortfolio', 'AMC\nTheatres', 'Uniqlo', 'H&M', "Victoria's\nSecret", 'Zara', 'Foot\nLocker', 'Sephora'],
-      datasets: [{ data: [9.18, 18.77, 21.00, 23.50, 31.22, 38.49, 52.66, 58.00, 55.26, 69.53, 80.87],
-        backgroundColor: [CG.green[500], CG.sapphire[400], CG.sapphire[400], CG.sapphire[400], CG.copper[500], CG.copper[500], CG.raspberry[500], CG.raspberry[500], CG.raspberry[500], CG.raspberry[500], CG.raspberry[600]] }]
+      labels: ["Macy's\n(anchor est.)", "JCPenney\n(anchor est.)", 'KSS Newport\n(CMBS)', "Dick's\n(Newport)", 'KSS Avg\n(602 stores)', 'BRX\nPortfolio', 'KIM\nPortfolio', 'AMC\n(Newport)', 'Uniqlo\n(Newport)', 'H&M\n(Newport)'],
+      datasets: [{ data: [5.00, 4.00, 5.58, 7.21, 9.18, 18.77, 21.00, 31.22, 38.49, 52.66],
+        backgroundColor: [CG.copper[400], CG.copper[400], CG.green[500], CG.copper[500], CG.green[600], CG.sapphire[400], CG.sapphire[400], CG.raspberry[400], CG.raspberry[500], CG.raspberry[600]] }]
     },
     options: { plugins:{ legend:{ display:false } }, scales:{ y:{ title:{ display:true, text:'$/SF Annual' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
   });
