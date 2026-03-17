@@ -11,16 +11,18 @@
 /* Capital Group Design System Colors */
 :root {
   --cg-sapphire-100: #DEF5FF; --cg-sapphire-200: #B6EAFF; --cg-sapphire-300: #70D5FF;
-  --cg-sapphire-400: #0DB9FF; --cg-sapphire-500: #0075B5; --cg-sapphire-600: #0067A0;
+  --cg-sapphire-400: #0DB9FF; --cg-sapphire-500: #009CDC; --cg-sapphire-600: #0075B5;
   --cg-sapphire-700: #005F9E; --cg-sapphire-800: #003A66; --cg-sapphire-900: #00294B;
-  --cg-turquoise-400: #00B5AD; --cg-turquoise-500: #00A499; --cg-turquoise-600: #007E6C;
+  --cg-turquoise-400: #00C1BC; --cg-turquoise-500: #00A499; --cg-turquoise-600: #007E6C;
   --cg-turquoise-700: #00675C;
-  --cg-berry-400: #D44C7A; --cg-berry-500: #C2185B; --cg-berry-600: #9B1347;
-  --cg-berry-700: #7A0F38;
-  --cg-green-400: #3EA561; --cg-green-500: #038049; --cg-green-600: #006B3D;
-  --cg-red-500: #C2185B; --cg-red-600: #9B1347; --cg-red-700: #7A0F38;
+  --cg-raspberry-400: #E992C2; --cg-raspberry-500: #E06AAA; --cg-raspberry-600: #CB2A82;
+  --cg-raspberry-700: #A6256E;
+  --cg-copper-400: #C6A796; --cg-copper-500: #B58976; --cg-copper-600: #976253;
+  --cg-green-500: #3EA561; --cg-green-600: #038049; --cg-green-700: #026A3B;
+  --cg-red-500: #F45F7C; --cg-red-600: #DA1944; --cg-red-700: #B61336;
+  --cg-warn-300: #FFB860; --cg-warn-500: #BD8845; --cg-warn-600: #906735;
   --cg-gray-50: #F7F7F7; --cg-gray-100: #F1F1F1; --cg-gray-200: #E2E2E2;
-  --cg-gray-400: #9EA2A2; --cg-gray-600: #6F6F6F; --cg-gray-800: #383838;
+  --cg-gray-400: #ADADAD; --cg-gray-600: #6F6F6F; --cg-gray-800: #383838;
   --cg-cream-100: #F4F3F0; --cg-cream-200: #E4E2D9; --cg-cream-800: #393836;
   --cg-prem-800: #153A5A; --cg-prem-900: #00294B; --cg-prem-1000: #001A30;
 }
@@ -36,7 +38,7 @@ body { background:#FFFFFF; color:var(--cg-gray-800); font-family:'Avenir Next LT
 .nav-sep { width:1px; height:22px; background:var(--cg-gray-200); margin:0 6px; }
 
 /* ── Slides ── */
-.slide { display:none; padding:40px 40px 40px; min-height:100vh; max-width:1440px; margin:0 auto; }
+.slide { display:none; padding:80px 40px 40px; min-height:100vh; max-width:1440px; margin:0 auto; }
 .slide.active { display:block; }
 .slide-title { color:var(--cg-prem-900); font-size:32px; font-weight:700; margin-bottom:6px; letter-spacing:-0.5px; }
 .slide-subtitle { color:var(--cg-gray-600); font-size:15px; margin-bottom:28px; line-height:1.5; }
@@ -48,18 +50,18 @@ body { background:#FFFFFF; color:var(--cg-gray-800); font-family:'Avenir Next LT
 .card h3 { color:var(--cg-sapphire-700); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; }
 canvas { max-height:380px; }
 .callout { background:var(--cg-sapphire-100); border:1px solid var(--cg-sapphire-300); border-left:4px solid var(--cg-sapphire-600); border-radius:8px; padding:16px 20px; margin-top:18px; color:var(--cg-sapphire-800); font-size:13px; line-height:1.6; }
-.callout-gold { border-left-color:var(--cg-sapphire-900); color:var(--cg-sapphire-900); background:rgba(0,41,75,0.06); border-color:var(--cg-sapphire-800); }
-.callout-green { border-left-color:var(--cg-green-500); color:var(--cg-green-600); background:rgba(3,128,73,0.08); border-color:var(--cg-green-400); }
+.callout-gold { border-left-color:var(--cg-copper-500); color:var(--cg-copper-600); background:rgba(198,167,150,0.12); border-color:var(--cg-copper-400); }
+.callout-green { border-left-color:var(--cg-green-600); color:var(--cg-green-700); background:rgba(62,165,97,0.08); border-color:var(--cg-green-500); }
 
 /* ── Metrics Row ── */
 .metrics { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:24px; }
 .metric { background:var(--cg-gray-50); border:1px solid var(--cg-gray-200); border-radius:8px; padding:16px 20px; flex:1; min-width:160px; }
 .metric .label { color:var(--cg-gray-600); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:1px; }
 .metric .value { color:var(--cg-gray-800); font-size:26px; font-weight:700; margin-top:4px; }
-.metric .value.green { color:var(--cg-green-500); }
-.metric .value.red { color:var(--cg-red-500); }
-.metric .value.blue { color:var(--cg-sapphire-500); }
-.metric .value.gold { color:var(--cg-sapphire-900); }
+.metric .value.green { color:var(--cg-green-600); }
+.metric .value.red { color:var(--cg-red-600); }
+.metric .value.blue { color:var(--cg-sapphire-600); }
+.metric .value.gold { color:var(--cg-copper-600); }
 .metric .detail { color:var(--cg-gray-600); font-size:11px; margin-top:3px; }
 
 /* ── Tables ── */
@@ -68,10 +70,10 @@ th { background:var(--cg-gray-50); color:var(--cg-sapphire-700); text-align:left
 td { padding:9px 12px; border-bottom:1px solid var(--cg-gray-100); color:var(--cg-gray-800); }
 tr:hover { background:var(--cg-sapphire-100); }
 .r { text-align:right; }
-td.green { color:var(--cg-green-500); }
-td.red { color:var(--cg-red-500); }
-td.gold { color:var(--cg-sapphire-900); }
-td.blue { color:var(--cg-sapphire-500); }
+td.green { color:var(--cg-green-600); }
+td.red { color:var(--cg-red-600); }
+td.gold { color:var(--cg-copper-600); }
+td.blue { color:var(--cg-sapphire-600); }
 
 /* ── Source Attribution ── */
 .source { color:var(--cg-gray-600); font-size:10px; margin-top:8px; font-style:italic; line-height:1.4; }
@@ -93,45 +95,44 @@ td.blue { color:var(--cg-sapphire-500); }
 <!-- Navigation -->
 <div class="nav" id="nav">
   <span class="nav-section">INTRO</span>
-  <button class="nav-btn active" onclick="goSlide(0)">MEET Customer</button>
-  <button class="nav-btn" onclick="goSlide(1)">MAP Stores</button>
-  <button class="nav-btn" onclick="goSlide(2)">SELL Categories</button>
-  <button class="nav-btn" onclick="goSlide(3)">SURVIVE Decline</button>
-  <button class="nav-btn" onclick="goSlide(4)">TRACK Stock</button>
+  <button class="nav-btn active" onclick="goSlide(0)">Kohl's Customer</button>
+  <button class="nav-btn" onclick="goSlide(1)">Stores Across Americ</button>
+  <button class="nav-btn" onclick="goSlide(2)">Across Six Categorie</button>
+  <button class="nav-btn" onclick="goSlide(3)">SURVIVE</button>
+  <button class="nav-btn" onclick="goSlide(4)">TRACK the Stock</button>
   <div class="nav-sep"></div>
   <span class="nav-section">REAL ESTATE</span>
-  <button class="nav-btn" onclick="goSlide(5)">OWN Hidden RE</button>
-  <button class="nav-btn" onclick="goSlide(6)">BENCHMARK Strip REITs</button>
-  <button class="nav-btn" onclick="goSlide(7)">UNLOCK 2030</button>
-  <button class="nav-btn" onclick="goSlide(8)">COMPARE Rents</button>
-  <button class="nav-btn" onclick="goSlide(9)">EXPLOIT P/B</button>
-  <button class="nav-btn" onclick="goSlide(10)">RE Method</button>
+  <button class="nav-btn" onclick="goSlide(5)">in Hidden Real Estat</button>
+  <button class="nav-btn" onclick="goSlide(6)">VALIDATE</button>
+  <button class="nav-btn" onclick="goSlide(7)">Public REITs</button>
+  <button class="nav-btn" onclick="goSlide(8)">When Debt Rolls Off </button>
+  <button class="nav-btn" onclick="goSlide(9)">KSS Pays vs Market R</button>
+  <button class="nav-btn" onclick="goSlide(10)">P/B Gap</button>
   <div class="nav-sep"></div>
   <span class="nav-section">AI DISCOVERY</span>
   <button class="nav-btn" onclick="goSlide(11)">PRICE CHECK</button>
-  <button class="nav-btn" onclick="goSlide(12)">BUILD PL Mix</button>
-  <button class="nav-btn" onclick="goSlide(13)">Brand Mix 18yr</button>
-  <button class="nav-btn" onclick="goSlide(14)">EXPOSE DG</button>
-  <button class="nav-btn" onclick="goSlide(15)">DISRUPT w/ AI</button>
+  <button class="nav-btn" onclick="goSlide(12)">Private Label Margin</button>
+  <button class="nav-btn" onclick="goSlide(13)">Dollar Store Poverty</button>
+  <button class="nav-btn" onclick="goSlide(14)">Value with AI Shoppi</button>
   <div class="nav-sep"></div>
   <span class="nav-section">CONSUMER</span>
-  <button class="nav-btn" onclick="goSlide(16)">PROFILE Customer</button>
-  <button class="nav-btn" onclick="goSlide(17)">MEASURE Recession</button>
-  <button class="nav-btn" onclick="goSlide(18)">ANCHOR Consumer</button>
-  <button class="nav-btn" onclick="goSlide(19)">COMPRESS W.Collar</button>
-  <button class="nav-btn" onclick="goSlide(20)">DISSECT Unit Econ</button>
+  <button class="nav-btn" onclick="goSlide(15)">KSS Customer</button>
+  <button class="nav-btn" onclick="goSlide(16)">Performance</button>
+  <button class="nav-btn" onclick="goSlide(17)">the Resilient Consum</button>
+  <button class="nav-btn" onclick="goSlide(18)">Collar, PROTECT Blue</button>
+  <button class="nav-btn" onclick="goSlide(19)">Unit Economics</button>
   <div class="nav-sep"></div>
   <span class="nav-section">APPENDIX</span>
-  <button class="nav-btn" onclick="goSlide(21)">RISK</button>
-  <button class="nav-btn" onclick="goSlide(22)">FORTIFY Debt</button>
-  <button class="nav-btn" onclick="goSlide(23)">TRACK Stores</button>
+  <button class="nav-btn" onclick="goSlide(20)">RISK</button>
+  <button class="nav-btn" onclick="goSlide(21)">FORTIFY</button>
+  <button class="nav-btn" onclick="goSlide(22)">Store Trajectories</button>
   <div class="nav-sep"></div>
   <span class="nav-section">SIDE THESES</span>
-  <button class="nav-btn" onclick="goSlide(24)">LEVERAGE Sephora</button>
-  <button class="nav-btn" onclick="goSlide(25)">CONVERT to DC</button>
+  <button class="nav-btn" onclick="goSlide(23)">Sephora Relationship</button>
+  <button class="nav-btn" onclick="goSlide(24)">to Last-Mile Fulfill</button>
   <div class="nav-sep"></div>
   <span class="nav-section">WORST CASE</span>
-  <button class="nav-btn" onclick="goSlide(26)">STRESS TEST</button>
+  <button class="nav-btn" onclick="goSlide(25)">STRESS TEST</button>
 </div>
 
 <div class="kb-hint">← → to navigate</div>
@@ -240,20 +241,10 @@ td.blue { color:var(--cg-sapphire-500); }
         <canvas id="chart-stock-reits"></canvas>
       </div>
     </div>
-  </div>
-  <div class="row">
     <div class="col">
       <div class="card">
-        <h3>% Change Since Jan 2022 — All Peers</h3>
-        <canvas id="chart-stock-pctchg" style="max-height:600px;height:500px"></canvas>
-        <div style="color:var(--cg-gray-400);font-size:10px;margin-top:6px">Source: Yahoo Finance monthly closing prices (Jan 2022 — Mar 2026)</div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <h3>% Change Since Jan 2022 — KSS vs Strip Center REITs</h3>
-        <canvas id="chart-stock-pctchg-reits" style="max-height:600px;height:500px"></canvas>
-        <div style="color:var(--cg-gray-400);font-size:10px;margin-top:6px">Source: Yahoo Finance monthly closing prices. REITs: BRX (Brixmor), KIM (Kimco), NNN (NNN REIT), REG (Regency Centers), SPG (Simon Property Group)</div>
+        <h3>% Change Since Jan 2022</h3>
+        <canvas id="chart-stock-pctchg"></canvas>
       </div>
     </div>
   </div>
@@ -265,44 +256,46 @@ td.blue { color:var(--cg-sapphire-500); }
   <div class="slide-subtitle">602 controlled properties valued at 3.3x market cap</div>
 
   <div class="metrics">
-    <div class="metric"><div class="label">Blended RE Value</div><div class="value green">$5.0B</div><div class="detail">602 owned + ground-leased</div></div>
-    <div class="metric"><div class="label">vs Market Cap</div><div class="value green">3.3x</div><div class="detail">Mkt cap $1.5B</div></div>
-    <div class="metric"><div class="label">SLB Net Proceeds</div><div class="value gold">$4.8B</div><div class="detail">After 3% transaction costs</div></div>
-    <div class="metric"><div class="label">RE / Share</div><div class="value green">$43.64</div><div class="detail">vs stock $13.04</div></div>
+    <div class="metric"><div class="label">Equity (Mkt Cap)</div><div class="value">$1.5B</div><div class="detail">114M sh × $13.04</div></div>
+    <div class="metric"><div class="label">+ Net Debt</div><div class="value gold">$0.8B</div><div class="detail">Debt $1.4B − Cash $0.7B</div></div>
+    <div class="metric"><div class="label">= Enterprise Value</div><div class="value">$2.2B</div><div class="detail">What a buyer pays</div></div>
+    <div class="metric"><div class="label">RE Blended Value</div><div class="value green">$5.0B</div><div class="detail">3.3x mkt cap</div></div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <div class="card">
-        <h3>RE Value by Method ($B)</h3>
-        <canvas id="chart-re-methods"></canvas>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <h3>Value per Square Foot ($/SF)</h3>
-        <canvas id="chart-re-psf"></canvas>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <h3>Implied Value per Share ($)</h3>
-        <canvas id="chart-re-pershare"></canvas>
-      </div>
-    </div>
+  <div class="card" style="margin-bottom:1.5rem">
+    <h3>EV Bridge: Equity + Net Debt vs RE Value ($B)</h3>
+    <canvas id="chart-re-waterfall" style="max-height:320px"></canvas>
   </div>
-
-  <div style="margin-top:18px;padding:16px 20px;background:var(--cg-gray-50);border:1px solid var(--cg-gray-200);border-radius:8px;font-size:11px;color:var(--cg-gray-600);line-height:1.7">
-    <strong style="color:var(--cg-gray-800)">Valuation Methods</strong><br>
-    <strong>Income Approach ($5.3B):</strong> For each of 602 stores, we take the metro-area market NNN rent (from REIT 10-K ABR/SF disclosures), apply a 38% big-box anchor discount calibrated from 28 closed Kohl's NNN transactions, multiply by store GLA, and capitalize at an 8.25% NNN cap rate. The cap rate reflects Kohl's post-downgrade credit (B+/B2): pre-downgrade 6.50% Boulder Group benchmark + 175bps sub-investment-grade spread. Ground-leased stores valued at 70% of fee-simple (building only, no land).<br>
-    <strong>REIT Comp ($4.7B):</strong> Benchmark each store against the closest public REIT comp (BRX, KIM, KRG, REG, NNN) by geography and tenant mix. Apply that REIT's portfolio ABR/SF with a big-box discount, then capitalize at the REIT's implied cap rate + 1.75% single-tenant spread. This cross-checks the income approach using market-observable REIT trading multiples.<br>
-    <strong>Blended ($5.0B):</strong> Simple average of income and REIT comp methods per store. The two approaches use independent data sources (market rents vs REIT ABR) and independent cap rates, providing a triangulated estimate.<br>
-    <strong>SLB Net ($4.8B):</strong> Blended value less 3% transaction costs (broker fees, legal, transfer taxes) — the cash a sale-leaseback would actually generate.
+  <div class="card">
+    <h3>RE Value by Method ($B)</h3>
+    <canvas id="chart-re-methods" style="max-height:320px"></canvas>
   </div>
 </div>
 
+<div class="slide" id="re-validate">
+  <div class="slide-title">VALIDATE: Kohl's Properties ARE REIT Properties</div>
+  <div class="slide-subtitle">81% strip centers, 68+ stores confirmed in REIT portfolios — same assets, same format</div>
+
+  <div class="metrics">
+    <div class="metric"><div class="label">Strip Center</div><div class="value green">81%</div><div class="detail">951 of 1,175 stores</div></div>
+    <div class="metric"><div class="label">In REIT Portfolios</div><div class="value green">68+</div><div class="detail">Confirmed in 10-K filings</div></div>
+    <div class="metric"><div class="label">Freestanding</div><div class="value">14%</div><div class="detail">162 stores (NNN comp)</div></div>
+    <div class="metric"><div class="label">Mall</div><div class="value">5%</div><div class="detail">62 stores only</div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:1.5rem">
+    <h3>Store Format: Kohl's vs REIT Portfolio Mix</h3>
+    <canvas id="chart-format-overlap" style="max-height:300px"></canvas>
+  </div>
+  <div class="card">
+    <h3>Confirmed Kohl's Stores in REIT Portfolios</h3>
+    <canvas id="chart-reit-cotenancy" style="max-height:300px"></canvas>
+  </div>
+  <div class="callout">Kohl's is not a mall retailer. 81% of stores are in strip centers — the exact property type BRX, KIM, KRG, REG own and operate. These REITs already have Kohl's as a tenant in 68+ confirmed locations per their 10-K property lists. The comp is not theoretical — it is documented.</div>
+</div>
+
 <div class="slide" id="re-benchmark">
-  <div class="slide-title">BENCHMARK Against Strip Center REITs</div>
+  <div class="slide-title">BENCHMARK Against Public REITs</div>
   <div class="slide-subtitle">Calibrated per-store using BRX, KIM, KRG, REG, NNN as comps</div>
 
   <div class="row">
@@ -340,7 +333,7 @@ td.blue { color:var(--cg-sapphire-500); }
       </div>
     </div>
   </div>
-  <div class="callout-gold callout">After 2030: $360M secured notes gone, DC collateral released. After 2031: $500M notes gone. Remaining debt: ~$640M of long-dated bonds. Free to execute SLB or REIT spin-off. Conservative scenario (50% discount to book): ~$23/share special dividend vs $8.06 stock. Full blended value scenario: ~$38/share.</div>
+  <div class="callout-gold callout">After 2030: $360M secured notes gone, DC collateral released. After 2031: $500M notes gone. Remaining debt: ~$640M of long-dated bonds. Free to execute SLB or REIT spin-off. Potential special dividend: ~$42.37/share vs $13.04 stock.</div>
 </div>
 
 <div class="slide" id="re-lease">
@@ -361,7 +354,7 @@ td.blue { color:var(--cg-sapphire-500); }
       </div>
     </div>
   </div>
-  <div class="callout">Anchor dept stores (Macy's ~$5, JCPenney ~$4, KSS $5.58) all pay $4-10/SF — this is structural, not a KSS anomaly. REIT portfolios average $19-21/SF because they blend anchors with inline tenants. Mid-tier inline (AMC $31, Uniqlo $38) pays 3-4x anchor rates. Premium inline (H&amp;M $53) pays 6x. KSS's low rent is the norm for anchors — the low P/B means their effective occupancy cost per SF is among the cheapest in retail.</div>
+  <div class="callout">Newport Centre: KSS pays $5.58/SF while H&amp;M pays $52.66/SF and Sephora pays $80.87/SF at the same property. Anchor tenants get structural discounts. Low P/B = low effective occupancy cost.</div>
 </div>
 
 <div class="slide" id="re-pb">
@@ -395,86 +388,26 @@ td.blue { color:var(--cg-sapphire-500); }
   </div>
 </div>
 
-<div class="slide" id="re-methodology">
-  <div class="slide-title">TRACE Every Store to Its Deed</div>
-  <div class="slide-subtitle">Bottom-up RE valuation: satellite imagery, 602 county assessor lookups, 28 NNN transactions, CMBS filings, 5 REIT benchmarks</div>
-
-  <div class="metrics">
-    <div class="metric"><div class="label">NNN Transactions</div><div class="value blue">28</div><div class="detail">Kohl's-specific closed deals</div></div>
-    <div class="metric"><div class="label">County Lookups</div><div class="value blue">602</div><div class="detail">Parcel-level deed verification</div></div>
-    <div class="metric"><div class="label">CMBS Properties</div><div class="value blue">172</div><div class="detail">SEC EDGAR ABS-EE filings</div></div>
-    <div class="metric"><div class="label">REIT Comps</div><div class="value blue">5</div><div class="detail">BRX, KIM, KRG, REG, NNN</div></div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <div class="card">
-        <h3>Data Pipeline: Store → Ownership → Valuation</h3>
-        <table>
-          <tr><th>Step</th><th>Source</th><th>What It Gives Us</th></tr>
-          <tr><td><strong>1. Store List</strong></td><td>KSS 10-K FY2024</td><td>1,078 addresses, format (strip/freestanding/mall)</td></tr>
-          <tr><td><strong>1b. Footprint SqFt</strong></td><td><a href="https://www.openstreetmap.org/way/27110667" target="_blank" style="color:var(--cg-sapphire-500)">OpenStreetMap Overpass API</a></td><td>680 building polygons queried via <code>out geom</code>. Each polygon's lat/lon vertices converted to m&sup2; via Shoelace formula with cos(lat) projection, then to sqft. Median: 87,239 SF. <a href="https://www.openstreetmap.org/way/27110667" target="_blank" style="color:var(--cg-sapphire-400)">[Example: Jersey City, 83K SF]</a></td></tr>
-          <tr><td><strong>1c. Verification</strong></td><td>OSM polygon → 10-K cross-check</td><td>OSM total: 55.8M SF across 680 stores (avg 82,128). 10-K reports 82M selling SF across 1,175 stores (avg 69,787 selling / ~88K gross). OSM avg of 82K sits between selling and gross — consistent. Stores without OSM polygons assigned 10-K average.</td></tr>
-          <tr><td><strong>2. Ownership</strong></td><td>County assessor portals (49 states)</td><td>Parcel owner entity — Kohls Illinois Inc, Kohls Texas LP, etc. vs third-party LLC</td></tr>
-          <tr><td><strong>3. Lease Verify</strong></td><td>SEC EDGAR CMBS FWP/ABS-EE</td><td>172 stores confirmed leased via CMBS tenant data + actual rent PSF</td></tr>
-          <tr><td><strong>4. Market Rent</strong></td><td>REIT 10-K ABR/SF by metro</td><td>Metro-level rent benchmarks from BRX, KIM, KRG, REG, NNN portfolios</td></tr>
-          <tr><td><strong>5. Discount Cal.</strong></td><td>28 Kohl's NNN transactions</td><td>Actual closed deals calibrate 38% big-box discount to REIT inline rents</td></tr>
-          <tr><td><strong>6. Cap Rate</strong></td><td>Boulder Group + credit spread</td><td>Pre-downgrade 6.50% + 175bps sub-IG spread = 8.25% NNN cap</td></tr>
-          <tr><td><strong>7. Valuation</strong></td><td>Income + REIT comp blend</td><td>Two independent methods averaged per store; ground lease at 70% of fee-simple</td></tr>
-        </table>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <h3>Kohl's NNN Transaction Comps (Cap Rate %)</h3>
-        <canvas id="chart-nnn-comps"></canvas>
-      </div>
-      <div class="card" style="margin-top:16px">
-        <h3>Selected Closed Transactions</h3>
-        <table>
-          <tr><th>Location</th><th class="r">SF</th><th class="r">$/SF</th><th class="r">Cap</th><th>Source</th></tr>
-          <tr><td>Knoxville, TN</td><td class="r">86,584</td><td class="r">$83</td><td class="r">~8.0%</td><td>Marcus & Millichap</td></tr>
-          <tr><td>Forney, TX (new)</td><td class="r">55,000</td><td class="r">$124</td><td class="r">5.65%</td><td>NNNDeal / M&M</td></tr>
-          <tr><td>Katy, TX (new)</td><td class="r">55,000</td><td class="r">$266</td><td class="r">6.73%</td><td>SRS Capital Mkts</td></tr>
-          <tr><td>OH+IN 4-pack</td><td class="r">N/A</td><td class="r">N/A</td><td class="r">7.25%</td><td>Sands Inv Group</td></tr>
-          <tr><td>Westland, MI (GL)</td><td class="r">90,860</td><td class="r">$154</td><td class="r">8.11%</td><td>Marcus & Millichap</td></tr>
-          <tr><td>Menom. Falls, WI (HQ)</td><td class="r">98,500</td><td class="r">$99</td><td class="r">~6.0%</td><td>YAFC / BizTimes</td></tr>
-          <tr><td>Fremont, CA (closed)</td><td class="r">98,000</td><td class="r">$187</td><td class="r">N/A</td><td>Mercury News</td></tr>
-          <tr><td>San Bernardino DC (SLB)</td><td class="r">N/A</td><td class="r">N/A</td><td class="r">~4.5%</td><td>CNBC / 10-K</td></tr>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div class="callout">Building footprints computed from <a href="https://www.openstreetmap.org/way/27110667" target="_blank" style="color:var(--cg-sapphire-400)">OpenStreetMap building polygons</a> — each store's bounding polygon is publicly viewable and auditable. Click any OSM way link to see the exact outline used. Ownership from county assessor parcel records, not model assumptions. Cap rate: post-downgrade 6.50% + 175bps sub-IG spread = 8.25%. NNN transactions confirm 5.6-8.1% range.</div>
-</div>
-
 <div class="slide" id="ai-price">
-  <div class="slide-title">PRICE CHECK: KSS + 30% Coupon vs Everyone</div>
-  <div class="slide-subtitle">51 identical branded products, real prices. KSS with 30% coupon beats Walmart 71%, Amazon 80%, Target 78% of the time.</div>
+  <div class="slide-title">PRICE CHECK: KSS Beats on Real Goods</div>
+  <div class="slide-subtitle">Verified prices across 54 products vs Amazon, Walmart, Target</div>
 
   <div class="metrics">
-    <div class="metric"><div class="label">vs Walmart (51)</div><div class="value green">71% win</div><div class="detail">Median -16%</div></div>
-    <div class="metric"><div class="label">vs Amazon (51)</div><div class="value green">80% win</div><div class="detail">Median -14%</div></div>
-    <div class="metric"><div class="label">vs Target (41)</div><div class="value green">78% win</div><div class="detail">Median -22%</div></div>
-    <div class="metric"><div class="label">vs TJX (11)</div><div class="value red">18% win</div><div class="detail">Off-price wins on apparel</div></div>
+    <div class="metric"><div class="label">KSS Cheapest</div><div class="value green">9%</div><div class="detail">At sticker price</div></div>
+    <div class="metric"><div class="label">Within 5%</div><div class="value blue">13%</div><div class="detail">Competitive range</div></div>
+    <div class="metric"><div class="label">With 15% Coupon</div><div class="value green">31%</div><div class="detail">KSS cheapest</div></div>
+    <div class="metric"><div class="label">Median Premium</div><div class="value">+37.0%</div><div class="detail">vs +20.2% Target</div></div>
   </div>
 
   <div class="row">
-    <div class="col">
+    <div class="col" style="flex:2">
       <div class="card">
-        <h3>KSS (30% coupon) vs Walmart: % Premium by Product</h3>
-        <canvas id="chart-kss-vs-wmt"></canvas>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <h3>KSS (30% coupon) Win Rate vs All Competitors</h3>
-        <canvas id="chart-comp-winrate"></canvas>
-        <div style="color:var(--cg-gray-600);font-size:10px;margin-top:8px">Source: kohls.com, walmart.com, amazon.com, target.com, tjmaxx.com, dollargeneral.com, fivebelow.com. All prices as of Mar 2026. TJX/Ross prices are estimates (rotating inventory). DG/Five Below carry limited overlap products.</div>
+        <h3>Selected Product Price Comparison ($)</h3>
+        <canvas id="chart-prices"></canvas>
       </div>
     </div>
   </div>
-  <div class="callout">KSS with a standard 30% coupon beats Walmart, Amazon, AND Target on the majority of identical branded products. The only retailers that consistently beat KSS-with-coupon are off-price (TJX/Ross) — but those retailers are invisible to AI shopping agents because they don't publish inventory online.</div>
+  <div class="callout">The 30% off coupon STILL leaves 25-30% product margin. AI shopping agents will tell consumers: "That KitchenAid is $50 cheaper at Kohl's with your coupon."</div>
 </div>
 
 <div class="slide" id="ai-brand">
@@ -496,46 +429,6 @@ td.blue { color:var(--cg-sapphire-500); }
     </div>
   </div>
   <div class="callout-gold callout">Proprietary brands (Sonoma, FLX, Croft &amp; Barrow, LC Lauren Conrad): 1,000-1,500bps higher gross margin. From 28% (FY2019) to 33% (FY2025) = ~62bps of cumulative GM lift. Target: 43% by FY2031 = another ~125bps.</div>
-</div>
-
-<div class="slide" id="ai-brandmix">
-  <div class="slide-title">CHART 18 Years of Brand Strategy Reversals</div>
-  <div class="slide-subtitle">Private &amp; exclusive brand penetration: 36% → 55% peak → 31% trough → recovery underway. Every data point sourced to SEC filing or earnings call transcript.</div>
-
-  <div class="metrics">
-    <div class="metric"><div class="label">All-Time Peak</div><div class="value green">55%</div><div class="detail">FY2012 Q2 (quarterly)</div></div>
-    <div class="metric"><div class="label">FY2024 Trough</div><div class="value red">31%</div><div class="detail">-21pp from peak</div></div>
-    <div class="metric"><div class="label">FY2025 Recovery</div><div class="value blue">~32%</div><div class="detail">"By Kohl's" campaign launched</div></div>
-    <div class="metric"><div class="label">Margin Rule</div><div class="value gold">10-15 bps</div><div class="detail">GM per 100bps brand gain</div></div>
-  </div>
-
-  <div class="row">
-    <div class="col" style="flex:2">
-      <div class="card">
-        <h3>Private &amp; Exclusive Brand % of Net Sales (FY2007 — FY2025)</h3>
-        <canvas id="chart-brandmix-history" style="max-height:340px"></canvas>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <h3>Key Inflection Points</h3>
-        <table>
-          <tr><th>Year</th><th>Event</th><th class="r">Mix</th></tr>
-          <tr><td>FY2007</td><td>PL build begins</td><td class="r">36%</td></tr>
-          <tr><td>FY2012</td><td class="green">Peak: 52% annual, 55% Q2</td><td class="r green">55%</td></tr>
-          <tr><td>FY2014</td><td class="gold">"Greatness Agenda" — pivot to national brands</td><td class="r gold">50%</td></tr>
-          <tr><td>FY2018</td><td>Nike/UA/Skechers push: national = 61%</td><td class="r">39%</td></tr>
-          <tr><td>FY2021</td><td>Sephora launch + supply chain collapse</td><td class="r">35%</td></tr>
-          <tr><td>FY2024</td><td class="red">All-time low: "disappointed them"</td><td class="r red">31%</td></tr>
-          <tr><td>FY2025</td><td class="blue">New CEO reverses course</td><td class="r blue">~32%</td></tr>
-        </table>
-        <div style="color:var(--cg-gray-600);font-size:11px;margin-top:8px;line-height:1.5">
-          <strong>Source trail:</strong> FY2007-12 quarterly from 10-Q text. FY2013+ annual from 10-K + earnings call transcripts. Every point links to SEC EDGAR filing. See standalone dashboard for clickable sources.
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="callout-gold callout">Kohl's gave away 21pp of private brand penetration in 8 years chasing national brand traffic. Each 100bps recovered = 10-15bps gross margin. New CEO Bender: "Proprietary brands are really a focus." Q4 comp improved 120bps as private brands returned. The FY2012 peak proves KSS customers will buy house brands — management just stopped offering them.</div>
 </div>
 
 <div class="slide" id="ai-poverty">
@@ -603,16 +496,7 @@ td.blue { color:var(--cg-sapphire-500); }
       </div>
     </div>
   </div>
-  <div class="callout">KSS ranks LAST in deal perception (45/100) despite a median price premium of only +9.6% — competitive with Amazon (+2.5%) and well below Target (+20.2%) and Dollar General (+30%). The regression line shows KSS is significantly below where perception would predict. AI shopping agents will close this gap by showing consumers the actual math.</div>
-
-  <div style="margin-top:18px;padding:16px 20px;background:var(--cg-gray-50);border:1px solid var(--cg-gray-200);border-radius:8px;font-size:11px;color:var(--cg-gray-600);line-height:1.7">
-    <strong style="color:var(--cg-gray-800)">Methodology</strong><br>
-    <strong>Price dataset:</strong> 54 identical branded products (exact UPC/model where possible) hand-collected from kohls.com, amazon.com, walmart.com, and target.com on March 16, 2026. Categories: home/kitchen appliances, branded apparel (Nike, Under Armour, Columbia, Adidas), toys, personal care. For each product, the cheapest retailer price becomes the baseline (0%). Each retailer's median premium across all 54 products is plotted on the Y-axis.<br>
-    <strong>Deal perception (X-axis):</strong> Composite score from ACSI satisfaction surveys (41,850 respondents), YouGov brand perception, Market Force Information consumer polls, and AlixPartners/Deloitte/Coresight retail surveys. Higher = consumers perceive better deals. Axis is inverted so weak perception plots right.<br>
-    <strong>TJX/Ross:</strong> Off-price retailers with rotating inventory — prices based on tjmaxx.com listings and company-stated "20-60% off department store" positioning. No consistent UPC matching possible.<br>
-    <strong>Dollar General:</strong> Carries limited branded assortment (smaller pack sizes) — per-unit premium often exceeds sticker price comparison. BofA 33-item basket study confirms +7.3% vs Walmart.<br>
-    <strong>Regression:</strong> OLS best-fit across all plotted retailers. KSS falls well below the trend line — actual value is better than perceived.
-  </div>
+  <div class="callout">KSS ranks LAST in deal perception (45/100) despite a median price premium of only +37.0% vs competitors. With a 15% coupon, KSS becomes the cheapest 31% of the time. AI shopping agents will close this perception gap by showing consumers the actual math.</div>
 </div>
 
 <div class="slide" id="con-demographics">
@@ -659,7 +543,7 @@ td.blue { color:var(--cg-sapphire-500); }
     </div>
     <div class="col">
       <div class="card">
-        <h3>COVID: Quarterly Revenue Growth (2019-Q4 to 2021-Q3)</h3>
+        <h3>COVID: Comp Store Sales (FY2019-FY2021)</h3>
         <canvas id="chart-covid-sss"></canvas>
       </div>
     </div>
@@ -983,7 +867,7 @@ const navBtns = document.querySelectorAll('.nav-btn');
 let currentSlide = 0;
 const chartCache = {};
 
-function goSlide(n, pushHash) {
+function goSlide(n) {
   if (n < 0 || n >= slides.length) return;
   slides[currentSlide].classList.remove('active');
   navBtns[currentSlide].classList.remove('active');
@@ -992,19 +876,7 @@ function goSlide(n, pushHash) {
   navBtns[currentSlide].classList.add('active');
   initChartsForSlide(currentSlide);
   navBtns[currentSlide].scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
-  if (pushHash !== false) history.replaceState(null, '', '#' + currentSlide);
 }
-
-// Restore slide from URL hash on load
-(function() {
-  const h = parseInt(location.hash.replace('#',''), 10);
-  if (!isNaN(h) && h > 0 && h < slides.length) goSlide(h, false);
-})();
-
-window.addEventListener('hashchange', () => {
-  const h = parseInt(location.hash.replace('#',''), 10);
-  if (!isNaN(h) && h >= 0 && h < slides.length && h !== currentSlide) goSlide(h, false);
-});
 
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goSlide(currentSlide + 1); }
@@ -1019,30 +891,26 @@ Chart.defaults.font.size = 11;
 Chart.defaults.plugins.legend.labels.boxWidth = 12;
 Chart.defaults.plugins.legend.labels.color = '#383838';
 
-// Capital Group Design System Colors — matched to CG published charts
+// Capital Group Design System Colors
 const CG = {
-  sapphire: { 100:'#DEF5FF', 200:'#B6EAFF', 300:'#70D5FF', 400:'#0DB9FF', 500:'#0075B5', 600:'#0067A0', 700:'#005F9E', 800:'#003A66', 900:'#00294B' },
-  turquoise: { 400:'#00B5AD', 500:'#00A499', 600:'#007E6C', 700:'#00675C' },
-  berry: { 300:'#E4729B', 400:'#D44C7A', 500:'#C2185B', 600:'#9B1347', 700:'#7A0F38' },
-  green: { 400:'#3EA561', 500:'#038049', 600:'#006B3D' },
-  gray: { 300:'#C8C8C8', 400:'#9EA2A2', 500:'#6F6F6F', 600:'#4A4A4A' },
-  // Legacy aliases for backward compat
-  raspberry: { 400:'#E4729B', 500:'#D44C7A', 600:'#C2185B', 700:'#9B1347' },
-  copper: { 400:'#9EA2A2', 500:'#00294B', 600:'#003A66' },
-  red: { 500:'#C2185B', 600:'#9B1347' },
-  warn: { 300:'#00B5AD', 500:'#007E6C' },
+  sapphire: { 100:'#DEF5FF', 200:'#B6EAFF', 300:'#70D5FF', 400:'#0DB9FF', 500:'#009CDC', 600:'#0075B5', 700:'#005F9E', 800:'#003A66', 900:'#00294B' },
+  turquoise: { 400:'#00C1BC', 500:'#00A499', 600:'#007E6C', 700:'#00675C' },
+  raspberry: { 400:'#E992C2', 500:'#E06AAA', 600:'#CB2A82', 700:'#A6256E' },
+  copper: { 400:'#C6A796', 500:'#B58976', 600:'#976253' },
+  green: { 500:'#3EA561', 600:'#038049' },
+  red: { 500:'#F45F7C', 600:'#DA1944' },
+  warn: { 300:'#FFB860', 500:'#BD8845' },
 };
 const COLORS = {
-  blue: CG.sapphire[500], blueDark: CG.sapphire[900], blueLight: CG.sapphire[300],
-  green: CG.green[400], greenDark: CG.green[500],
-  red: CG.berry[500], redDark: CG.berry[600],
-  gold: CG.sapphire[900], goldLight: CG.gray[400],
+  blue: CG.sapphire[500], blueDark: CG.sapphire[700], blueLight: CG.sapphire[300],
+  green: CG.green[500], greenDark: CG.green[600],
+  red: CG.red[500], redDark: CG.red[600],
+  gold: CG.copper[500], goldLight: CG.copper[400],
   teal: CG.turquoise[500], tealDark: CG.turquoise[600],
-  pink: CG.berry[400], pinkDark: CG.berry[700],
-  warn: CG.turquoise[400], warnDark: CG.turquoise[600],
-  kss: CG.sapphire[500], amzn: CG.sapphire[900], wmt: CG.turquoise[500], tgt: CG.berry[500],
-  tjx: CG.berry[400], dg: CG.gray[400], rost: CG.green[400],
-  cyan: CG.turquoise[400], orange: CG.turquoise[400], purple: CG.berry[300],
+  pink: CG.raspberry[500], pinkDark: CG.raspberry[700],
+  warn: CG.warn[300], warnDark: CG.warn[500],
+  kss: CG.sapphire[500], amzn: CG.warn[300], wmt: CG.turquoise[400], tgt: CG.red[500],
+  tjx: CG.raspberry[500], dg: CG.copper[500], rost: CG.green[500],
 };
 
 // ── Data ──
@@ -1094,14 +962,13 @@ function initChartsForSlide(n) {
     case 'intro-financials': initFinancials(); break;
     case 'intro-stock': initStockChart(); break;
     case 're-hidden': initReHidden(); break;
+    case 're-validate': initReValidate(); break;
     case 're-benchmark': initReBenchmark(); break;
     case 're-unlock': initReUnlock(); break;
     case 're-lease': initReLease(); break;
     case 're-pb': initRePB(); break;
-    case 're-methodology': initReMethodology(); break;
     case 'ai-price': initAiPrice(); break;
     case 'ai-brand': initAiBrand(); break;
-    case 'ai-brandmix': initAiBrandmix(); break;
     case 'ai-poverty': initAiPoverty(); break;
     case 'ai-disrupt': initAiDisrupt(); break;
     case 'con-demographics': initDemographics(); break;
@@ -1179,13 +1046,13 @@ function initFinancials() {
       datasets: [
         { label: 'Revenue ($B)', data: revB, backgroundColor: CG.sapphire[500]+'80', yAxisID: 'y', order: 2 },
         { label: 'EBITDA ($B)', data: ebitdaB, backgroundColor: CG.turquoise[500]+'80', yAxisID: 'y', order: 3 },
-        { label: 'Stock Price ($)', data: fyStockPrices, type:'line', borderColor: CG.berry[500], backgroundColor: 'transparent', yAxisID: 'y1', tension:0.3, pointRadius:5, pointBackgroundColor: CG.berry[500], borderWidth: 2.5, order: 1 }
+        { label: 'Stock Price ($)', data: fyStockPrices, type:'line', borderColor: CG.copper[400], backgroundColor: 'transparent', yAxisID: 'y1', tension:0.3, pointRadius:5, pointBackgroundColor: CG.copper[400], borderWidth: 2.5, order: 1 }
       ]
     },
     options: {
       scales: {
         y: { position:'left', grid:{ color:'rgba(21,58,90,0.3)' }, title:{ display:true, text:'$B (Revenue / EBITDA)', color: CG.sapphire[300] }, ticks:{ color: CG.sapphire[300] } },
-        y1: { position:'right', grid:{ display:false }, title:{ display:true, text:'Stock Price ($)', color: CG.berry[500] }, ticks:{ color: CG.berry[500] }, min: 0 }
+        y1: { position:'right', grid:{ display:false }, title:{ display:true, text:'Stock Price ($)', color: CG.copper[400] }, ticks:{ color: CG.copper[400] }, min: 0 }
       },
       plugins: { legend: { position:'bottom' } }
     }
@@ -1201,27 +1068,78 @@ function initFinancials() {
 }
 
 function initReHidden() {
-  // 602 controlled stores, 53M sqft, 112M shares
-  const reLabels = ['Book Value', 'Income\nApproach', 'REIT Comp', 'Blended', 'SLB Net', 'EV (Market)'];
-  const reValuesB = [6.5, 5.3, 4.7, 5.0, 4.8, 2.2];
-  const rePSF = [122, 100, 89, 94, 91, 42];
-  const rePerShare = [58.04, 47.32, 41.96, 44.64, 42.86, 13.04];
-  const reColors = [CG.copper[400], COLORS.blue, CG.raspberry[500], COLORS.green, COLORS.teal, COLORS.red];
-
+  // EV Bridge: stacked equity + debt vs RE value
+  new Chart(document.getElementById('chart-re-waterfall'), {
+    type: 'bar',
+    data: {
+      labels: ['Enterprise Value', 'RE Blended\nValue', 'RE Income\nApproach', 'RE REIT\nComp'],
+      datasets: [
+        { label: 'Equity (Mkt Cap)', data: [1.5, 0, 0, 0],
+           backgroundColor: COLORS.red },
+        { label: 'Net Debt', data: [0.8, 0, 0, 0],
+           backgroundColor: COLORS.gold },
+        { label: 'RE Value', data: [0, 5.0, 5.3, 4.7],
+           backgroundColor: COLORS.green }
+      ]
+    },
+    options: {
+      plugins: { legend: { display: true, position: 'bottom' } },
+      scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: '$B' }, grid: { color: 'rgba(0,0,0,0.08)' } } }
+    }
+  });
+  // RE Value by Method
   new Chart(document.getElementById('chart-re-methods'), {
     type: 'bar',
-    data: { labels: reLabels, datasets: [{ data: reValuesB, backgroundColor: reColors, borderRadius: 3 }] },
-    options: { plugins:{ legend:{display:false} }, scales:{ y:{ title:{display:true,text:'$B'}, grid:{color:'rgba(0,0,0,0.08)'} } } }
+    data: {
+      labels: ['Income Approach', 'REIT Comp', 'Blended', 'SLB Net\n(after costs)', 'Enterprise\nValue', 'Market Cap\n(equity only)'],
+      datasets: [{ data: [5.3, 4.7, 5.0, 4.8, 2.2, 1.5],
+        backgroundColor: [COLORS.blue, CG.raspberry[500], COLORS.green, COLORS.teal, COLORS.gold, COLORS.red] }]
+    },
+    options: { plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: '$B' }, grid: { color: 'rgba(0,0,0,0.08)' } } } }
   });
-  new Chart(document.getElementById('chart-re-psf'), {
+}
+
+function initReValidate() {
+  // Chart 1: Store format overlap — grouped bar
+  new Chart(document.getElementById('chart-format-overlap'), {
     type: 'bar',
-    data: { labels: reLabels, datasets: [{ data: rePSF, backgroundColor: reColors, borderRadius: 3 }] },
-    options: { plugins:{ legend:{display:false} }, scales:{ y:{ title:{display:true,text:'$/SF (53M SF controlled)'}, grid:{color:'rgba(0,0,0,0.08)'} } } }
+    data: {
+      labels: ['Strip Center / Power Center', 'Freestanding / NNN', 'Enclosed Mall'],
+      datasets: [
+        { label: "Kohl's (1,175 stores)", data: [81.0, 13.8, 5.3],
+           backgroundColor: COLORS.green },
+        { label: 'BRX portfolio', data: [85, 10, 5],
+           backgroundColor: COLORS.blue },
+        { label: 'KIM portfolio', data: [80, 12, 8],
+           backgroundColor: CG.raspberry[500] },
+        { label: 'NNN REIT portfolio', data: [60, 35, 5],
+           backgroundColor: COLORS.gold }
+      ]
+    },
+    options: {
+      plugins: { legend: { display: true, position: 'bottom' } },
+      scales: {
+        y: { title: { display: true, text: '% of Portfolio' }, max: 100, grid: { color: 'rgba(0,0,0,0.08)' } }
+      }
+    }
   });
-  new Chart(document.getElementById('chart-re-pershare'), {
+  // Chart 2: Confirmed Kohl's stores in REIT portfolios — horizontal bar
+  new Chart(document.getElementById('chart-reit-cotenancy'), {
     type: 'bar',
-    data: { labels: reLabels, datasets: [{ data: rePerShare, backgroundColor: reColors, borderRadius: 3 }] },
-    options: { plugins:{ legend:{display:false} }, scales:{ y:{ title:{display:true,text:'$/share (112M shares)'}, grid:{color:'rgba(0,0,0,0.08)'} } } }
+    data: {
+      labels: ['KIM (Kimco)', 'BRX (Brixmor)', 'REG (Regency)', 'UE (Urban Edge)', 'AKR (Acadia)'],
+      datasets: [{ label: "Confirmed Kohl's stores in portfolio",
+        data: [22, 18, 10, 9, 7],
+        backgroundColor: [COLORS.blue, COLORS.green, CG.raspberry[500], COLORS.teal, COLORS.gold]
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: "# of Kohl's stores in REIT portfolio" }, grid: { color: 'rgba(0,0,0,0.08)' } }
+      }
+    }
   });
 }
 
@@ -1259,45 +1177,16 @@ function initReUnlock() {
     data: { labels: debtLabels, datasets: [{ data: debtAmounts, backgroundColor: debtColors }] },
     options: { plugins:{ legend:{ display:false } }, scales:{ y:{ title:{ display:true, text:'$M' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
   });
-  // SLB waterfall — all per-share, ~114M shares
-  // Base case: 50% discount to RE net book $6.49B = $3,244M proceeds
-  // $3,244M / 114 = $28.46/sh → 3% txn costs -$0.85 → retire 2031 notes $500M -$4.39 → dividend $23.22
-  const shares = 114;  // millions
-  const rePerShare = 3244 / shares;     // $28.46 (50% discount to $6,488M book)
-  const txnCost = -(3244 * 0.03) / shares; // -$0.85
-  const retire2031 = -500 / shares;     // -$4.39
-  const divPerShare = rePerShare + txnCost + retire2031; // $23.22
-
-  // Floating bar waterfall: [bottom, top] for each segment
-  const step1 = rePerShare;
-  const step2 = step1 + txnCost;
-  const step3 = step2 + retire2031;
+  // SLB waterfall
+  const slbSteps = ['RE Book\n$6.5B', '50% Discount\n-$3.2B', 'Base Proceeds\n$3.2B', 'Txn Costs\n-$97M', 'Retire 2031\n-$500M', 'Special Div\n$2.6B', 'Per Share'];
+  const slbValues = [6.5, -3.2, 3.2, -0.1, -0.5, 2.6, 42.37];
   new Chart(document.getElementById('chart-slb-waterfall'), {
     type: 'bar',
     data: {
-      labels: ['RE Value\n/Share', 'Txn Costs\n(3%)', 'Retire 2031\nNotes', '2030 Special\nDividend', 'Stock Price\nToday'],
-      datasets: [{
-        data: [
-          [0, step1],
-          [step2, step1],
-          [step3, step2],
-          [0, step3],
-          [0, 8.06]
-        ],
-        backgroundColor: [CG.green[500], CG.red[500], CG.red[500], CG.sapphire[500], CG.copper[500]],
-        borderRadius: 4, borderSkipped: false
-      }]
+      labels: ['RE Book Value', '50% Haircut', 'Base Proceeds', 'Transaction Costs', 'Retire 2031 Notes', 'Net for Dividend', 'Per Share ($)'],
+      datasets: [{ data: [6.5, 3.3, 3.2, 3.1, 2.6, 2.6, 42.37], backgroundColor: [COLORS.blue, COLORS.red, COLORS.green, COLORS.red, COLORS.red, COLORS.green, COLORS.gold] }]
     },
-    options: {
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: ctx => { const v = ctx.raw; return Array.isArray(v) ? '$' + (v[1] - v[0]).toFixed(2) + '/sh' : '$' + v; } } }
-      },
-      scales: {
-        y: { title: { display: true, text: '$/Share' }, grid: { color: 'rgba(0,0,0,0.08)' }, min: 0, max: 35 },
-        x: { grid: { display: false } }
-      }
-    }
+    options: { plugins:{ legend:{ display:false } }, scales:{ y:{ title:{ display:true, text:'$B (last bar = $/share)' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
   });
 }
 
@@ -1313,15 +1202,12 @@ function initReLease() {
     },
     options: { indexAxis:'y', plugins:{ legend:{ display:false } }, scales:{ x:{ title:{ display:true, text:'$/SF Annual' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
   });
-  // Rent comparison — CMBS-verified tenants at Newport Centre + REIT portfolio averages
-  // Rent comparison — anchors at left, REIT avg in middle, inline at right
-  // Macy's ~$6/SF from SPG/TCO 10-K anchor disclosures; Dick's $7.21 CMBS-verified Newport Centre
+  // Rent comparison
   new Chart(document.getElementById('chart-rent-compare'), {
     type: 'bar',
     data: {
-      labels: ["Macy's\n(anchor est.)", "JCPenney\n(anchor est.)", 'KSS Newport\n(CMBS)', "Dick's\n(Newport)", 'KSS Avg\n(602 stores)', 'BRX\nPortfolio', 'KIM\nPortfolio', 'AMC\n(Newport)', 'Uniqlo\n(Newport)', 'H&M\n(Newport)'],
-      datasets: [{ data: [5.00, 4.00, 5.58, 7.21, 9.18, 18.77, 21.00, 31.22, 38.49, 52.66],
-        backgroundColor: [CG.copper[400], CG.copper[400], CG.green[500], CG.copper[500], CG.green[600], CG.sapphire[400], CG.sapphire[400], CG.raspberry[400], CG.raspberry[500], CG.raspberry[600]] }]
+      labels: ['KSS Avg', 'BRX Portfolio', 'KIM Portfolio', 'REG Portfolio', 'Newport: H&M', 'Newport: Sephora'],
+      datasets: [{ data: [9.18, 18.77, 21.00, 23.50, 52.66, 80.87], backgroundColor: [COLORS.green, COLORS.blue, COLORS.blue, COLORS.blue, COLORS.orange, COLORS.pink] }]
     },
     options: { plugins:{ legend:{ display:false } }, scales:{ y:{ title:{ display:true, text:'$/SF Annual' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
   });
@@ -1331,126 +1217,28 @@ function initRePB() {
   new Chart(document.getElementById('chart-per-share'), {
     type: 'bar',
     data: {
-      labels: ['Current Stock', '2022 PE Bid', 'Book Value', 'RE Value/Share', 'SLB Div/Share (50% disc)'],
-      datasets: [{ data: [8.06, 53, 35.51, 43.60, 23.22],
+      labels: ['Current Stock', '2022 PE Bid', 'Book Value', 'RE Value/Share', 'SLB/Share'],
+      datasets: [{ data: [13.04, 53, 35.51, 43.64, 42.37],
         backgroundColor: [COLORS.red, COLORS.gold, COLORS.blue, COLORS.green, COLORS.cyan] }]
     },
     options: { plugins:{ legend:{ display:false } }, scales:{ y:{ title:{ display:true, text:'$/Share' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
   });
 }
 
-function initReMethodology() {
-  const nnnDeals = [
-    { loc: 'Forney TX (2023)', cap: 5.65 },
-    { loc: 'Menom. Falls WI', cap: 6.0 },
-    { loc: 'Katy TX (new)', cap: 6.73 },
-    { loc: 'Forsyth IL (GL)', cap: 6.74 },
-    { loc: 'OH+IN 4-pack', cap: 7.25 },
-    { loc: 'Knoxville TN', cap: 8.0 },
-    { loc: 'Westland MI (GL)', cap: 8.11 },
-  ];
-  new Chart(document.getElementById('chart-nnn-comps'), {
-    type: 'bar',
-    data: {
-      labels: nnnDeals.map(d => d.loc),
-      datasets: [{
-        label: 'Cap Rate (%)',
-        data: nnnDeals.map(d => d.cap),
-        backgroundColor: nnnDeals.map(d => d.cap <= 7.0 ? CG.green[500] : d.cap <= 8.0 ? CG.sapphire[500] : CG.copper[500]),
-        borderWidth: 0, borderRadius: 4
-      },{
-        label: 'Our 8.25% Cap Rate',
-        data: nnnDeals.map(() => 8.25),
-        type: 'line', indexAxis: 'y',
-        borderColor: CG.red[600], borderWidth: 2, borderDash: [6,3],
-        pointRadius: 0, fill: false
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 } } },
-      scales: {
-        x: { min: 4, max: 10, title: { display: true, text: 'NNN Cap Rate (%)' }, grid: { color: 'rgba(0,0,0,0.08)' } },
-        y: { grid: { display: false } }
-      }
-    }
-  });
-}
-
-// KSS with 30% coupon vs Walmart: 51 products, sorted by premium (negative = KSS wins)
-// Source: kohls.com, walmart.com, amazon.com, target.com, tjmaxx.com, dollargeneral.com, fivebelow.com (Mar 2026)
-const kssVsWmt30 = [
-  {p:'Yankee Candle 22oz',prem:-50.5},{p:'Barbie Dreamhouse',prem:-50.0},{p:'Cuisinart Food Proc',prem:-44.0},
-  {p:'Nike Revolution 8',prem:-32.6},{p:'Melissa & Doug puzzle',prem:-30.1},{p:'Ninja Blender',prem:-30.0},
-  {p:'Instant Pot Duo',prem:-30.0},{p:'KitchenAid Mixer',prem:-30.0},{p:'Columbia Fleece',prem:-30.0},
-  {p:'Cuisinart Cookware',prem:-28.2},{p:'Dyson V8',prem:-28.0},{p:'Hot Wheels 20pk',prem:-26.9},
-  {p:'Ninja Air Fryer',prem:-26.3},{p:'Bissell CrossWave',prem:-26.3},{p:'Shark Navigator',prem:-25.9},
-  {p:'Nike Dri-FIT shorts',prem:-23.4},{p:'Monopoly classic',prem:-22.9},{p:'Fitbit Inspire 3',prem:-22.2},
-  {p:'New Balance 411v3',prem:-21.3},{p:'Crock-Pot 7qt',prem:-21.2},{p:'Dockers Khaki',prem:-21.2},
-  {p:'Nike Brasilia duffel',prem:-21.2},{p:'UA Tech 2.0 Tee',prem:-20.5},{p:'UNO card game',prem:-19.8},
-  {p:'Samsonite 24"',prem:-17.7},{p:'Squishmallow 16"',prem:-16.0},{p:'Brita pitcher',prem:-15.9},
-  {p:'Keurig K-Duo',prem:-14.1},{p:'Wrangler Jeans',prem:-8.7},{p:'Adidas Track Pants',prem:-6.7},
-  {p:'Skechers Summits',prem:-6.6},{p:'Fisher-Price toy',prem:-6.5},{p:'Ninja Creami',prem:-4.7},
-  {p:'Adidas Cloudfoam',prem:-4.5},{p:'Lee Relaxed Jeans',prem:-2.6},{p:'Champion Hoodie',prem:-1.6},
-  {p:"Levi's 505 Jeans",prem:0.0},{p:'Skechers Go Walk',prem:1.1},{p:"Levi's Trucker Jacket",prem:4.4},
-  {p:'Keurig K-Mini Plus',prem:5.0},{p:'Crayola 96ct',prem:5.4},{p:'Nerf Elite 2.0',prem:12.2},
-  {p:'FotL boxer briefs',prem:15.4},{p:'Conair Hair Dryer',prem:16.8},{p:'LEGO Classic Box',prem:23.5},
-  {p:'Rubbermaid storage',prem:23.6},{p:"Carter's baby 5pk",prem:23.6},{p:'Hanes 6pk crew tees',prem:33.8},
-  {p:'Play-Doh 20-pack',prem:40.2},{p:'Weighted Blanket',prem:40.2},{p:'B+D dustbuster',prem:79.1}
-];
-
-// Win rates across all competitors (KSS with 30% coupon)
-const compWinRates = [
-  {comp:'Amazon',n:51,wins:41,winPct:80.4,medPrem:-13.9},
-  {comp:'Target',n:41,wins:32,winPct:78.0,medPrem:-22.2},
-  {comp:'Walmart',n:51,wins:36,winPct:70.6,medPrem:-16.0},
-  {comp:'TJX*',n:11,wins:2,winPct:18.2,medPrem:16.7},
-  {comp:'Dollar Gen*',n:7,wins:1,winPct:14.3,medPrem:11.8},
-  {comp:'Five Below*',n:7,wins:1,winPct:14.3,medPrem:25.8},
-  {comp:'Ross*',n:8,wins:0,winPct:0.0,medPrem:27.2}
-];
-
 function initAiPrice() {
-  // Chart 1: KSS (30% coupon) vs WMT — all 51 products horizontal bar
-  new Chart(document.getElementById('chart-kss-vs-wmt'), {
+  const priceLabels = selectedPrices.map(p => p.product);
+  new Chart(document.getElementById('chart-prices'), {
     type: 'bar',
     data: {
-      labels: kssVsWmt30.map(d => d.p),
-      datasets: [{
-        label: 'KSS (30% off) vs Walmart (%)',
-        data: kssVsWmt30.map(d => d.prem),
-        backgroundColor: kssVsWmt30.map(d => d.prem <= 0 ? CG.green[500]+'80' : CG.red[500]+'80'),
-        borderRadius: 2
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => (ctx.raw > 0 ? '+' : '') + ctx.raw + '% vs WMT' } } },
-      scales: {
-        x: { title: { display: true, text: '← KSS cheaper          KSS more expensive →' }, grid: { color: 'rgba(0,0,0,0.08)' } },
-        y: { ticks: { font: { size: 8 } } }
-      }
-    }
-  });
-
-  // Chart 2: Win rate vs all competitors
-  new Chart(document.getElementById('chart-comp-winrate'), {
-    type: 'bar',
-    data: {
-      labels: compWinRates.map(c => c.comp + ' (' + c.n + ')'),
+      labels: priceLabels,
       datasets: [
-        { label: 'KSS Wins', data: compWinRates.map(c => c.wins), backgroundColor: CG.green[500] },
-        { label: 'Comp Wins', data: compWinRates.map(c => c.n - c.wins), backgroundColor: CG.red[500]+'70' }
+        { label: "Kohl's", data: selectedPrices.map(p => p.kohls), backgroundColor: COLORS.kss },
+        { label: 'Amazon', data: selectedPrices.map(p => p.amazon), backgroundColor: COLORS.amzn },
+        { label: 'Walmart', data: selectedPrices.map(p => p.walmart), backgroundColor: COLORS.wmt },
+        { label: 'Target', data: selectedPrices.map(p => p.target), backgroundColor: COLORS.tgt }
       ]
     },
-    options: {
-      indexAxis: 'y',
-      plugins: { legend: { position: 'bottom' } },
-      scales: {
-        x: { stacked: true, title: { display: true, text: '# of Products' }, grid: { color: 'rgba(0,0,0,0.08)' } },
-        y: { stacked: true }
-      }
-    }
+    options: { indexAxis:'y', plugins:{ legend:{ position:'bottom' } }, scales:{ x:{ grid:{ color:'rgba(0,0,0,0.08)' }, title:{ display:true, text:'Price ($)' } } } }
   });
 }
 
@@ -1483,41 +1271,6 @@ function initAiBrand() {
   });
 }
 
-function initAiBrandmix() {
-  const brandYears = ['FY07','FY08','FY09','FY10','FY11','FY12','FY13','FY14','FY15','FY16','FY17','FY18','FY19','FY20','FY21','FY22','FY23','FY24','FY25'];
-  const brandAnnual = [39.2, 42, 44, 48, 50, 52, 52, 50, 48, 46, 42, 39, 38, 37, 35, 35, 34, 31, 32];
-  const bgColors = brandAnnual.map((v, i) => {
-    if (i <= 5) return CG.green[500];
-    if (i <= 11) return CG.copper[500];
-    if (i <= 16) return CG.red[500];
-    if (i === 17) return CG.red[600];
-    return CG.sapphire[500];
-  });
-  new Chart(document.getElementById('chart-brandmix-history'), {
-    type: 'line',
-    data: {
-      labels: brandYears,
-      datasets: [{
-        label: 'Private & Exclusive Brand %',
-        data: brandAnnual,
-        borderColor: CG.sapphire[500], borderWidth: 2.5,
-        pointBackgroundColor: bgColors, pointBorderColor: bgColors,
-        pointRadius: 5, pointHoverRadius: 8,
-        fill: true, backgroundColor: 'rgba(0,156,220,0.06)',
-        tension: 0.3
-      }]
-    },
-    options: {
-      plugins: { legend: { display: false } },
-      scales: {
-        y: { min: 28, max: 58, title: { display: true, text: '% of Net Sales' }, grid: { color: 'rgba(0,0,0,0.08)' },
-          ticks: { callback: v => v + '%', stepSize: 5 } },
-        x: { grid: { color: 'rgba(0,0,0,0.04)' } }
-      }
-    }
-  });
-}
-
 const perUnitData = [{"product": "Batteries (AA, Panasonic)", "premium": 329}, {"product": "Alka-Seltzer", "premium": 125}, {"product": "Freezer Bags (store brand)", "premium": 100}, {"product": "Chicken Breasts (Tyson frozen)", "premium": 71}, {"product": "Tampax Pocket Radiant Tampons", "premium": 46}, {"product": "Aspirin / Acetaminophen", "premium": 43}, {"product": "Milk (gallon, whole)", "premium": 26}, {"product": "Dove Sensitive Skin Beauty Bar", "premium": 14}, {"product": "Tide Laundry Detergent (large ", "premium": 12}, {"product": "Clorox Disinfecting Wipes", "premium": 10}];
 
 function initAiPoverty() {
@@ -1535,41 +1288,28 @@ function initAiPoverty() {
 }
 
 function initAiDisrupt() {
-  // Data-driven: Y-axis = actual median premium from our 54-product price comparison
+  // Data-driven: Y-axis = actual median premium from our price comparison research
   // X-axis = consumer "deal perception" (inverted: lower = better perceived value)
-  // KSS shown at effective 20% coupon price: (1+0.37)*0.80 - 1 = 9.6% premium
+  const medianPrem = {"KSS": 37.0, "AMZN": 2.5, "WMT": 0.0, "TGT": 20.2, "KSS_coupon": 16.4};
+  // Deal perception composite scores (0-100) from ACSI, Market Force, YouGov, AlixPartners surveys
+  // Higher = consumers perceive the retailer as offering better deals/value
   const dealPerception = { TJX: 88, ROST: 85, AMZN: 78, WMT: 72, TGT: 62, FIVE: 60, DG: 55, KSS: 45 };
   const brands = [
-    { x: 100-dealPerception.KSS, y: 9.6, label: 'KSS', color: COLORS.kss, r: 14 },
-    { x: 100-dealPerception.AMZN, y: 2.5, label: 'Amazon', color: COLORS.amzn, r: 10 },
-    { x: 100-dealPerception.WMT, y: 0.0, label: 'Walmart', color: COLORS.wmt, r: 10 },
-    { x: 100-dealPerception.TGT, y: 20.2, label: 'Target', color: COLORS.tgt, r: 10 },
+    { x: 100-dealPerception.KSS, y: medianPrem.KSS || 9, label: 'KSS (sticker)', color: COLORS.kss, r: 14 },
+    { x: 100-dealPerception.KSS, y: medianPrem.KSS_coupon || -7, label: 'KSS (15% coupon)', color: CG.green[500], r: 14 },
+    { x: 100-dealPerception.AMZN, y: medianPrem.AMZN || 3, label: 'Amazon', color: COLORS.amzn, r: 10 },
+    { x: 100-dealPerception.WMT, y: medianPrem.WMT || 0, label: 'Walmart', color: COLORS.wmt, r: 10 },
+    { x: 100-dealPerception.TGT, y: medianPrem.TGT || 12, label: 'Target', color: COLORS.tgt, r: 10 },
     { x: 100-dealPerception.TJX, y: 15, label: 'TJX', color: COLORS.tjx, r: 10 },
     { x: 100-dealPerception.DG, y: 30, label: 'Dollar General*', color: COLORS.dg, r: 10 },
   ];
-  // Linear regression
-  const pts = brands.map(b => [b.x, b.y]);
-  const n = pts.length;
-  const sx = pts.reduce((a,p) => a+p[0], 0), sy = pts.reduce((a,p) => a+p[1], 0);
-  const sxx = pts.reduce((a,p) => a+p[0]*p[0], 0), sxy = pts.reduce((a,p) => a+p[0]*p[1], 0);
-  const slope = (n*sxy - sx*sy) / (n*sxx - sx*sx);
-  const intercept = (sy - slope*sx) / n;
-  const regLine = [{x:5, y:slope*5+intercept}, {x:95, y:slope*95+intercept}];
-
   new Chart(document.getElementById('chart-perception'), {
     type: 'scatter',
     data: {
-      datasets: [
-        ...brands.map(b => ({
-          label: b.label, data: [{ x: b.x, y: b.y }],
-          backgroundColor: b.color, pointRadius: b.r, pointHoverRadius: b.r + 4
-        })),
-        {
-          label: 'Trend (OLS)', type: 'line', data: regLine,
-          borderColor: CG.gray[400], borderWidth: 1.5, borderDash: [6,4],
-          pointRadius: 0, fill: false
-        }
-      ]
+      datasets: brands.map(b => ({
+        label: b.label, data: [{ x: b.x, y: b.y }],
+        backgroundColor: b.color, pointRadius: b.r, pointHoverRadius: b.r + 4
+      }))
     },
     options: {
       scales: {
@@ -1577,7 +1317,7 @@ function initAiDisrupt() {
         y: { title: { display:true, text: 'Actual Median Price Premium vs Cheapest (%)' }, grid:{ color:'rgba(0,0,0,0.08)' } }
       },
       plugins: {
-        legend: { position: 'bottom', labels: { filter: item => item.text !== 'Trend (OLS)' } },
+        legend: { position: 'bottom' },
         tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '% premium' } }
       }
     }
@@ -1769,8 +1509,7 @@ const demoData = [{"ticker": "DG", "hhi": 40000, "desc": "Core customer earns <$
 
 // ── Recession SSS Data ──
 const gfcSSS = {"KSS": {"FY2007": -0.8, "FY2008": -6.9, "FY2009": -4.4, "FY2010": 4.5}, "M": {"FY2007": -1.4, "FY2008": -4.6, "FY2009": -5.3, "FY2010": 4.6}, "JWN": {"FY2007": 4.5, "FY2008": -8.4, "FY2009": -4.2, "FY2010": 8.1}, "TJX": {"FY2007": 1.0, "FY2008": 1.0, "FY2009": 6.0, "FY2010": 4.0}, "DG": {"FY2007": 2.1, "FY2008": 9.0, "FY2009": 9.5, "FY2010": 4.9}, "WMT": {"FY2007": 1.9, "FY2008": 3.5, "FY2009": -0.8, "FY2010": 0.5}, "TGT": {"FY2007": 3.0, "FY2008": -2.9, "FY2009": -2.5, "FY2010": 2.1}, "ROST": {"FY2007": 2.0, "FY2008": -1.0, "FY2009": 5.0, "FY2010": 6.0}};
-// COVID quarterly YoY revenue growth (scripted from XBRL 10-Q filings)
-const covidSSS = {"KSS": {"2019-Q4": 0.1, "2020-Q1": -40.6, "2020-Q2": -23.1, "2020-Q3": -14.0, "2020-Q4": -10.1, "2021-Q1": 60.1, "2021-Q2": 30.5, "2021-Q3": 15.6}, "M": {"2019-Q4": -1.4, "2020-Q1": -45.2, "2020-Q2": -35.8, "2020-Q3": -22.9, "2020-Q4": -18.7, "2021-Q1": 56.0, "2021-Q2": 58.7, "2021-Q3": 36.3}, "JWN": {"2020-Q1": -38.5, "2020-Q2": -51.9, "2020-Q3": -15.9, "2021-Q1": 42.0, "2021-Q2": 96.4, "2021-Q3": 17.7}, "TJX": {"2019-Q4": 9.7, "2020-Q1": -52.5, "2020-Q2": -31.8, "2020-Q3": -3.2, "2020-Q4": -10.3, "2021-Q1": 128.8, "2021-Q2": 81.1, "2021-Q3": 23.9}, "DG": {"2019-Q4": 7.6, "2020-Q1": 27.6, "2020-Q2": 24.4, "2020-Q3": 17.3, "2020-Q4": 17.6, "2021-Q1": -0.6, "2021-Q2": -0.4, "2021-Q3": 3.9}, "WMT": {"2019-Q4": 2.1, "2020-Q1": 8.7, "2020-Q2": 5.8, "2020-Q3": 5.3, "2021-Q1": 2.6, "2021-Q2": 2.2, "2021-Q3": 4.1}, "TGT": {"2019-Q4": 1.8, "2020-Q1": 11.3, "2020-Q2": 24.7, "2020-Q3": 21.2, "2021-Q1": 23.4, "2021-Q2": 9.5, "2021-Q3": 13.3}, "ROST": {"2019-Q4": 7.5, "2020-Q1": -51.5, "2020-Q2": -32.5, "2020-Q3": -2.5, "2020-Q4": -3.7, "2021-Q1": 145.1, "2021-Q2": 79.0, "2021-Q3": 21.8}};
+const covidSSS = {"KSS": {"FY2019": -1.3, "FY2020": -21.0, "FY2021": 22.1}, "M": {"FY2019": -0.8, "FY2020": -17.1, "FY2021": 42.9}, "JWN": {"FY2019": -1.7, "FY2020": -20.0, "FY2021": 23.0}, "TJX": {"FY2019": 4.0, "FY2021": 17.0}, "DG": {"FY2019": 3.9, "FY2020": 16.3, "FY2021": -2.8}, "WMT": {"FY2019": 2.8, "FY2020": 8.6, "FY2021": 6.4}, "TGT": {"FY2019": 3.4, "FY2020": 19.3, "FY2021": 12.7}, "ROST": {"FY2019": 3.0, "FY2021": 13.0}};
 
 function initStockChart() {
   if (!stockPrices) return;
@@ -1805,7 +1544,7 @@ function initStockChart() {
       options: { scales: { y: { title:{ display:true, text:'Stock Price ($)' }, grid:{ color:'rgba(0,0,0,0.08)' } }, x: { ticks: { maxTicksLimit: 10 } } }, plugins:{ legend:{ position:'bottom' } } }
     });
   }
-  // % change bar chart — all peers
+  // % change bar chart
   if (stockSummary && document.getElementById('chart-stock-pctchg')) {
     const allTickers = [...retailTickers, ...reitTickers].filter(t => stockSummary[t]);
     allTickers.sort((a,b) => (stockSummary[a]?.pct_change||0) - (stockSummary[b]?.pct_change||0));
@@ -1816,21 +1555,7 @@ function initStockChart() {
         datasets: [{ data: allTickers.map(t => stockSummary[t]?.pct_change || 0),
           backgroundColor: allTickers.map(t => (stockSummary[t]?.pct_change||0) >= 0 ? CG.green[500]+'90' : CG.red[500]+'90') }]
       },
-      options: { indexAxis:'y', maintainAspectRatio:false, plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label: item => item.raw.toFixed(1) + '%' } } }, scales:{ x:{ title:{ display:true, text:'% Change Since Jan 2022' }, grid:{ color:'rgba(0,0,0,0.08)' } }, y:{ ticks:{ autoSkip:false, font:{ size:13, weight:'bold' } } } } }
-    });
-  }
-  // % change bar chart — KSS vs REITs only
-  if (stockSummary && document.getElementById('chart-stock-pctchg-reits')) {
-    const reitOnly = ['KSS', ...reitTickers].filter(t => stockSummary[t]);
-    reitOnly.sort((a,b) => (stockSummary[a]?.pct_change||0) - (stockSummary[b]?.pct_change||0));
-    new Chart(document.getElementById('chart-stock-pctchg-reits'), {
-      type: 'bar',
-      data: {
-        labels: reitOnly,
-        datasets: [{ data: reitOnly.map(t => stockSummary[t]?.pct_change || 0),
-          backgroundColor: reitOnly.map(t => t === 'KSS' ? COLORS.kss+'90' : (stockSummary[t]?.pct_change||0) >= 0 ? CG.green[500]+'90' : CG.red[500]+'90') }]
-      },
-      options: { indexAxis:'y', maintainAspectRatio:false, plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label: item => item.raw.toFixed(1) + '%' } } }, scales:{ x:{ title:{ display:true, text:'% Change Since Jan 2022' }, grid:{ color:'rgba(0,0,0,0.08)' } }, y:{ ticks:{ autoSkip:false, font:{ size:14, weight:'bold' } } } } }
+      options: { indexAxis:'y', plugins:{ legend:{ display:false } }, scales:{ x:{ title:{ display:true, text:'% Change Since Jan 2022' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
     });
   }
 }
@@ -1849,36 +1574,36 @@ function initDemographics() {
 }
 
 function initRecession() {
-  const colorMap = { KSS: CG.sapphire[500], M: CG.red[500], JWN: CG.copper[500], TJX: CG.raspberry[500], DG: CG.warn[300], WMT: CG.turquoise[400], TGT: CG.red[600], ROST: CG.green[500] };
-  // Normalize: subtract base year SSS so all start at 0
-  function normalized(sssData, years) {
-    const baseYear = years[0];
-    const tickers = Object.keys(sssData);
-    return tickers.map(t => {
-      const base = sssData[t]?.[baseYear] ?? 0;
-      return {
-        label: t, data: years.map(y => { const v = sssData[t]?.[y]; return v != null ? +(v - base).toFixed(1) : null; }),
-        borderColor: colorMap[t] || CG.sapphire[700], borderWidth: t === 'KSS' ? 3 : 1.5,
-        tension: 0.3, pointRadius: 4, fill: false
-      };
-    });
-  }
-  // GFC chart — normalized to FY2007 = 0
+  // GFC chart
   if (Object.keys(gfcSSS).length && document.getElementById('chart-gfc-sss')) {
+    const tickers = Object.keys(gfcSSS);
     const years = ['FY2007', 'FY2008', 'FY2009', 'FY2010'];
+    const colorMap = { KSS: CG.sapphire[500], M: CG.red[500], JWN: CG.copper[500], TJX: CG.raspberry[500], DG: CG.warn[300], WMT: CG.turquoise[400], TGT: CG.red[600], ROST: CG.green[500] };
+    const datasets = tickers.map(t => ({
+      label: t, data: years.map(y => gfcSSS[t]?.[y] ?? null),
+      borderColor: colorMap[t] || CG.sapphire[700], borderWidth: t === 'KSS' ? 3 : 1.5,
+      tension: 0.3, pointRadius: 4, fill: false
+    }));
     new Chart(document.getElementById('chart-gfc-sss'), {
       type: 'line',
-      data: { labels: years, datasets: normalized(gfcSSS, years) },
-      options: { scales: { y: { title:{ display:true, text:'SSS vs Base Year (pp)' }, grid:{ color:'rgba(0,0,0,0.08)' } } }, plugins:{ legend:{ position:'bottom' } } }
+      data: { labels: years, datasets },
+      options: { scales: { y: { title:{ display:true, text:'Comp SSS (%)' }, grid:{ color:'rgba(0,0,0,0.08)' } } }, plugins:{ legend:{ position:'bottom' } } }
     });
   }
-  // COVID chart — quarterly, normalized to 2019-Q4 = 0
+  // COVID chart
   if (Object.keys(covidSSS).length && document.getElementById('chart-covid-sss')) {
-    const quarters = ['2019-Q4','2020-Q1','2020-Q2','2020-Q3','2020-Q4','2021-Q1','2021-Q2','2021-Q3'];
+    const tickers = Object.keys(covidSSS);
+    const years = ['FY2019', 'FY2020', 'FY2021'];
+    const colorMap = { KSS: CG.sapphire[500], M: CG.red[500], JWN: CG.copper[500], TJX: CG.raspberry[500], DG: CG.warn[300], WMT: CG.turquoise[400], TGT: CG.red[600], ROST: CG.green[500] };
+    const datasets = tickers.map(t => ({
+      label: t, data: years.map(y => covidSSS[t]?.[y] ?? null),
+      borderColor: colorMap[t] || CG.sapphire[700], borderWidth: t === 'KSS' ? 3 : 1.5,
+      tension: 0.3, pointRadius: 4, fill: false
+    }));
     new Chart(document.getElementById('chart-covid-sss'), {
       type: 'line',
-      data: { labels: quarters, datasets: normalized(covidSSS, quarters) },
-      options: { scales: { y: { title:{ display:true, text:'YoY Rev Growth vs Base Quarter (pp)' }, grid:{ color:'rgba(0,0,0,0.08)' } } }, plugins:{ legend:{ position:'bottom' } } }
+      data: { labels: years, datasets },
+      options: { scales: { y: { title:{ display:true, text:'Comp SSS (%)' }, grid:{ color:'rgba(0,0,0,0.08)' } } }, plugins:{ legend:{ position:'bottom' } } }
     });
   }
 }
@@ -1894,8 +1619,10 @@ const SOURCES = {
   'chart-stock-retail': 'Source: Yahoo Finance monthly adj close | JAOD Analysis',
   'chart-stock-reits': 'Source: Yahoo Finance monthly adj close | JAOD Analysis',
   'chart-stock-pctchg': 'Source: Yahoo Finance (Jan 2022 — Mar 2026) | JAOD Analysis',
-  'chart-re-waterfall': 'Source: REIT comp + income approach valuation | JAOD Analysis',
-  'chart-re-methods': 'Source: BRX/KIM/KRG/REG/NNN benchmarks, 8.25% cap rate | JAOD Analysis',
+  'chart-format-overlap': 'Source: KSS 10-K FY2024 (property table), BRX/KIM/NNN 10-K filings (portfolio composition) | JAOD Analysis',
+  'chart-reit-cotenancy': 'Source: REIT 10-K property lists cross-referenced with KSS store locations | JAOD Analysis',
+  'chart-re-waterfall': 'Source: Yahoo Finance (equity), KSS 10-K (debt/cash), REIT comp + income approach (RE) | JAOD Analysis',
+  'chart-re-methods': 'Source: BRX/KIM/KRG/REG/NNN 10-K benchmarks, 8.25% cap rate, KSS 10-K PP&E | JAOD Analysis',
   'chart-reit-abr': 'Source: REIT 10-K filings, SEC EDGAR | JAOD Analysis',
   'chart-state-re': 'Source: Per-store REIT benchmark model | JAOD Analysis',
   'chart-debt-maturity': 'Source: KSS 10-K FY2024, 8-K (May 2025) | JAOD Analysis',
@@ -1903,16 +1630,14 @@ const SOURCES = {
   'chart-cmbs-rent': 'Source: SEC EDGAR CMBS FWP Annex A-1 filings | JAOD Analysis',
   'chart-rent-compare': 'Source: REIT 10-K ABR/SF, CMBS verified | JAOD Analysis',
   'chart-per-share': 'Source: Yahoo Finance, SEC filings, REIT comp model | JAOD Analysis',
-  'chart-nnn-comps': 'Source: Marcus & Millichap, Boulder Group, SRS Capital, SIG, NNNDeal.com, public records | JAOD Analysis',
   'chart-prices': 'Source: Verified sticker prices (Mar 2026), 54 products | JAOD Analysis',
   'chart-pl-mix': 'Source: KSS 10-K/10-Q filings, Evercore ISI | JAOD Analysis',
   'chart-gm-impact': 'Source: ISI research (1,000-1,500bps PL premium) | JAOD Analysis',
-  'chart-brandmix-history': 'Source: SEC EDGAR 10-Q/10-K filings FY2007-2025, earnings call transcripts | JAOD Analysis',
   'chart-dg-premium': 'Source: More Perfect Union, BofA, WHEC, Southern Savers | JAOD Analysis',
   'chart-perception': 'Source: ACSI (41,850 surveys), YouGov, Market Force; Y = 54-product dataset | JAOD Analysis',
   'chart-demo-hhi': 'Source: Placer.ai, Census, retailer filings | JAOD Analysis',
   'chart-gfc-sss': 'Source: SEC 10-K filings FY2007-2010 | JAOD Analysis',
-  'chart-covid-sss': 'Source: SEC EDGAR XBRL 10-Q quarterly revenue, YoY growth | JAOD Analysis',
+  'chart-covid-sss': 'Source: SEC 10-K filings FY2019-2021 | JAOD Analysis',
   'chart-rev-resilience': 'Source: SEC EDGAR XBRL FY2014-2025 | JAOD Analysis',
   'chart-cfo-resilience': 'Source: SEC EDGAR XBRL FY2014-2025 | JAOD Analysis',
   'chart-wage-growth': 'Source: BLS Employment Cost Index 2020-2025 | JAOD Analysis',
@@ -1951,14 +1676,6 @@ document.querySelectorAll('.card').forEach(card => {
     }
   }
 });
-
-// ── Dynamic slide padding to clear nav ──
-function adjustSlidePadding() {
-  const navH = document.getElementById('nav').offsetHeight;
-  document.querySelectorAll('.slide').forEach(s => s.style.paddingTop = (navH + 20) + 'px');
-}
-adjustSlidePadding();
-window.addEventListener('resize', adjustSlidePadding);
 
 // ── Init first slide ──
 initChartsForSlide(0);
