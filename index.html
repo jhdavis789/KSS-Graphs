@@ -1300,20 +1300,75 @@ function initReMethodology() {
   });
 }
 
+// KSS vs WMT: 54 products, sorted by premium descending
+const kssVsWmt = [
+  {p:'Melissa & Doug puzzle',prem:159.8},{p:'Black+Decker dustbuster',prem:155.9},{p:'Play-Doh 20-pack',prem:100.3},
+  {p:'Weighted Blanket 15lb',prem:100.3},{p:'Hanes 6pk crew tees',prem:91.1},{p:"Carter's baby 5pk",prem:76.6},
+  {p:'Rubbermaid storage set',prem:76.5},{p:'LEGO Classic Brick Box',prem:76.5},{p:'FotL boxer briefs 6pk',prem:64.8},
+  {p:'Nerf Elite 2.0 blaster',prem:60.4},{p:'Conair Hair Dryer',prem:54.1},{p:'Bath Towels 12pc',prem:53.3},
+  {p:'Crayola 96ct crayons',prem:50.6},{p:'Keurig K-Mini Plus',prem:50.0},{p:'Adidas Track Pants',prem:50.0},
+  {p:"Levi's Trucker Jacket",prem:49.2},{p:"Levi's 505 Jeans",prem:42.9},{p:'Champion Hoodie',prem:40.6},
+  {p:'Skechers Go Walk',prem:37.6},{p:'Lee Relaxed Jeans',prem:37.1},{p:'Adidas Cloudfoam',prem:36.4},
+  {p:'Ninja Creami',prem:36.1},{p:'Fisher-Price toy',prem:33.5},{p:'Skechers Summits',prem:33.4},
+  {p:'Wrangler Jeans',prem:30.5},{p:'Fitbit Inspire 3',prem:25.1},{p:'Keurig K-Duo',prem:22.7},
+  {p:'Brita pitcher 10cup',prem:20.1},{p:'Squishmallow 16"',prem:20.0},{p:'New Balance 411v3',prem:18.2},
+  {p:'LEGO Star Wars',prem:15.4},{p:'UNO card game',prem:14.6},{p:'Dockers Khaki',prem:14.4},
+  {p:'UA Tech 2.0 Tee',prem:13.6},{p:'Shark Navigator',prem:12.5},{p:'Nike Brasilia duffel',prem:12.5},
+  {p:'Bissell CrossWave',prem:11.1},{p:'Monopoly classic',prem:10.1},{p:'Nike Dri-FIT shorts',prem:9.4},
+  {p:'Ninja Air Fryer',prem:5.3},{p:'Hot Wheels 20pk',prem:4.4},{p:'Dyson V8',prem:2.8},
+  {p:'Crock-Pot 7qt',prem:0.1},{p:'Instant Pot Duo',prem:0.0},{p:'Columbia Fleece',prem:0.0},
+  {p:'Ninja Blender',prem:0.0},{p:'KitchenAid Mixer',prem:0.0},{p:'Samsonite 24"',prem:-3.2},
+  {p:'Nike Revolution 8',prem:-3.7},{p:'Cuisinart Cookware',prem:-5.6},{p:'Cuisinart Food Proc',prem:-20.0},
+  {p:'Barbie Dreamhouse',prem:-28.6},{p:'Yankee Candle',prem:-29.2},{p:'iRobot Roomba',prem:-44.4}
+];
+
 function initAiPrice() {
-  const priceLabels = selectedPrices.map(p => p.product);
-  new Chart(document.getElementById('chart-prices'), {
+  // Chart 1: KSS vs WMT horizontal bar — top 15 most expensive + 7 cheapest
+  const top15 = kssVsWmt.slice(0, 15);
+  const bot7 = kssVsWmt.slice(-7);
+  const shown = [...top15, {p:'··· 32 more items ···',prem:null}, ...bot7];
+  new Chart(document.getElementById('chart-kss-vs-wmt'), {
     type: 'bar',
     data: {
-      labels: priceLabels,
+      labels: shown.map(d => d.p),
+      datasets: [{
+        label: 'KSS Premium vs Walmart (%)',
+        data: shown.map(d => d.prem),
+        backgroundColor: shown.map(d => d.prem === null ? 'transparent' : d.prem > 0 ? CG.red[500]+'80' : CG.green[500]+'80'),
+        borderRadius: 2
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: 'KSS Premium vs Walmart (%)' }, grid: { color: 'rgba(0,0,0,0.08)' } },
+        y: { ticks: { font: { size: 9 } } }
+      }
+    }
+  });
+
+  // Chart 2: Coupon effect stacked bar
+  const couponLevels = ['Sticker', '15% off', '20% off', '25% off', '30% off'];
+  const discounts = [0, 0.15, 0.20, 0.25, 0.30];
+  const wins = discounts.map(d => kssVsWmt.filter(i => (1 + i.prem/100) * (1-d) <= 1.0).length);
+  const losses = discounts.map((d, idx) => 54 - wins[idx]);
+  new Chart(document.getElementById('chart-coupon-effect'), {
+    type: 'bar',
+    data: {
+      labels: couponLevels,
       datasets: [
-        { label: "Kohl's", data: selectedPrices.map(p => p.kohls), backgroundColor: COLORS.kss },
-        { label: 'Amazon', data: selectedPrices.map(p => p.amazon), backgroundColor: COLORS.amzn },
-        { label: 'Walmart', data: selectedPrices.map(p => p.walmart), backgroundColor: COLORS.wmt },
-        { label: 'Target', data: selectedPrices.map(p => p.target), backgroundColor: COLORS.tgt }
+        { label: 'KSS Cheaper', data: wins, backgroundColor: CG.green[500] },
+        { label: 'WMT Cheaper', data: losses, backgroundColor: CG.red[500]+'80' }
       ]
     },
-    options: { indexAxis:'y', plugins:{ legend:{ position:'bottom' } }, scales:{ x:{ grid:{ color:'rgba(0,0,0,0.08)' }, title:{ display:true, text:'Price ($)' } } } }
+    options: {
+      plugins: { legend: { position: 'bottom' } },
+      scales: {
+        x: { stacked: true },
+        y: { stacked: true, title: { display: true, text: '# of Products (out of 54)' }, grid: { color: 'rgba(0,0,0,0.08)' }, max: 54 }
+      }
+    }
   });
 }
 
