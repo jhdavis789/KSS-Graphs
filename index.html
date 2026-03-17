@@ -274,7 +274,7 @@ function buildWorkingHours(d) {
   const opts = baseOpts();
   opts.scales.y.title = { display: true, text: 'Hours per year', font: { size: 11 }, color: '#718096' };
   opts.plugins.tooltip.callbacks = {
-    label: item => `${item.dataset.label}: ${item.raw.toLocaleString()} hrs`
+    label: item => item.raw != null ? `${item.dataset.label}: ${item.raw.toLocaleString()} hrs` : ''
   };
   new Chart(ctx, {
     type: 'line',
@@ -287,10 +287,11 @@ function buildWorkingHours(d) {
         backgroundColor: COUNTRY_COLORS[name],
         borderWidth: 2.5,
         borderDash: COUNTRY_DASH[name] || [],
-        pointRadius: 3,
+        pointRadius: values.map(v => v != null ? 3 : 0),
         pointHoverRadius: 5,
         tension: 0.3,
         fill: false,
+        spanGaps: false,
       }))
     },
     options: opts
@@ -303,7 +304,7 @@ function buildRecreation(d) {
   const ctx = card.querySelector('canvas').getContext('2d');
   const opts = baseOpts();
   opts.scales.y.title = { display: true, text: '% of Total PCE', font: { size: 11 }, color: '#718096' };
-  opts.scales.y.min = 4;
+  opts.scales.y.min = 5;
   opts.scales.y.max = 10;
   opts.plugins.legend.display = false;
   opts.plugins.tooltip.callbacks = {
