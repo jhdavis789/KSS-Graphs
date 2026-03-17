@@ -38,7 +38,7 @@ body { background:#FFFFFF; color:var(--cg-gray-800); font-family:'Avenir Next LT
 .nav-sep { width:1px; height:22px; background:var(--cg-gray-200); margin:0 6px; }
 
 /* ── Slides ── */
-.slide { display:none; padding:80px 40px 40px; min-height:100vh; max-width:1440px; margin:0 auto; }
+.slide { display:none; padding:40px 40px 40px; min-height:100vh; max-width:1440px; margin:0 auto; }
 .slide.active { display:block; }
 .slide-title { color:var(--cg-prem-900); font-size:32px; font-weight:700; margin-bottom:6px; letter-spacing:-0.5px; }
 .slide-subtitle { color:var(--cg-gray-600); font-size:15px; margin-bottom:28px; line-height:1.5; }
@@ -107,31 +107,33 @@ td.blue { color:var(--cg-sapphire-600); }
   <button class="nav-btn" onclick="goSlide(7)">When Debt Rolls Off </button>
   <button class="nav-btn" onclick="goSlide(8)">KSS Pays vs Market R</button>
   <button class="nav-btn" onclick="goSlide(9)">P/B Gap</button>
+  <button class="nav-btn" onclick="goSlide(10)">RE Methodology</button>
   <div class="nav-sep"></div>
   <span class="nav-section">AI DISCOVERY</span>
-  <button class="nav-btn" onclick="goSlide(10)">PRICE CHECK</button>
-  <button class="nav-btn" onclick="goSlide(11)">Private Label Margin</button>
-  <button class="nav-btn" onclick="goSlide(12)">Dollar Store Poverty</button>
-  <button class="nav-btn" onclick="goSlide(13)">Value with AI Shoppi</button>
+  <button class="nav-btn" onclick="goSlide(11)">PRICE CHECK</button>
+  <button class="nav-btn" onclick="goSlide(12)">Private Label Margin</button>
+  <button class="nav-btn" onclick="goSlide(13)">Brand Mix 18yr</button>
+  <button class="nav-btn" onclick="goSlide(14)">Dollar Store Poverty</button>
+  <button class="nav-btn" onclick="goSlide(15)">Value with AI Shoppi</button>
   <div class="nav-sep"></div>
   <span class="nav-section">CONSUMER</span>
-  <button class="nav-btn" onclick="goSlide(14)">KSS Customer</button>
-  <button class="nav-btn" onclick="goSlide(15)">Performance</button>
-  <button class="nav-btn" onclick="goSlide(16)">the Resilient Consum</button>
-  <button class="nav-btn" onclick="goSlide(17)">Collar, PROTECT Blue</button>
-  <button class="nav-btn" onclick="goSlide(18)">Unit Economics</button>
+  <button class="nav-btn" onclick="goSlide(16)">KSS Customer</button>
+  <button class="nav-btn" onclick="goSlide(17)">Performance</button>
+  <button class="nav-btn" onclick="goSlide(18)">the Resilient Consum</button>
+  <button class="nav-btn" onclick="goSlide(19)">Collar, PROTECT Blue</button>
+  <button class="nav-btn" onclick="goSlide(20)">Unit Economics</button>
   <div class="nav-sep"></div>
   <span class="nav-section">APPENDIX</span>
-  <button class="nav-btn" onclick="goSlide(19)">RISK</button>
-  <button class="nav-btn" onclick="goSlide(20)">FORTIFY</button>
-  <button class="nav-btn" onclick="goSlide(21)">Store Trajectories</button>
+  <button class="nav-btn" onclick="goSlide(21)">RISK</button>
+  <button class="nav-btn" onclick="goSlide(22)">FORTIFY</button>
+  <button class="nav-btn" onclick="goSlide(23)">Store Trajectories</button>
   <div class="nav-sep"></div>
   <span class="nav-section">SIDE THESES</span>
-  <button class="nav-btn" onclick="goSlide(22)">Sephora Relationship</button>
-  <button class="nav-btn" onclick="goSlide(23)">to Last-Mile Fulfill</button>
+  <button class="nav-btn" onclick="goSlide(24)">Sephora Relationship</button>
+  <button class="nav-btn" onclick="goSlide(25)">to Last-Mile Fulfill</button>
   <div class="nav-sep"></div>
   <span class="nav-section">WORST CASE</span>
-  <button class="nav-btn" onclick="goSlide(24)">STRESS TEST</button>
+  <button class="nav-btn" onclick="goSlide(26)">STRESS TEST</button>
 </div>
 
 <div class="kb-hint">← → to navigate</div>
@@ -240,10 +242,18 @@ td.blue { color:var(--cg-sapphire-600); }
         <canvas id="chart-stock-reits"></canvas>
       </div>
     </div>
+  </div>
+  <div class="row">
     <div class="col">
       <div class="card">
-        <h3>% Change Since Jan 2022</h3>
-        <canvas id="chart-stock-pctchg"></canvas>
+        <h3>% Change Since Jan 2022 — All Peers</h3>
+        <canvas id="chart-stock-pctchg" style="max-height:600px;height:500px"></canvas>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h3>% Change Since Jan 2022 — KSS vs REITs</h3>
+        <canvas id="chart-stock-pctchg-reits" style="max-height:600px;height:500px"></canvas>
       </div>
     </div>
   </div>
@@ -371,26 +381,83 @@ td.blue { color:var(--cg-sapphire-600); }
   </div>
 </div>
 
-<div class="slide" id="ai-price">
-  <div class="slide-title">PRICE CHECK: KSS Beats on Real Goods</div>
-  <div class="slide-subtitle">Verified prices across 54 products vs Amazon, Walmart, Target</div>
+<div class="slide" id="re-methodology">
+  <div class="slide-title">TRACE Every Store to Its Deed</div>
+  <div class="slide-subtitle">Bottom-up RE valuation: 28 NNN transactions, 602 county assessor lookups, CMBS filings, 5 REIT benchmarks</div>
 
   <div class="metrics">
-    <div class="metric"><div class="label">KSS Cheapest</div><div class="value green">9%</div><div class="detail">At sticker price</div></div>
-    <div class="metric"><div class="label">Within 5%</div><div class="value blue">13%</div><div class="detail">Competitive range</div></div>
-    <div class="metric"><div class="label">With 15% Coupon</div><div class="value green">31%</div><div class="detail">KSS cheapest</div></div>
-    <div class="metric"><div class="label">Median Premium</div><div class="value">+37.0%</div><div class="detail">vs +20.2% Target</div></div>
+    <div class="metric"><div class="label">NNN Transactions</div><div class="value blue">28</div><div class="detail">Kohl's-specific closed deals</div></div>
+    <div class="metric"><div class="label">County Lookups</div><div class="value blue">602</div><div class="detail">Parcel-level deed verification</div></div>
+    <div class="metric"><div class="label">CMBS Properties</div><div class="value blue">172</div><div class="detail">SEC EDGAR ABS-EE filings</div></div>
+    <div class="metric"><div class="label">REIT Comps</div><div class="value blue">5</div><div class="detail">BRX, KIM, KRG, REG, NNN</div></div>
   </div>
 
   <div class="row">
-    <div class="col" style="flex:2">
+    <div class="col">
       <div class="card">
-        <h3>Selected Product Price Comparison ($)</h3>
-        <canvas id="chart-prices"></canvas>
+        <h3>Data Pipeline: Store → Ownership → Valuation</h3>
+        <table>
+          <tr><th>Step</th><th>Source</th><th>What It Gives Us</th></tr>
+          <tr><td><strong>1. Store List</strong></td><td>KSS 10-K FY2024</td><td>1,078 addresses, GLA, format (strip/freestanding)</td></tr>
+          <tr><td><strong>2. Ownership</strong></td><td>County assessor portals (49 states)</td><td>Parcel owner entity — Kohls Illinois Inc, Kohls Texas LP, etc. vs third-party LLC</td></tr>
+          <tr><td><strong>3. Lease Verify</strong></td><td>SEC EDGAR CMBS FWP/ABS-EE</td><td>172 stores confirmed leased via CMBS tenant data + actual rent PSF</td></tr>
+          <tr><td><strong>4. Market Rent</strong></td><td>REIT 10-K ABR/SF by metro</td><td>Metro-level rent benchmarks from BRX, KIM, KRG, REG, NNN portfolios</td></tr>
+          <tr><td><strong>5. Discount Cal.</strong></td><td>28 Kohl's NNN transactions</td><td>Actual closed deals calibrate 38% big-box discount to REIT inline rents</td></tr>
+          <tr><td><strong>6. Cap Rate</strong></td><td>Boulder Group + credit spread</td><td>Pre-downgrade 6.50% + 175bps sub-IG spread = 8.25% NNN cap</td></tr>
+          <tr><td><strong>7. Valuation</strong></td><td>Income + REIT comp blend</td><td>Two independent methods averaged per store; ground lease at 70% of fee-simple</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h3>Kohl's NNN Transaction Comps (Cap Rate %)</h3>
+        <canvas id="chart-nnn-comps"></canvas>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3>Selected Closed Transactions</h3>
+        <table>
+          <tr><th>Location</th><th class="r">SF</th><th class="r">$/SF</th><th class="r">Cap</th><th>Source</th></tr>
+          <tr><td>Knoxville, TN</td><td class="r">86,584</td><td class="r">$83</td><td class="r">~8.0%</td><td>Marcus & Millichap</td></tr>
+          <tr><td>Forney, TX (new)</td><td class="r">55,000</td><td class="r">$124</td><td class="r">5.65%</td><td>NNNDeal / M&M</td></tr>
+          <tr><td>Katy, TX (new)</td><td class="r">55,000</td><td class="r">$266</td><td class="r">6.73%</td><td>SRS Capital Mkts</td></tr>
+          <tr><td>OH+IN 4-pack</td><td class="r">N/A</td><td class="r">N/A</td><td class="r">7.25%</td><td>Sands Inv Group</td></tr>
+          <tr><td>Westland, MI (GL)</td><td class="r">90,860</td><td class="r">$154</td><td class="r">8.11%</td><td>Marcus & Millichap</td></tr>
+          <tr><td>Menom. Falls, WI (HQ)</td><td class="r">98,500</td><td class="r">$99</td><td class="r">~6.0%</td><td>YAFC / BizTimes</td></tr>
+          <tr><td>Fremont, CA (closed)</td><td class="r">98,000</td><td class="r">$187</td><td class="r">N/A</td><td>Mercury News</td></tr>
+          <tr><td>San Bernardino DC (SLB)</td><td class="r">N/A</td><td class="r">N/A</td><td class="r">~4.5%</td><td>CNBC / 10-K</td></tr>
+        </table>
       </div>
     </div>
   </div>
-  <div class="callout">The 30% off coupon STILL leaves 25-30% product margin. AI shopping agents will tell consumers: "That KitchenAid is $50 cheaper at Kohl's with your coupon."</div>
+  <div class="callout">Every ownership classification is traceable to a county assessor parcel record or CMBS filing — not a model assumption. The 8.25% cap rate is conservatively calibrated: post-downgrade Kohl's credit (B+/B2) vs pre-downgrade 6.50% Boulder Group benchmark. Actual NNN transactions confirm 5.6-8.1% range depending on lease term and construction vintage.</div>
+</div>
+
+<div class="slide" id="ai-price">
+  <div class="slide-title">PRICE CHECK: 54 Products, Head to Head</div>
+  <div class="slide-subtitle">KSS is +21% vs Walmart at sticker — but with a 30% coupon, KSS is cheaper on 69% of products</div>
+
+  <div class="metrics">
+    <div class="metric"><div class="label">KSS vs WMT (sticker)</div><div class="value red">+21%</div><div class="detail">Median premium, 54 items</div></div>
+    <div class="metric"><div class="label">With 15% Coupon</div><div class="value gold">+3%</div><div class="detail">44% of items KSS wins</div></div>
+    <div class="metric"><div class="label">With 30% Coupon</div><div class="value green">-15%</div><div class="detail">69% of items KSS wins</div></div>
+    <div class="metric"><div class="label">KSS vs DG</div><div class="value green">Different product</div><div class="detail">DG doesn't carry branded goods</div></div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <h3>KSS vs Walmart: % Premium by Product (54 items)</h3>
+        <canvas id="chart-kss-vs-wmt"></canvas>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h3>Coupon Effect: How Many Products KSS Wins</h3>
+        <canvas id="chart-coupon-effect"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="callout">At sticker, KSS loses to Walmart on 80% of items. But Kohl's customers always have coupons. With 30% off (common promo), KSS is cheaper on 37 of 54 products. AI agents will auto-apply these coupons — flipping the value equation.</div>
 </div>
 
 <div class="slide" id="ai-brand">
@@ -412,6 +479,46 @@ td.blue { color:var(--cg-sapphire-600); }
     </div>
   </div>
   <div class="callout-gold callout">Proprietary brands (Sonoma, FLX, Croft &amp; Barrow, LC Lauren Conrad): 1,000-1,500bps higher gross margin. From 28% (FY2019) to 33% (FY2025) = ~62bps of cumulative GM lift. Target: 43% by FY2031 = another ~125bps.</div>
+</div>
+
+<div class="slide" id="ai-brandmix">
+  <div class="slide-title">CHART 18 Years of Brand Strategy Reversals</div>
+  <div class="slide-subtitle">Private &amp; exclusive brand penetration: 36% → 55% peak → 31% trough → recovery underway. Every data point sourced to SEC filing or earnings call transcript.</div>
+
+  <div class="metrics">
+    <div class="metric"><div class="label">All-Time Peak</div><div class="value green">55%</div><div class="detail">FY2012 Q2 (quarterly)</div></div>
+    <div class="metric"><div class="label">FY2024 Trough</div><div class="value red">31%</div><div class="detail">-21pp from peak</div></div>
+    <div class="metric"><div class="label">FY2025 Recovery</div><div class="value blue">~32%</div><div class="detail">"By Kohl's" campaign launched</div></div>
+    <div class="metric"><div class="label">Margin Rule</div><div class="value gold">10-15 bps</div><div class="detail">GM per 100bps brand gain</div></div>
+  </div>
+
+  <div class="row">
+    <div class="col" style="flex:2">
+      <div class="card">
+        <h3>Private &amp; Exclusive Brand % of Net Sales (FY2007 — FY2025)</h3>
+        <canvas id="chart-brandmix-history" style="max-height:340px"></canvas>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h3>Key Inflection Points</h3>
+        <table>
+          <tr><th>Year</th><th>Event</th><th class="r">Mix</th></tr>
+          <tr><td>FY2007</td><td>PL build begins</td><td class="r">36%</td></tr>
+          <tr><td>FY2012</td><td class="green">Peak: 52% annual, 55% Q2</td><td class="r green">55%</td></tr>
+          <tr><td>FY2014</td><td class="gold">"Greatness Agenda" — pivot to national brands</td><td class="r gold">50%</td></tr>
+          <tr><td>FY2018</td><td>Nike/UA/Skechers push: national = 61%</td><td class="r">39%</td></tr>
+          <tr><td>FY2021</td><td>Sephora launch + supply chain collapse</td><td class="r">35%</td></tr>
+          <tr><td>FY2024</td><td class="red">All-time low: "disappointed them"</td><td class="r red">31%</td></tr>
+          <tr><td>FY2025</td><td class="blue">New CEO reverses course</td><td class="r blue">~32%</td></tr>
+        </table>
+        <div style="color:var(--cg-gray-600);font-size:11px;margin-top:8px;line-height:1.5">
+          <strong>Source trail:</strong> FY2007-12 quarterly from 10-Q text. FY2013+ annual from 10-K + earnings call transcripts. Every point links to SEC EDGAR filing. See standalone dashboard for clickable sources.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="callout-gold callout">Kohl's gave away 21pp of private brand penetration in 8 years chasing national brand traffic. Each 100bps recovered = 10-15bps gross margin. New CEO Bender: "Proprietary brands are really a focus." Q4 comp improved 120bps as private brands returned. The FY2012 peak proves KSS customers will buy house brands — management just stopped offering them.</div>
 </div>
 
 <div class="slide" id="ai-poverty">
@@ -949,8 +1056,10 @@ function initChartsForSlide(n) {
     case 're-unlock': initReUnlock(); break;
     case 're-lease': initReLease(); break;
     case 're-pb': initRePB(); break;
+    case 're-methodology': initReMethodology(); break;
     case 'ai-price': initAiPrice(); break;
     case 'ai-brand': initAiBrand(); break;
+    case 'ai-brandmix': initAiBrandmix(); break;
     case 'ai-poverty': initAiPoverty(); break;
     case 'ai-disrupt': initAiDisrupt(); break;
     case 'con-demographics': initDemographics(); break;
@@ -1153,6 +1262,44 @@ function initRePB() {
   });
 }
 
+function initReMethodology() {
+  const nnnDeals = [
+    { loc: 'Forney TX (2023)', cap: 5.65 },
+    { loc: 'Menom. Falls WI', cap: 6.0 },
+    { loc: 'Katy TX (new)', cap: 6.73 },
+    { loc: 'Forsyth IL (GL)', cap: 6.74 },
+    { loc: 'OH+IN 4-pack', cap: 7.25 },
+    { loc: 'Knoxville TN', cap: 8.0 },
+    { loc: 'Westland MI (GL)', cap: 8.11 },
+  ];
+  new Chart(document.getElementById('chart-nnn-comps'), {
+    type: 'bar',
+    data: {
+      labels: nnnDeals.map(d => d.loc),
+      datasets: [{
+        label: 'Cap Rate (%)',
+        data: nnnDeals.map(d => d.cap),
+        backgroundColor: nnnDeals.map(d => d.cap <= 7.0 ? CG.green[500] : d.cap <= 8.0 ? CG.sapphire[500] : CG.copper[500]),
+        borderWidth: 0, borderRadius: 4
+      },{
+        label: 'Our 8.25% Cap Rate',
+        data: nnnDeals.map(() => 8.25),
+        type: 'line', indexAxis: 'y',
+        borderColor: CG.red[600], borderWidth: 2, borderDash: [6,3],
+        pointRadius: 0, fill: false
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 } } },
+      scales: {
+        x: { min: 4, max: 10, title: { display: true, text: 'NNN Cap Rate (%)' }, grid: { color: 'rgba(0,0,0,0.08)' } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+}
+
 function initAiPrice() {
   const priceLabels = selectedPrices.map(p => p.product);
   new Chart(document.getElementById('chart-prices'), {
@@ -1196,6 +1343,41 @@ function initAiBrand() {
       datasets: [{ label: 'Gross Margin Lift (bps)', data: gmLift, borderColor: COLORS.green, backgroundColor: COLORS.green+'20', fill: true, tension: 0.3 }]
     },
     options: { scales: { y: { title:{ display:true, text:'bps GM lift' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
+  });
+}
+
+function initAiBrandmix() {
+  const brandYears = ['FY07','FY08','FY09','FY10','FY11','FY12','FY13','FY14','FY15','FY16','FY17','FY18','FY19','FY20','FY21','FY22','FY23','FY24','FY25'];
+  const brandAnnual = [39.2, 42, 44, 48, 50, 52, 52, 50, 48, 46, 42, 39, 38, 37, 35, 35, 34, 31, 32];
+  const bgColors = brandAnnual.map((v, i) => {
+    if (i <= 5) return CG.green[500];
+    if (i <= 11) return CG.copper[500];
+    if (i <= 16) return CG.red[500];
+    if (i === 17) return CG.red[600];
+    return CG.sapphire[500];
+  });
+  new Chart(document.getElementById('chart-brandmix-history'), {
+    type: 'line',
+    data: {
+      labels: brandYears,
+      datasets: [{
+        label: 'Private & Exclusive Brand %',
+        data: brandAnnual,
+        borderColor: CG.sapphire[500], borderWidth: 2.5,
+        pointBackgroundColor: bgColors, pointBorderColor: bgColors,
+        pointRadius: 5, pointHoverRadius: 8,
+        fill: true, backgroundColor: 'rgba(0,156,220,0.06)',
+        tension: 0.3
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { min: 28, max: 58, title: { display: true, text: '% of Net Sales' }, grid: { color: 'rgba(0,0,0,0.08)' },
+          ticks: { callback: v => v + '%', stepSize: 5 } },
+        x: { grid: { color: 'rgba(0,0,0,0.04)' } }
+      }
+    }
   });
 }
 
@@ -1472,7 +1654,7 @@ function initStockChart() {
       options: { scales: { y: { title:{ display:true, text:'Stock Price ($)' }, grid:{ color:'rgba(0,0,0,0.08)' } }, x: { ticks: { maxTicksLimit: 10 } } }, plugins:{ legend:{ position:'bottom' } } }
     });
   }
-  // % change bar chart
+  // % change bar chart — all peers
   if (stockSummary && document.getElementById('chart-stock-pctchg')) {
     const allTickers = [...retailTickers, ...reitTickers].filter(t => stockSummary[t]);
     allTickers.sort((a,b) => (stockSummary[a]?.pct_change||0) - (stockSummary[b]?.pct_change||0));
@@ -1483,7 +1665,21 @@ function initStockChart() {
         datasets: [{ data: allTickers.map(t => stockSummary[t]?.pct_change || 0),
           backgroundColor: allTickers.map(t => (stockSummary[t]?.pct_change||0) >= 0 ? CG.green[500]+'90' : CG.red[500]+'90') }]
       },
-      options: { indexAxis:'y', plugins:{ legend:{ display:false } }, scales:{ x:{ title:{ display:true, text:'% Change Since Jan 2022' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
+      options: { indexAxis:'y', maintainAspectRatio:false, plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label: item => item.raw.toFixed(1) + '%' } } }, scales:{ x:{ title:{ display:true, text:'% Change Since Jan 2022' }, grid:{ color:'rgba(0,0,0,0.08)' } }, y:{ ticks:{ autoSkip:false, font:{ size:13, weight:'bold' } } } } }
+    });
+  }
+  // % change bar chart — KSS vs REITs only
+  if (stockSummary && document.getElementById('chart-stock-pctchg-reits')) {
+    const reitOnly = ['KSS', ...reitTickers].filter(t => stockSummary[t]);
+    reitOnly.sort((a,b) => (stockSummary[a]?.pct_change||0) - (stockSummary[b]?.pct_change||0));
+    new Chart(document.getElementById('chart-stock-pctchg-reits'), {
+      type: 'bar',
+      data: {
+        labels: reitOnly,
+        datasets: [{ data: reitOnly.map(t => stockSummary[t]?.pct_change || 0),
+          backgroundColor: reitOnly.map(t => t === 'KSS' ? COLORS.kss+'90' : (stockSummary[t]?.pct_change||0) >= 0 ? CG.green[500]+'90' : CG.red[500]+'90') }]
+      },
+      options: { indexAxis:'y', maintainAspectRatio:false, plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label: item => item.raw.toFixed(1) + '%' } } }, scales:{ x:{ title:{ display:true, text:'% Change Since Jan 2022' }, grid:{ color:'rgba(0,0,0,0.08)' } }, y:{ ticks:{ autoSkip:false, font:{ size:14, weight:'bold' } } } } }
     });
   }
 }
@@ -1556,9 +1752,11 @@ const SOURCES = {
   'chart-cmbs-rent': 'Source: SEC EDGAR CMBS FWP Annex A-1 filings | JAOD Analysis',
   'chart-rent-compare': 'Source: REIT 10-K ABR/SF, CMBS verified | JAOD Analysis',
   'chart-per-share': 'Source: Yahoo Finance, SEC filings, REIT comp model | JAOD Analysis',
+  'chart-nnn-comps': 'Source: Marcus & Millichap, Boulder Group, SRS Capital, SIG, NNNDeal.com, public records | JAOD Analysis',
   'chart-prices': 'Source: Verified sticker prices (Mar 2026), 54 products | JAOD Analysis',
   'chart-pl-mix': 'Source: KSS 10-K/10-Q filings, Evercore ISI | JAOD Analysis',
   'chart-gm-impact': 'Source: ISI research (1,000-1,500bps PL premium) | JAOD Analysis',
+  'chart-brandmix-history': 'Source: SEC EDGAR 10-Q/10-K filings FY2007-2025, earnings call transcripts | JAOD Analysis',
   'chart-dg-premium': 'Source: More Perfect Union, BofA, WHEC, Southern Savers | JAOD Analysis',
   'chart-perception': 'Source: ACSI (41,850 surveys), YouGov, Market Force; Y = 54-product dataset | JAOD Analysis',
   'chart-demo-hhi': 'Source: Placer.ai, Census, retailer filings | JAOD Analysis',
@@ -1602,6 +1800,14 @@ document.querySelectorAll('.card').forEach(card => {
     }
   }
 });
+
+// ── Dynamic slide padding to clear nav ──
+function adjustSlidePadding() {
+  const navH = document.getElementById('nav').offsetHeight;
+  document.querySelectorAll('.slide').forEach(s => s.style.paddingTop = (navH + 20) + 'px');
+}
+adjustSlidePadding();
+window.addEventListener('resize', adjustSlidePadding);
 
 // ── Init first slide ──
 initChartsForSlide(0);
