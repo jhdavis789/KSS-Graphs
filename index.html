@@ -347,7 +347,7 @@ td.blue { color:var(--cg-sapphire-600); }
       </div>
     </div>
   </div>
-  <div class="callout">Newport Centre: KSS pays $5.58/SF while H&amp;M pays $52.66/SF and Sephora pays $80.87/SF at the same property. Anchor tenants get structural discounts. Low P/B = low effective occupancy cost.</div>
+  <div class="callout">Newport Centre CMBS data: KSS pays $5.58/SF as anchor while mid-tier tenants pay $31-55/SF (AMC $31, Uniqlo $38, H&amp;M $53, Zara $55) and specialty inline pays $58-81/SF (Victoria's Secret $58, Foot Locker $70, Sephora $81). Anchor tenants get 70-90% structural discounts. Low P/B = low effective occupancy cost per square foot vs all competitors.</div>
 </div>
 
 <div class="slide" id="re-pb">
@@ -1281,12 +1281,13 @@ function initReLease() {
     },
     options: { indexAxis:'y', plugins:{ legend:{ display:false } }, scales:{ x:{ title:{ display:true, text:'$/SF Annual' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
   });
-  // Rent comparison
+  // Rent comparison — CMBS-verified tenants at Newport Centre + REIT portfolio averages
   new Chart(document.getElementById('chart-rent-compare'), {
     type: 'bar',
     data: {
-      labels: ['KSS Avg', 'BRX Portfolio', 'KIM Portfolio', 'REG Portfolio', 'Newport: H&M', 'Newport: Sephora'],
-      datasets: [{ data: [9.18, 18.77, 21.00, 23.50, 52.66, 80.87], backgroundColor: [COLORS.green, COLORS.blue, COLORS.blue, COLORS.blue, COLORS.orange, COLORS.pink] }]
+      labels: ['KSS Avg\n(anchor)', 'BRX\nPortfolio', 'KIM\nPortfolio', 'REG\nPortfolio', 'AMC\nTheatres', 'Uniqlo', 'H&M', "Victoria's\nSecret", 'Zara', 'Foot\nLocker', 'Sephora'],
+      datasets: [{ data: [9.18, 18.77, 21.00, 23.50, 31.22, 38.49, 52.66, 58.00, 55.26, 69.53, 80.87],
+        backgroundColor: [CG.green[500], CG.sapphire[400], CG.sapphire[400], CG.sapphire[400], CG.copper[500], CG.copper[500], CG.raspberry[500], CG.raspberry[500], CG.raspberry[500], CG.raspberry[500], CG.raspberry[600]] }]
     },
     options: { plugins:{ legend:{ display:false } }, scales:{ y:{ title:{ display:true, text:'$/SF Annual' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
   });
