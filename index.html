@@ -75,6 +75,9 @@ td.red { color:var(--cg-red-600); }
 td.gold { color:var(--cg-copper-600); }
 td.blue { color:var(--cg-sapphire-600); }
 
+/* ── Source Attribution ── */
+.source { color:var(--cg-gray-600); font-size:10px; margin-top:8px; font-style:italic; line-height:1.4; }
+
 /* ── Map ── */
 #store-map { height:520px; border-radius:10px; border:1px solid var(--cg-gray-200); }
 
@@ -408,7 +411,6 @@ td.blue { color:var(--cg-sapphire-600); }
     </div>
   </div>
   <div class="callout-gold callout">Proprietary brands (Sonoma, FLX, Croft &amp; Barrow, LC Lauren Conrad): 1,000-1,500bps higher gross margin. From 28% (FY2019) to 33% (FY2025) = ~62bps of cumulative GM lift. Target: 43% by FY2031 = another ~125bps.</div>
-  <div class="callout" style="margin-top:10px">Each incremental 100bps of proprietary brand mix generates 10-15bps of GM improvement. KSS is in the very early stages of this rebuild — 1Q proprietary brand mix was 400bps better than 4Q, but still ~20pp below levels two years ago. Management noted it will take time to return to historical levels, and the value-seeking consumer environment supports the shift. This is a multi-year margin tailwind, not a one-quarter story.</div>
 </div>
 
 <div class="slide" id="ai-poverty">
@@ -1532,6 +1534,73 @@ function initRecession() {
     });
   }
 }
+
+// ── Source Attribution ──
+const SOURCES = {
+  'chart-format': 'Source: KSS 10-K FY2024 | JAOD Analysis',
+  'chart-ownership': 'Source: KSS 10-K FY2024 | JAOD Analysis',
+  'chart-rev-cat': 'Source: KSS 10-K FY2024 | JAOD Analysis',
+  'chart-cat-compare': 'Source: KSS 10-K FY2023-2024 | JAOD Analysis',
+  'chart-rev-ebitda-stock': 'Source: SEC EDGAR XBRL, Yahoo Finance | JAOD Analysis',
+  'chart-eps': 'Source: SEC EDGAR XBRL FY2014-2025 | JAOD Analysis',
+  'chart-stock-retail': 'Source: Yahoo Finance monthly adj close | JAOD Analysis',
+  'chart-stock-reits': 'Source: Yahoo Finance monthly adj close | JAOD Analysis',
+  'chart-stock-pctchg': 'Source: Yahoo Finance (Jan 2022 — Mar 2026) | JAOD Analysis',
+  'chart-re-waterfall': 'Source: REIT comp + income approach valuation | JAOD Analysis',
+  'chart-re-methods': 'Source: BRX/KIM/KRG/REG/NNN benchmarks, 8.25% cap rate | JAOD Analysis',
+  'chart-reit-abr': 'Source: REIT 10-K filings, SEC EDGAR | JAOD Analysis',
+  'chart-state-re': 'Source: Per-store REIT benchmark model | JAOD Analysis',
+  'chart-debt-maturity': 'Source: KSS 10-K FY2024, 8-K (May 2025) | JAOD Analysis',
+  'chart-slb-waterfall': 'Source: KSS supplemental data, 50% discount to book | JAOD Analysis',
+  'chart-cmbs-rent': 'Source: SEC EDGAR CMBS FWP Annex A-1 filings | JAOD Analysis',
+  'chart-rent-compare': 'Source: REIT 10-K ABR/SF, CMBS verified | JAOD Analysis',
+  'chart-per-share': 'Source: Yahoo Finance, SEC filings, REIT comp model | JAOD Analysis',
+  'chart-prices': 'Source: Verified sticker prices (Mar 2026), 54 products | JAOD Analysis',
+  'chart-pl-mix': 'Source: KSS 10-K/10-Q filings, Evercore ISI | JAOD Analysis',
+  'chart-gm-impact': 'Source: ISI research (1,000-1,500bps PL premium) | JAOD Analysis',
+  'chart-dg-premium': 'Source: More Perfect Union, BofA, WHEC, Southern Savers | JAOD Analysis',
+  'chart-perception': 'Source: ACSI (41,850 surveys), YouGov, Market Force; Y = 54-product dataset | JAOD Analysis',
+  'chart-demo-hhi': 'Source: Placer.ai, Census, retailer filings | JAOD Analysis',
+  'chart-gfc-sss': 'Source: SEC 10-K filings FY2007-2010 | JAOD Analysis',
+  'chart-covid-sss': 'Source: SEC 10-K filings FY2019-2021 | JAOD Analysis',
+  'chart-rev-resilience': 'Source: SEC EDGAR XBRL FY2014-2025 | JAOD Analysis',
+  'chart-cfo-resilience': 'Source: SEC EDGAR XBRL FY2014-2025 | JAOD Analysis',
+  'chart-wage-growth': 'Source: BLS Employment Cost Index 2020-2025 | JAOD Analysis',
+  'chart-waterfall-unit': 'Source: KSS FY2025 8-K earnings release | JAOD Analysis',
+  'chart-eps-scenarios': 'Source: KSS model projections FY2026E-2031E | JAOD Analysis',
+  'chart-debt-stack': 'Source: KSS 10-K, 8-K indenture filings | JAOD Analysis',
+  'chart-interest-proj': 'Source: KSS debt schedule + projection model | JAOD Analysis',
+  'chart-comp-stores': 'Source: SEC 10-K filings FY2020-2025 | JAOD Analysis',
+  'chart-sephora-shops': 'Source: KSS 10-K, Evercore ISI notes | JAOD Analysis',
+  'chart-sephora-rev': 'Source: KSS earnings, ISI estimates | JAOD Analysis',
+  'chart-sephora-footprint': 'Source: ScrapeHero, Fast Company, KSS filings | JAOD Analysis',
+  'chart-stress': 'Source: KSS FY2025 base + stress model | JAOD Analysis',
+  'chart-leisure': 'Source: BEA/PCE, Our World in Data | JAOD Analysis',
+};
+
+// Inject source lines after all canvases
+document.querySelectorAll('canvas').forEach(c => {
+  const src = SOURCES[c.id];
+  if (src) {
+    const div = document.createElement('div');
+    div.className = 'source';
+    div.textContent = src;
+    c.parentNode.appendChild(div);
+  }
+});
+
+// Also add to tables inside cards that don't have canvases
+document.querySelectorAll('.card').forEach(card => {
+  if (!card.querySelector('canvas') && !card.querySelector('.source')) {
+    const tables = card.querySelectorAll('table');
+    if (tables.length) {
+      const div = document.createElement('div');
+      div.className = 'source';
+      div.textContent = 'JAOD Analysis';
+      card.appendChild(div);
+    }
+  }
+});
 
 // ── Init first slide ──
 initChartsForSlide(0);
