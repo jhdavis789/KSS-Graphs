@@ -169,6 +169,7 @@ td.blue { color:var(--cg-sapphire-600); }
   <div class="slide-title">MAP 1,078 Stores Across America</div>
   <div class="slide-subtitle">Strip centers and freestanding boxes — not enclosed malls</div>
   <div id="store-map"></div>
+  <div class="source" style="margin-top:6px">Source: OpenStreetMap (Overpass API), Census Geocoder, KSS 10-K FY2024 (1,175 stores, 49 states) | JAOD Analysis</div>
   <div class="callout" style="margin-top:12px">Top states: CA (116), TX (89), IL (66), OH (60), FL (52), PA (51), NY (50), MI (46), WI (42), IN (42)</div>
 </div>
 
@@ -986,13 +987,13 @@ function initIntroCustomer() {
 
 function initMap() {
   const map = L.map('store-map').setView([39.5, -98.5], 4);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '© CartoDB',
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© CartoDB © OpenStreetMap',
     subdomains: 'abcd', maxZoom: 16
   }).addTo(map);
   storeLocs.forEach(s => {
     L.circleMarker([s.lat, s.lng], {
-      radius: 3, fillColor: COLORS.blue, color: COLORS.blue, weight: 0.5, fillOpacity: 0.7
+      radius: 4, fillColor: CG.sapphire[700], color: CG.sapphire[800], weight: 1, fillOpacity: 0.8
     }).addTo(map).bindPopup(s.city + ', ' + s.state);
   });
 }
