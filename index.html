@@ -263,7 +263,7 @@ td.blue { color:var(--cg-sapphire-600); }
   </div>
 
   <div class="card" style="margin-bottom:1.5rem">
-    <h3>EV Bridge: Equity + Net Debt vs RE Value ($B)</h3>
+    <h3>Market Pricing vs RE Value ($B)</h3>
     <canvas id="chart-re-waterfall" style="max-height:320px"></canvas>
   </div>
   <div class="card">
@@ -1102,32 +1102,27 @@ function initFinancials() {
 }
 
 function initReHidden() {
-  // EV Bridge: stacked equity + debt vs RE value
+  // Market Pricing vs RE Value
   new Chart(document.getElementById('chart-re-waterfall'), {
     type: 'bar',
     data: {
-      labels: ['Enterprise Value', 'RE Blended\nValue', 'RE Income\nApproach', 'RE REIT\nComp'],
-      datasets: [
-        { label: 'Equity (Mkt Cap)', data: [1.5, 0, 0, 0],
-           backgroundColor: COLORS.red },
-        { label: 'Net Debt', data: [0.8, 0, 0, 0],
-           backgroundColor: COLORS.gold },
-        { label: 'RE Value', data: [0, 5.0, 5.3, 4.7],
-           backgroundColor: COLORS.green }
-      ]
+      labels: ['Market Cap\n(equity)', 'Enterprise\nValue', 'RE Blended', 'Income\nApproach', 'REIT\nComp', 'Store-Level\nComps'],
+      datasets: [{ data: [1.5, 2.2, 5.0, 5.3, 4.7, 7.5],
+        backgroundColor: [COLORS.red, COLORS.gold, COLORS.green, COLORS.blue, CG.raspberry[500], '#7B61FF']
+      }]
     },
     options: {
-      plugins: { legend: { display: true, position: 'bottom' } },
-      scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: '$B' }, grid: { color: 'rgba(0,0,0,0.08)' } } }
+      plugins: { legend: { display: false } },
+      scales: { y: { title: { display: true, text: '$B' }, grid: { color: 'rgba(0,0,0,0.08)' } } }
     }
   });
   // RE Value by Method
   new Chart(document.getElementById('chart-re-methods'), {
     type: 'bar',
     data: {
-      labels: ['Income Approach', 'REIT Comp', 'Blended', 'SLB Net\n(after costs)', 'Enterprise\nValue', 'Market Cap\n(equity only)'],
-      datasets: [{ data: [5.3, 4.7, 5.0, 4.8, 2.2, 1.5],
-        backgroundColor: [COLORS.blue, CG.raspberry[500], COLORS.green, COLORS.teal, COLORS.gold, COLORS.red] }]
+      labels: ['Income\nApproach', 'REIT\nComp', 'Blended', 'SLB Net\n(after costs)', 'Store-Level\nComps\n(640 stores)', 'Enterprise\nValue', 'Market Cap\n(equity)'],
+      datasets: [{ data: [5.3, 4.7, 5.0, 4.8, 7.5, 2.2, 1.5],
+        backgroundColor: [COLORS.blue, CG.raspberry[500], COLORS.green, COLORS.teal, '#7B61FF', COLORS.gold, COLORS.red] }]
     },
     options: { plugins: { legend: { display: false } }, scales: { y: { title: { display: true, text: '$B' }, grid: { color: 'rgba(0,0,0,0.08)' } } } }
   });
@@ -1671,8 +1666,8 @@ const SOURCES = {
   'chart-stock-pctchg': 'Source: Yahoo Finance (Jan 2022 — Mar 2026) | JAOD Analysis',
   'chart-format-overlap': 'Source: KSS 10-K FY2024 (property table), BRX/KIM/NNN 10-K filings (portfolio composition) | JAOD Analysis',
   'chart-reit-cotenancy': 'Source: REIT 10-K property lists cross-referenced with KSS store locations | JAOD Analysis',
-  'chart-re-waterfall': 'Source: Yahoo Finance (equity), KSS 10-K (debt/cash), REIT comp + income approach (RE) | JAOD Analysis',
-  'chart-re-methods': 'Source: BRX/KIM/KRG/REG/NNN 10-K benchmarks, 8.25% cap rate, KSS 10-K PP&E | JAOD Analysis',
+  'chart-re-waterfall': 'Source: Yahoo Finance (equity), KSS 10-K (debt/cash), REIT comp + income approach + county assessor comps (RE) | JAOD Analysis',
+  'chart-re-methods': 'Source: BRX/KIM/KRG/REG/NNN 10-K benchmarks, 8.25% cap rate, KSS 10-K PP&E, county assessor records (640 stores) | JAOD Analysis',
   'chart-reit-abr': 'Source: REIT 10-K filings, SEC EDGAR | JAOD Analysis',
   'chart-state-re': 'Source: Per-store REIT benchmark model | JAOD Analysis',
   'chart-debt-maturity': 'Source: KSS 10-K FY2024, 8-K (May 2025) | JAOD Analysis',
