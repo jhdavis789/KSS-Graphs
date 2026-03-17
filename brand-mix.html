@@ -7,48 +7,45 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'SF Mono','Fira Code','Cascadia Code',Consolas,monospace; background: #F7F7F7; color: #383838; font-size: 13px; }
-  .back-link { display: inline-block; padding: 10px 32px 0; font-size: 12px; color: #009CDC; text-decoration: none; }
-  .back-link:hover { text-decoration: underline; }
-  .header { padding: 16px 32px 8px; }
-  .header h1 { font-size: 22px; font-weight: 600; color: #383838; }
-  .header .subtitle { font-size: 13px; color: #6F6F6F; margin-top: 4px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f7f8fa; color: #1a1a2e; }
+  .header { padding: 24px 32px 8px; }
+  .header h1 { font-size: 22px; font-weight: 600; color: #111; }
+  .header .subtitle { font-size: 13px; color: #666; margin-top: 4px; }
   .chart-container { padding: 16px 32px; height: calc(100vh - 300px); min-height: 420px; }
   .stats-row { padding: 12px 32px; display: flex; gap: 16px; flex-wrap: wrap; }
-  .stat { background: #fff; border: 1px solid #E2E2E2; border-radius: 6px; padding: 12px 16px; min-width: 130px; }
-  .stat .label { font-size: 11px; color: #6F6F6F; text-transform: uppercase; letter-spacing: 0.5px; }
-  .stat .value { font-size: 20px; font-weight: 600; color: #383838; margin-top: 2px; }
-  .stat .change { font-size: 11px; margin-top: 2px; }
-  .stat .neg { color: #DA1944; }
-  .stat .pos { color: #038049; }
-  .legend-row { padding: 8px 32px 0; display: flex; gap: 20px; flex-wrap: wrap; font-size: 11px; color: #6F6F6F; }
+  .stat { background: #fff; border: 1px solid #e2e6ec; border-radius: 6px; padding: 12px 16px; min-width: 130px; }
+  .stat .label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat .value { font-size: 20px; font-weight: 600; color: #111; margin-top: 2px; }
+  .stat .change { font-size: 11px; margin-top: 2px; color: #555; }
+  .stat .neg { color: #c62828; }
+  .stat .pos { color: #2e7d32; }
+  .legend-row { padding: 8px 32px 0; display: flex; gap: 20px; flex-wrap: wrap; font-size: 11px; color: #666; }
   .legend-item { display: flex; align-items: center; gap: 6px; }
   .legend-swatch { width: 24px; height: 3px; border-radius: 2px; }
   .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
   .tooltip-panel {
-    display: none; position: fixed; background: #fff; border: 1px solid #E2E2E2;
+    display: none; position: fixed; background: #fff; border: 1px solid #d0d5e0;
     border-radius: 8px; padding: 16px; max-width: 460px; z-index: 100;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12); font-size: 13px; color: #383838;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12); font-size: 13px;
   }
   .tooltip-panel.visible { display: block; }
-  .tooltip-panel h3 { font-size: 15px; color: #383838; margin-bottom: 6px; }
+  .tooltip-panel h3 { font-size: 15px; color: #111; margin-bottom: 6px; }
   .tooltip-panel .pct { font-size: 32px; font-weight: 700; margin-bottom: 6px; }
-  .tooltip-panel .pct.quarterly { color: #009CDC; }
-  .tooltip-panel .pct.annual { color: #B58976; }
-  .tooltip-panel .quote { color: #6F6F6F; line-height: 1.5; margin-bottom: 8px; font-style: italic; font-size: 12px; }
-  .tooltip-panel .meta { font-size: 11px; color: #6F6F6F; line-height: 1.6; }
-  .tooltip-panel .meta a { color: #009CDC; text-decoration: none; }
+  .tooltip-panel .pct.quarterly { color: #0288d1; }
+  .tooltip-panel .pct.annual { color: #e65100; }
+  .tooltip-panel .quote { color: #555; line-height: 1.5; margin-bottom: 8px; font-style: italic; font-size: 12px; }
+  .tooltip-panel .meta { font-size: 11px; color: #888; line-height: 1.6; }
+  .tooltip-panel .meta a { color: #0288d1; text-decoration: none; }
   .tooltip-panel .meta a:hover { text-decoration: underline; }
   .tooltip-panel .badge { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 500; }
-  .badge-quarterly { background: rgba(0,156,220,0.1); color: #009CDC; }
-  .badge-annual { background: rgba(181,137,118,0.12); color: #B58976; }
-  .badge-estimated { background: rgba(218,25,68,0.08); color: #DA1944; }
-  .close-btn { position: absolute; top: 8px; right: 12px; background: none; border: none; color: #ADADAD; font-size: 16px; cursor: pointer; }
+  .badge-quarterly { background: rgba(2,136,209,0.1); color: #0288d1; }
+  .badge-annual { background: rgba(230,81,0,0.1); color: #e65100; }
+  .badge-estimated { background: rgba(198,40,40,0.1); color: #c62828; }
+  .close-btn { position: absolute; top: 8px; right: 12px; background: none; border: none; color: #aaa; font-size: 16px; cursor: pointer; }
 </style>
 </head>
 <body>
 
-<a href="index.html" class="back-link">&larr; Back to KSS Pitch</a>
 <div class="header">
   <h1>Kohl's (KSS) — Private & Exclusive Brand Sales Mix</h1>
   <div class="subtitle">
@@ -91,10 +88,9 @@
 </div>
 
 <div class="legend-row">
-  <div class="legend-item"><div class="legend-swatch" style="background:#009CDC;"></div> Quarterly (from 10-Q text)</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#B58976;"></div> Annual (from 10-K + earnings call transcripts)</div>
-  <div class="legend-item"><div class="legend-dot" style="background:transparent;border:2px dashed #DA1944;"></div> Estimated</div>
-  <div class="legend-item" style="margin-left:auto;"><a href="index.html" style="color:#009CDC;text-decoration:none;font-size:12px;">&larr; Back to Pitch</a></div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#4fc3f7;"></div> Quarterly (from 10-Q text)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ffb74d;"></div> Annual (from 10-K + earnings call transcripts)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#e57373;border:1px dashed #e57373;background:transparent;"></div> Estimated</div>
 </div>
 
 <div class="tooltip-panel" id="tooltip"></div>
@@ -275,16 +271,16 @@ const DATA = [
 ];
 
 const EVENTS = [
-  { idx: 4, label: "Great Recession begins", color: "#DA1944" },
-  { idx: 21, label: "Q2 peak: 55%", color: "#009CDC" },
-  { idx: 24, label: "Plateau — 'rebalancing' begins", color: "#B58976" },
-  { idx: 25, label: "Greatness Agenda", color: "#B58976" },
-  { idx: 29, label: "National brand push: Nike/UA/Skechers", color: "#B58976" },
-  { idx: 33, label: "COVID-19", color: "#DA1944" },
-  { idx: 34, label: "Sephora launch", color: "#E06AAA" },
-  { idx: 36, label: "Private brand inventory -20%", color: "#DA1944" },
-  { idx: 37, label: "New CEO: reverse course", color: "#3EA561" },
-  { idx: 38, label: "'By Kohl's' campaign", color: "#3EA561" },
+  { idx: 4, label: "Great Recession begins", color: "#e57373" },
+  { idx: 21, label: "Q2 peak: 55%", color: "#4fc3f7" },
+  { idx: 24, label: "Plateau — 'rebalancing' begins", color: "#ffb74d" },
+  { idx: 25, label: "Greatness Agenda", color: "#ffb74d" },
+  { idx: 29, label: "National brand push: Nike/UA/Skechers", color: "#ffb74d" },
+  { idx: 33, label: "COVID-19", color: "#e57373" },
+  { idx: 34, label: "Sephora launch", color: "#ce93d8" },
+  { idx: 36, label: "Private brand inventory -20%", color: "#e57373" },
+  { idx: 37, label: "New CEO: reverse course", color: "#81c784" },
+  { idx: 38, label: "'By Kohl's' campaign", color: "#81c784" },
 ];
 
 // Build chart data
@@ -293,9 +289,9 @@ const values = DATA.map(d => d.pct);
 
 // Color each point
 const pointColors = DATA.map(d => {
-  if (d.type === 'estimated') return '#DA1944';
-  if (d.type === 'annual') return '#B58976';
-  return '#009CDC';
+  if (d.type === 'estimated') return '#e57373';
+  if (d.type === 'annual') return '#ffb74d';
+  return '#4fc3f7';
 });
 
 const pointBorders = pointColors.slice();
@@ -305,9 +301,9 @@ const pointStyles = DATA.map(d => d.type === 'quarterly' ? 'circle' : 'rectRound
 // Segment colors
 function segColor(ctx) {
   const i = ctx.p1DataIndex;
-  if (i <= 23) return '#009CDC'; // quarterly era
-  if (DATA[i].type === 'estimated') return '#DA194488';
-  return '#B58976';
+  if (i <= 23) return '#4fc3f7'; // quarterly era
+  if (DATA[i].type === 'estimated') return '#e5737388';
+  return '#ffb74d';
 }
 
 // Annotation plugin
@@ -327,7 +323,7 @@ const annotPlugin = {
       c.stroke();
       c.setLineDash([]);
       c.fillStyle = evt.color + 'cc';
-      c.font = '10px SF Mono, Fira Code, Consolas, monospace';
+      c.font = '10px -apple-system, sans-serif';
       c.textAlign = 'center';
       c.save();
       c.translate(xPos, y.top - 4);
@@ -337,22 +333,22 @@ const annotPlugin = {
     });
     // Draw era labels at bottom
     c.save();
-    c.font = '10px SF Mono, Fira Code, Consolas, monospace';
+    c.font = '10px -apple-system, sans-serif';
     c.textAlign = 'center';
     const yPos = y.bottom + 36;
     // Quarterly era
     const x1 = x.getPixelForValue(0);
     const x2 = x.getPixelForValue(23);
-    c.fillStyle = '#009CDC44';
+    c.fillStyle = '#4fc3f744';
     c.fillRect(x1, y.bottom + 2, x2 - x1, 2);
-    c.fillStyle = '#009CDCaa';
+    c.fillStyle = '#4fc3f7aa';
     c.fillText('← Quarterly disclosure in 10-Q text →', (x1 + x2) / 2, yPos);
     // Annual era
     const x3 = x.getPixelForValue(24);
     const x4 = x.getPixelForValue(DATA.length - 1);
-    c.fillStyle = '#B5897644';
+    c.fillStyle = '#ffb74d44';
     c.fillRect(x3, y.bottom + 2, x4 - x3, 2);
-    c.fillStyle = '#B58976aa';
+    c.fillStyle = '#ffb74daa';
     c.fillText('← Annual only (brand charts = images) →', (x3 + x4) / 2, yPos);
     c.restore();
   }
@@ -366,8 +362,8 @@ const chart = new Chart(ctx, {
     datasets: [{
       label: 'Private & Exclusive Brand % of Net Sales',
       data: values,
-      borderColor: '#009CDC',
-      backgroundColor: 'rgba(0,156,220,0.08)',
+      borderColor: '#4fc3f7',
+      backgroundColor: 'rgba(79,195,247,0.06)',
       borderWidth: 2,
       pointBackgroundColor: pointColors,
       pointBorderColor: pointBorders,
@@ -393,10 +389,10 @@ const chart = new Chart(ctx, {
       legend: { display: false },
       tooltip: {
         backgroundColor: '#fff',
-        borderColor: '#E2E2E2',
+        borderColor: '#d0d5e0',
         borderWidth: 1,
-        titleColor: '#383838',
-        bodyColor: '#6F6F6F',
+        titleColor: '#111',
+        bodyColor: '#555',
         padding: 12,
         cornerRadius: 6,
         callbacks: {
@@ -417,9 +413,9 @@ const chart = new Chart(ctx, {
     },
     scales: {
       x: {
-        grid: { color: '#E2E2E240' },
+        grid: { color: '#e8eaef' },
         ticks: {
-          color: '#6F6F6F',
+          color: '#777',
           font: { size: 10 },
           maxRotation: 0,
           autoSkip: false,
@@ -432,19 +428,19 @@ const chart = new Chart(ctx, {
         }
       },
       y: {
-        min: 28,
-        max: 58,
-        grid: { color: '#E2E2E260' },
+        min: 29,
+        max: 57,
+        grid: { color: '#e8eaef' },
         ticks: {
-          color: '#6F6F6F',
+          color: '#777',
           font: { size: 11 },
           callback: v => v + '%',
-          stepSize: 5
+          stepSize: 2
         },
         title: {
           display: true,
           text: '% of Net Sales (Private & Exclusive Brands)',
-          color: '#6F6F6F',
+          color: '#666',
           font: { size: 11 }
         }
       }
@@ -466,7 +462,7 @@ function showTooltip(idx, event) {
   h += `<h3>${d.fy} ${d.q} &mdash; Period ending ${d.period}</h3>`;
   h += `<div class="pct ${typeClass}">${d.pct}%</div>`;
   h += `<div class="quote">"${d.quote}"</div>`;
-  if (d.note) h += `<div style="color:#DA1944;font-size:11px;margin-bottom:6px;">${d.note}</div>`;
+  if (d.note) h += `<div style="color:#e57373;font-size:11px;margin-bottom:6px;">${d.note}</div>`;
   if (d.bps) h += `<div style="font-size:12px;margin-bottom:6px;">YoY change: <strong>+${d.bps} bps</strong></div>`;
   h += `<div class="meta">`;
   h += `<span class="badge ${badgeClass}">${badgeText}</span><br>`;
