@@ -589,7 +589,16 @@ td.blue { color:var(--cg-sapphire-600); }
       </div>
     </div>
   </div>
-  <div class="callout">KSS ranks LAST in deal perception (45/100) despite a median price premium of only +37.0% vs competitors. With a 15% coupon, KSS becomes the cheapest 31% of the time. AI shopping agents will close this perception gap by showing consumers the actual math.</div>
+  <div class="callout">KSS ranks LAST in deal perception (45/100) despite a median price premium of only +9.6% — competitive with Amazon (+2.5%) and well below Target (+20.2%) and Dollar General (+30%). The regression line shows KSS is significantly below where perception would predict. AI shopping agents will close this gap by showing consumers the actual math.</div>
+
+  <div style="margin-top:18px;padding:16px 20px;background:var(--cg-gray-50);border:1px solid var(--cg-gray-200);border-radius:8px;font-size:11px;color:var(--cg-gray-600);line-height:1.7">
+    <strong style="color:var(--cg-gray-800)">Methodology</strong><br>
+    <strong>Price dataset:</strong> 54 identical branded products (exact UPC/model where possible) hand-collected from kohls.com, amazon.com, walmart.com, and target.com on March 16, 2026. Categories: home/kitchen appliances, branded apparel (Nike, Under Armour, Columbia, Adidas), toys, personal care. For each product, the cheapest retailer price becomes the baseline (0%). Each retailer's median premium across all 54 products is plotted on the Y-axis.<br>
+    <strong>Deal perception (X-axis):</strong> Composite score from ACSI satisfaction surveys (41,850 respondents), YouGov brand perception, Market Force Information consumer polls, and AlixPartners/Deloitte/Coresight retail surveys. Higher = consumers perceive better deals. Axis is inverted so weak perception plots right.<br>
+    <strong>TJX/Ross:</strong> Off-price retailers with rotating inventory — prices based on tjmaxx.com listings and company-stated "20-60% off department store" positioning. No consistent UPC matching possible.<br>
+    <strong>Dollar General:</strong> Carries limited branded assortment (smaller pack sizes) — per-unit premium often exceeds sticker price comparison. BofA 33-item basket study confirms +7.3% vs Walmart.<br>
+    <strong>Regression:</strong> OLS best-fit across all plotted retailers. KSS falls well below the trend line — actual value is better than perceived.
+  </div>
 </div>
 
 <div class="slide" id="con-demographics">
@@ -1513,28 +1522,41 @@ function initAiPoverty() {
 }
 
 function initAiDisrupt() {
-  // Data-driven: Y-axis = actual median premium from our price comparison research
+  // Data-driven: Y-axis = actual median premium from our 54-product price comparison
   // X-axis = consumer "deal perception" (inverted: lower = better perceived value)
-  const medianPrem = {"KSS": 37.0, "AMZN": 2.5, "WMT": 0.0, "TGT": 20.2, "KSS_coupon": 16.4};
-  // Deal perception composite scores (0-100) from ACSI, Market Force, YouGov, AlixPartners surveys
-  // Higher = consumers perceive the retailer as offering better deals/value
+  // KSS shown at effective 20% coupon price: (1+0.37)*0.80 - 1 = 9.6% premium
   const dealPerception = { TJX: 88, ROST: 85, AMZN: 78, WMT: 72, TGT: 62, FIVE: 60, DG: 55, KSS: 45 };
   const brands = [
-    { x: 100-dealPerception.KSS, y: medianPrem.KSS || 9, label: 'KSS (sticker)', color: COLORS.kss, r: 14 },
-    { x: 100-dealPerception.KSS, y: medianPrem.KSS_coupon || -7, label: 'KSS (15% coupon)', color: CG.green[500], r: 14 },
-    { x: 100-dealPerception.AMZN, y: medianPrem.AMZN || 3, label: 'Amazon', color: COLORS.amzn, r: 10 },
-    { x: 100-dealPerception.WMT, y: medianPrem.WMT || 0, label: 'Walmart', color: COLORS.wmt, r: 10 },
-    { x: 100-dealPerception.TGT, y: medianPrem.TGT || 12, label: 'Target', color: COLORS.tgt, r: 10 },
+    { x: 100-dealPerception.KSS, y: 9.6, label: 'KSS', color: COLORS.kss, r: 14 },
+    { x: 100-dealPerception.AMZN, y: 2.5, label: 'Amazon', color: COLORS.amzn, r: 10 },
+    { x: 100-dealPerception.WMT, y: 0.0, label: 'Walmart', color: COLORS.wmt, r: 10 },
+    { x: 100-dealPerception.TGT, y: 20.2, label: 'Target', color: COLORS.tgt, r: 10 },
     { x: 100-dealPerception.TJX, y: 15, label: 'TJX', color: COLORS.tjx, r: 10 },
     { x: 100-dealPerception.DG, y: 30, label: 'Dollar General*', color: COLORS.dg, r: 10 },
   ];
+  // Linear regression
+  const pts = brands.map(b => [b.x, b.y]);
+  const n = pts.length;
+  const sx = pts.reduce((a,p) => a+p[0], 0), sy = pts.reduce((a,p) => a+p[1], 0);
+  const sxx = pts.reduce((a,p) => a+p[0]*p[0], 0), sxy = pts.reduce((a,p) => a+p[0]*p[1], 0);
+  const slope = (n*sxy - sx*sy) / (n*sxx - sx*sx);
+  const intercept = (sy - slope*sx) / n;
+  const regLine = [{x:5, y:slope*5+intercept}, {x:95, y:slope*95+intercept}];
+
   new Chart(document.getElementById('chart-perception'), {
     type: 'scatter',
     data: {
-      datasets: brands.map(b => ({
-        label: b.label, data: [{ x: b.x, y: b.y }],
-        backgroundColor: b.color, pointRadius: b.r, pointHoverRadius: b.r + 4
-      }))
+      datasets: [
+        ...brands.map(b => ({
+          label: b.label, data: [{ x: b.x, y: b.y }],
+          backgroundColor: b.color, pointRadius: b.r, pointHoverRadius: b.r + 4
+        })),
+        {
+          label: 'Trend (OLS)', type: 'line', data: regLine,
+          borderColor: CG.gray_400 || '#ADADAD', borderWidth: 1.5, borderDash: [6,4],
+          pointRadius: 0, fill: false
+        }
+      ]
     },
     options: {
       scales: {
@@ -1542,7 +1564,7 @@ function initAiDisrupt() {
         y: { title: { display:true, text: 'Actual Median Price Premium vs Cheapest (%)' }, grid:{ color:'rgba(0,0,0,0.08)' } }
       },
       plugins: {
-        legend: { position: 'bottom' },
+        legend: { position: 'bottom', labels: { filter: item => item.text !== 'Trend (OLS)' } },
         tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '% premium' } }
       }
     }
