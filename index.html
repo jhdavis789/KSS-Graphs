@@ -1340,8 +1340,7 @@ function initAiDisrupt() {
   // Higher = consumers perceive the retailer as offering better deals/value
   const dealPerception = { TJX: 88, ROST: 85, AMZN: 78, WMT: 72, TGT: 62, FIVE: 60, DG: 55, KSS: 45 };
   const brands = [
-    { x: 100-dealPerception.KSS, y: medianPrem.KSS || 9, label: 'KSS (sticker)', color: COLORS.kss, r: 14 },
-    { x: 100-dealPerception.KSS, y: medianPrem.KSS_coupon || -7, label: 'KSS (15% coupon)', color: CG.green[500], r: 14 },
+    { x: 100-dealPerception.KSS, y: medianPrem.KSS_coupon || -7, label: 'KSS', color: COLORS.kss, r: 14 },
     { x: 100-dealPerception.AMZN, y: medianPrem.AMZN || 3, label: 'Amazon', color: COLORS.amzn, r: 10 },
     { x: 100-dealPerception.WMT, y: medianPrem.WMT || 0, label: 'Walmart', color: COLORS.wmt, r: 10 },
     { x: 100-dealPerception.TGT, y: medianPrem.TGT || 12, label: 'Target', color: COLORS.tgt, r: 10 },
