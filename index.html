@@ -513,20 +513,20 @@ td.blue { color:var(--cg-sapphire-600); }
     </div>
     <div class="col">
       <div class="card">
-        <h3>AI Agent Inventory Visibility Ranking</h3>
+        <h3>Internal Inventory Accuracy by Retailer</h3>
         <table>
-          <tr><th>Retailer</th><th>Stack</th><th>RFID</th><th>AI Visibility</th></tr>
-          <tr><td>WMT</td><td>Custom + Public API</td><td class="green">Item-level (14+ depts)</td><td class="green">HIGHEST</td></tr>
-          <tr><td>AMZN</td><td>Custom (Aurora) + SP-API</td><td>Computer vision</td><td class="green">HIGHEST</td></tr>
-          <tr><td class="blue"><strong>KSS</strong></td><td class="blue"><strong>Oracle + BigQuery</strong></td><td class="blue"><strong>Item-level apparel</strong></td><td class="blue"><strong>HIGH</strong></td></tr>
-          <tr><td>TGT</td><td>Custom + Avery RFID</td><td class="green">Nationwide since 2016</td><td class="green">HIGH</td></tr>
-          <tr><td>M</td><td>SAP + Google Cloud</td><td>Since 2011</td><td class="gold">MED-HIGH</td></tr>
-          <tr><td>DG</td><td>Blue Yonder</td><td class="red">None</td><td class="red">LOW</td></tr>
-          <tr><td>TJX</td><td>Oracle Cloud</td><td class="red">None (by design)</td><td class="red">VERY LOW</td></tr>
-          <tr><td>ROST</td><td>PeopleSoft</td><td class="red">None, no e-comm</td><td class="red">VERY LOW</td></tr>
-          <tr><td>FIVE</td><td>Just adopted Invent.ai</td><td class="red">None</td><td class="red">VERY LOW</td></tr>
+          <tr><th>Retailer</th><th>ERP / Inventory System</th><th>RFID</th><th>Store-Level Accuracy</th></tr>
+          <tr><td>WMT</td><td>Custom proprietary</td><td class="green">Item-level, 14+ depts</td><td class="green">HIGHEST (~98%)</td></tr>
+          <tr><td>AMZN</td><td>Custom (Aurora/IMS)</td><td>Computer vision + robotics</td><td class="green">HIGHEST</td></tr>
+          <tr><td>TGT</td><td>Custom proprietary</td><td class="green">Avery Dennison, nationwide 2016</td><td class="green">HIGH (~95%+)</td></tr>
+          <tr><td class="blue"><strong>KSS</strong></td><td class="blue"><strong>Oracle Retail + BigQuery</strong></td><td class="blue"><strong>Checkpoint, apparel categories</strong></td><td class="blue"><strong>HIGH</strong></td></tr>
+          <tr><td>M</td><td>SAP + Google Cloud</td><td>Item-level since 2011</td><td class="gold">MED-HIGH</td></tr>
+          <tr><td>DG</td><td>Blue Yonder</td><td class="red">None</td><td class="gold">MEDIUM (perpetual inv.)</td></tr>
+          <tr><td>FIVE</td><td>Invent.ai (new 2025)</td><td class="red">None</td><td class="red">LOW (just adopted)</td></tr>
+          <tr><td>TJX</td><td>Oracle Cloud + custom</td><td class="red">None (by design)</td><td class="red">LOW (high SKU churn)</td></tr>
+          <tr><td>ROST</td><td>PeopleSoft (legacy)</td><td class="red">None</td><td class="red">LOWEST (no e-comm, legacy)</td></tr>
         </table>
-        <div style="color:var(--cg-sapphire-700);font-size:11px;margin-top:8px">KSS BigQuery platform is the most AI-native data foundation among department store peers. Off-price (TJX/ROST) are permanently invisible to AI agents by design.</div>
+        <div style="color:var(--cg-sapphire-700);font-size:11px;margin-top:8px">Internal accuracy = can the store manager see real-time on-hand counts at SKU level? RFID is the dividing line. Without it, perpetual inventory drifts 20-40% from reality (Univ. of Arkansas retail studies). Off-price models (TJX/ROST) have structurally low accuracy due to non-replenishable, one-time-buy inventory.</div>
       </div>
     </div>
   </div>
