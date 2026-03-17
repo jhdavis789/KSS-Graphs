@@ -983,13 +983,13 @@ function initIntroCustomer() {
 
 function initMap() {
   const map = L.map('store-map').setView([39.5, -98.5], 4);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '© CartoDB',
     subdomains: 'abcd', maxZoom: 16
   }).addTo(map);
   storeLocs.forEach(s => {
     L.circleMarker([s.lat, s.lng], {
-      radius: 3, fillColor: COLORS.blue, color: COLORS.blue, weight: 0.5, fillOpacity: 0.7
+      radius: 3.5, fillColor: '#1d4ed8', color: '#1e3a5f', weight: 0.8, fillOpacity: 0.85
     }).addTo(map).bindPopup(s.city + ', ' + s.state);
   });
 }
