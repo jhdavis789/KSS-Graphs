@@ -840,58 +840,42 @@ td.blue { color:var(--cg-sapphire-600); }
 </div>
 
 <div class="slide" id="worst-stress">
-  <div class="slide-title">STRESS TEST: Maximum Pain Before Bankruptcy</div>
-  <div class="slide-subtitle">Even 30% revenue decline leaves CFO near breakeven with $5B RE backstop</div>
+  <div class="slide-title">STRESS TEST: Maximum Survivable Revenue Decline</div>
+  <div class="slide-subtitle">Sustained: -27.0% before CFO goes negative &nbsp;|&nbsp; Shock: -40.8% before $674M cash is exhausted in one year</div>
 
   <div class="row">
     <div class="col">
       <div class="card">
-        <h3>Revenue Shock Scenarios (from FY2025 base)</h3>
-        <table>
-          <tr><th>Shock</th><th class="r">Revenue</th><th class="r">Gross Profit</th><th class="r">Op Income</th><th class="r">CFO (est)</th><th class="r">Int Coverage</th></tr>
-          <tr>
-            <td class="red">-10%</td>
-            <td class="r">$13.3B</td>
-            <td class="r">$4.9B (36.5%)</td>
-            <td class="r red">$-732M</td>
-            <td class="r red">$-32M</td>
-            <td class="r red">-2.5x</td>
-          </tr>
-          <tr>
-            <td class="red">-20%</td>
-            <td class="r">$11.8B</td>
-            <td class="r">$4.2B (35.2%)</td>
-            <td class="r red">$-1221M</td>
-            <td class="r red">$-521M</td>
-            <td class="r red">-4.2x</td>
-          </tr>
-          <tr>
-            <td class="red">-30%</td>
-            <td class="r">$10.3B</td>
-            <td class="r">$3.5B (33.5%)</td>
-            <td class="r red">$-1711M</td>
-            <td class="r red">$-1011M</td>
-            <td class="r red">-5.9x</td>
-          </tr>
-          <tr>
-            <td class="red">-40%</td>
-            <td class="r">$8.9B</td>
-            <td class="r">$2.8B (31.3%)</td>
-            <td class="r red">$-2200M</td>
-            <td class="r red">$-1500M</td>
-            <td class="r red">-7.6x</td>
-          </tr>
-        </table>
+        <h3>Survival Thresholds (FY2025 base: $14.8B net sales, $1.3B CFO)</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+          <div style="background:#f0fff4;border:2px solid #1e8449;border-radius:8px;padding:14px;text-align:center">
+            <div style="font-size:9px;color:#555;text-transform:uppercase;font-weight:bold;letter-spacing:0.5px">Max Sustained Decline</div>
+            <div style="font-size:40px;font-weight:900;color:#1e8449;line-height:1.1">27.0%</div>
+            <div style="font-size:9px;color:#1e8449;font-weight:bold">CFO stays ≥ $0</div>
+            <div style="font-size:9px;color:#666;margin-top:4px">Revenue floor: $10.8B</div>
+          </div>
+          <div style="background:#fff8f0;border:2px solid #e67e22;border-radius:8px;padding:14px;text-align:center">
+            <div style="font-size:9px;color:#555;text-transform:uppercase;font-weight:bold;letter-spacing:0.5px">Max 1-Year Shock</div>
+            <div style="font-size:40px;font-weight:900;color:#e67e22;line-height:1.1">40.8%</div>
+            <div style="font-size:9px;color:#e67e22;font-weight:bold">$674M cash covers full shortfall</div>
+            <div style="font-size:9px;color:#666;margin-top:4px">Revenue floor: $8.7B</div>
+          </div>
+        </div>
+        <div style="background:#f4f6f7;border:1px solid #ccc;border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:9px;color:#555;text-transform:uppercase;font-weight:bold;letter-spacing:0.5px">EBITDA Covers Interest (1.0×) at</div>
+          <div style="font-size:28px;font-weight:900;color:#2471a3;line-height:1.1">21.2% decline</div>
+          <div style="font-size:9px;color:#666">Current EBITDA coverage: 4.6× &nbsp;($1.3B EBITDA / $288M interest)</div>
+        </div>
       </div>
     </div>
     <div class="col">
       <div class="card">
-        <h3>Stress Visualization</h3>
+        <h3>CFO Survival Curve vs Revenue Decline</h3>
         <canvas id="chart-stress"></canvas>
       </div>
     </div>
   </div>
-  <div class="callout-gold callout">At -20% revenue shock: OpInc turns negative but CFO stays positive (D&amp;A add-back). At -30%: CFO near zero. But $5B RE backstop means solvency is not the question — the question is equity value, not survival. Total debt: $1.4B vs $5B RE + $2.7B inventory.</div>
+  <div class="callout-gold callout">COVID (FY2020): revenue fell ~20% — well inside the sustained survival corridor. FY2025 revenue is 9% below FY2021 peak — company still generated $1.4B CFO. Debt: $1.4B vs $5B RE + $2.7B inventory backstop. The equity is at risk; solvency is not.</div>
 </div>
 
 <script>
@@ -977,7 +961,8 @@ const projEbitda = [1.17, 1.25, 1.32, 1.39, 1.5, 1.6];
 const projEps = [1.43, 2.14, 2.68, 3.32, 4.16, 5.19];
 const projInterest = [275, 270, 265, 250, 245, 200];
 const debtTranches = [{"maturity": 2029, "coupon": "7.25%", "amount": 42, "label": "7.25% due 2029"}, {"maturity": 2030, "coupon": "10.00%", "amount": 360, "label": "10.00% due Jun 1, 2030"}, {"maturity": 2031, "coupon": "4.625%", "amount": 500, "label": "4.625% due 2031"}, {"maturity": 2033, "coupon": "6.00%", "amount": 112, "label": "6.00% due 2033"}, {"maturity": 2037, "coupon": "6.88%", "amount": 101, "label": "6.88% due 2037"}, {"maturity": 2045, "coupon": "5.55%", "amount": 427, "label": "5.55% due 2045"}];
-const stressScenarios = [{"shock": -10, "revenue_B": 13.3, "gross_profit_B": 4.9, "gm_pct": 36.5, "operating_income_M": -732, "cfo_M": -32, "interest_coverage": -2.5}, {"shock": -20, "revenue_B": 11.8, "gross_profit_B": 4.2, "gm_pct": 35.2, "operating_income_M": -1221, "cfo_M": -521, "interest_coverage": -4.2}, {"shock": -30, "revenue_B": 10.3, "gross_profit_B": 3.5, "gm_pct": 33.5, "operating_income_M": -1711, "cfo_M": -1011, "interest_coverage": -5.9}, {"shock": -40, "revenue_B": 8.9, "gross_profit_B": 2.8, "gm_pct": 31.3, "operating_income_M": -2200, "cfo_M": -1500, "interest_coverage": -7.6}];
+const stressThresholds = {"max_sustained_pct": -27.0, "max_sustained_rev_B": 10.8, "max_shock_pct": -40.8, "max_shock_rev_B": 8.7, "max_ebitda_cov_pct": -21.2, "max_ebitda_cov_rev_B": 11.6, "ebitda_coverage_base": 4.6, "cash_M": 674, "interest_M": 288, "stress_curve": [{"decline_pct": 0, "oi_M": 624, "cfo_M": 1324, "ebitda_cov": 4.6}, {"decline_pct": 2, "oi_M": 526, "cfo_M": 1226, "ebitda_cov": 4.26}, {"decline_pct": 4, "oi_M": 428, "cfo_M": 1128, "ebitda_cov": 3.92}, {"decline_pct": 6, "oi_M": 330, "cfo_M": 1030, "ebitda_cov": 3.58}, {"decline_pct": 8, "oi_M": 232, "cfo_M": 932, "ebitda_cov": 3.24}, {"decline_pct": 10, "oi_M": 134, "cfo_M": 834, "ebitda_cov": 2.9}, {"decline_pct": 12, "oi_M": 37, "cfo_M": 737, "ebitda_cov": 2.56}, {"decline_pct": 14, "oi_M": -61, "cfo_M": 639, "ebitda_cov": 2.22}, {"decline_pct": 16, "oi_M": -159, "cfo_M": 541, "ebitda_cov": 1.88}, {"decline_pct": 18, "oi_M": -257, "cfo_M": 443, "ebitda_cov": 1.54}, {"decline_pct": 20, "oi_M": -355, "cfo_M": 345, "ebitda_cov": 1.2}, {"decline_pct": 22, "oi_M": -453, "cfo_M": 247, "ebitda_cov": 0.86}, {"decline_pct": 24, "oi_M": -551, "cfo_M": 149, "ebitda_cov": 0.52}, {"decline_pct": 26, "oi_M": -649, "cfo_M": 51, "ebitda_cov": 0.18}, {"decline_pct": 28, "oi_M": -747, "cfo_M": -47, "ebitda_cov": -0.16}, {"decline_pct": 30, "oi_M": -845, "cfo_M": -145, "ebitda_cov": -0.5}, {"decline_pct": 32, "oi_M": -943, "cfo_M": -243, "ebitda_cov": -0.84}, {"decline_pct": 34, "oi_M": -1041, "cfo_M": -341, "ebitda_cov": -1.18}, {"decline_pct": 36, "oi_M": -1138, "cfo_M": -438, "ebitda_cov": -1.52}, {"decline_pct": 38, "oi_M": -1236, "cfo_M": -536, "ebitda_cov": -1.86}, {"decline_pct": 40, "oi_M": -1334, "cfo_M": -634, "ebitda_cov": -2.2}, {"decline_pct": 42, "oi_M": -1432, "cfo_M": -732, "ebitda_cov": -2.54}, {"decline_pct": 44, "oi_M": -1530, "cfo_M": -830, "ebitda_cov": -2.88}, {"decline_pct": 46, "oi_M": -1628, "cfo_M": -928, "ebitda_cov": -3.22}, {"decline_pct": 48, "oi_M": -1726, "cfo_M": -1026, "ebitda_cov": -3.56}, {"decline_pct": 50, "oi_M": -1824, "cfo_M": -1124, "ebitda_cov": -3.9}, {"decline_pct": 52, "oi_M": -1922, "cfo_M": -1222, "ebitda_cov": -4.24}]};
+const stressCurve = stressThresholds.stress_curve;
 
 // ── Leisure data ──
 const leisureData = {"1959": 5.92, "1960": 5.95, "1961": 5.99, "1962": 6.09, "1963": 6.24, "1964": 6.4, "1965": 6.52, "1966": 6.95, "1967": 7.07, "1968": 7.17, "1969": 7.24, "1970": 7.27, "1971": 7.16, "1972": 7.32, "1973": 7.42, "1974": 7.41, "1975": 7.48, "1976": 7.51, "1977": 7.45, "1978": 7.47, "1979": 7.5, "1980": 7.28, "1981": 7.32, "1982": 7.31, "1983": 7.42, "1984": 7.62, "1985": 7.64, "1986": 7.81, "1987": 8.03, "1988": 8.21, "1989": 8.27, "1990": 8.26, "1991": 8.27, "1992": 8.26, "1993": 8.5, "1994": 8.77, "1995": 9.06, "1996": 9.18, "1997": 9.2, "1998": 9.26, "1999": 9.39, "2000": 9.36, "2001": 9.15, "2002": 9.11, "2003": 9.1, "2004": 9.22, "2005": 9.18, "2006": 9.22, "2007": 9.2, "2008": 8.95, "2009": 8.73, "2010": 8.62, "2011": 8.43, "2012": 8.46, "2013": 8.52, "2014": 8.53, "2015": 8.61, "2016": 8.74, "2017": 8.8, "2018": 8.84, "2019": 8.94, "2020": 8.97, "2021": 9.47, "2022": 9.44, "2023": 9.48, "2024": 9.42};
@@ -1529,19 +1514,54 @@ function initSideSephora() {
 }
 
 function initWorstStress() {
-  const shocks = stressScenarios.map(s => s.shock + '%');
-  const oi = stressScenarios.map(s => s.operating_income_M);
-  const cfo = stressScenarios.map(s => s.cfo_M);
+  const labels = stressCurve.map(s => '-' + s.decline_pct + '%');
+  const cfoData = stressCurve.map(s => s.cfo_M);
+  const oiData  = stressCurve.map(s => s.oi_M);
+
+  // Vertical threshold lines via null-gapped datasets at specific indices
+  const sustainedIdx = stressCurve.findIndex(s => s.decline_pct >= Math.round(Math.abs(stressThresholds.max_sustained_pct)));
+  const shockIdx     = stressCurve.findIndex(s => s.decline_pct >= Math.round(Math.abs(stressThresholds.max_shock_pct)));
+  const ebitdaIdx    = stressCurve.findIndex(s => s.decline_pct >= Math.round(Math.abs(stressThresholds.max_ebitda_cov_pct)));
+
+  const minY = Math.min(...cfoData, ...oiData, -400);
+  const maxY = Math.max(...cfoData, ...oiData, 400);
+
+  function threshLine(idx, color) {
+    const arr = new Array(stressCurve.length).fill(null);
+    arr[idx] = minY;
+    arr[idx + 1] = maxY;
+    return { label: null, data: arr, borderColor: color, borderWidth: 1.5,
+              borderDash: [4, 3], pointRadius: 0, fill: false, tension: 0, showLine: true };
+  }
+
   new Chart(document.getElementById('chart-stress'), {
-    type: 'bar',
+    type: 'line',
     data: {
-      labels: shocks,
+      labels,
       datasets: [
-        { label: 'Operating Income ($M)', data: oi, backgroundColor: oi.map(v => v >= 0 ? COLORS.green+'90' : COLORS.red+'90') },
-        { label: 'Est CFO ($M)', data: cfo, backgroundColor: COLORS.blue+'90' }
+        { label: 'CFO ($M)', data: cfoData,
+           borderColor: COLORS.blue, borderWidth: 2.5, pointRadius: 0,
+           fill: { target: { value: 0 }, above: 'rgba(30,132,73,0.12)', below: 'rgba(192,57,43,0.12)' },
+           tension: 0.3 },
+        { label: 'Op Income ($M)', data: oiData,
+           borderColor: COLORS.green, borderWidth: 1.5, borderDash: [5,3],
+           pointRadius: 0, fill: false, tension: 0.3 },
+        threshLine(sustainedIdx, '#1e8449'),
+        threshLine(shockIdx, '#e67e22'),
+        threshLine(ebitdaIdx, '#2471a3'),
       ]
     },
-    options: { scales: { y: { title:{ display:true, text:'$M' }, grid:{ color:'rgba(0,0,0,0.08)' } } }, plugins:{ legend:{ position:'bottom' } } }
+    options: {
+      scales: {
+        x: { ticks: { maxTicksLimit: 10, font:{ size:9 } }, grid:{ color:'rgba(0,0,0,0.05)' } },
+        y: { title:{ display:true, text:'$M' }, grid:{ color:'rgba(0,0,0,0.08)' },
+              min: Math.floor(minY/200)*200, max: Math.ceil(maxY/200)*200 }
+      },
+      plugins: {
+        legend: { position:'bottom', labels:{ filter: item => item.text !== null, font:{ size:9 } } },
+        tooltip: { callbacks: { label: ctx => ctx.dataset.label ? ctx.dataset.label + ': $' + ctx.parsed.y + 'M' : null } }
+      }
+    }
   });
 }
 
