@@ -317,23 +317,57 @@ td.blue { color:var(--cg-sapphire-600); }
 
 <div class="slide" id="re-unlock">
   <div class="slide-title">UNLOCK Value When Debt Rolls Off in 2030</div>
-  <div class="slide-subtitle">10% secured notes ($360M) mature Jun 2030 — releases DC collateral covenants</div>
+  <div class="slide-subtitle">Covenant mechanics create a clear path to RE monetization</div>
 
-  <div class="row">
-    <div class="col">
-      <div class="card">
-        <h3>Debt Maturity Schedule ($M)</h3>
-        <canvas id="chart-debt-maturity"></canvas>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <h3>SLB Waterfall: Proceeds to Shareholders</h3>
-        <canvas id="chart-slb-waterfall"></canvas>
-      </div>
-    </div>
+  <div class="metrics">
+    <div class="metric"><div class="label">Outstanding Debt</div><div class="value">$1.4B</div><div class="detail">FY2025, post 4.25% repayment</div></div>
+    <div class="metric"><div class="label">Secured (Jun 2030)</div><div class="value red">$360M</div><div class="detail">10% notes, 11 DCs pledged</div></div>
+    <div class="metric"><div class="label">Unsecured (May 2031)</div><div class="value gold">$500M</div><div class="detail">4.625% notes (was 3.375%+175bps)</div></div>
+    <div class="metric"><div class="label">Long-Dated Residual</div><div class="value">$640M</div><div class="detail">2033/2037/2045 maturities</div></div>
   </div>
-  <div class="callout-gold callout">After 2030: $360M secured notes gone, DC collateral released. After 2031: $500M notes gone. Remaining debt: ~$640M of long-dated bonds. Free to execute SLB or REIT spin-off. Potential special dividend: ~$42.37/share vs $13.04 stock.</div>
+
+  <div class="card" style="margin-bottom:1.5rem">
+    <h3>Debt Maturity Schedule ($M) — 4.25% 2025 Notes Already Repaid</h3>
+    <canvas id="chart-debt-maturity" style="max-height:280px"></canvas>
+  </div>
+  <div class="card" style="margin-bottom:1.5rem">
+    <h3>SLB Waterfall: Proceeds at 50% Discount to Book ($M)</h3>
+    <canvas id="chart-slb-waterfall" style="max-height:280px"></canvas>
+  </div>
+
+  <div class="card" style="background:#fafafa; border-left: 4px solid #c41e3a">
+    <h3 style="margin-bottom:0.8rem">Covenant Mechanics: Before vs After 2030</h3>
+    <table style="width:100%; font-size:0.85rem; border-collapse:collapse">
+      <tr style="border-bottom:2px solid #ddd">
+        <th style="text-align:left; padding:6px">Event</th>
+        <th style="text-align:left; padding:6px">What Changes</th>
+        <th style="text-align:left; padding:6px">Why It Matters</th>
+      </tr>
+      <tr style="border-bottom:1px solid #eee; background:#fff3f3">
+        <td style="padding:6px"><strong>TODAY</strong></td>
+        <td style="padding:6px">11 DCs pledged as collateral for 10% secured notes. ABL facility restricts asset dispositions, liens, and restricted payments. Negative pledge covenant prevents additional collateral pledging.</td>
+        <td style="padding:6px">Cannot execute large SLB — DCs are encumbered, ABL covenants restrict asset sales, lien restrictions prevent new secured financing on stores.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee">
+        <td style="padding:6px"><strong>Jun 1, 2030</strong><br><span style="color:#c00">10% notes mature</span></td>
+        <td style="padding:6px">11 DCs released from security interest. $36M/yr interest expense eliminated. Lien restrictions on DCs lifted. Asset disposition covenant baskets expand with reduced leverage.</td>
+        <td style="padding:6px"><strong>SLB window opens.</strong> Can pledge or sell RE without violating secured debt covenants. DCs available for SLB or standalone sale. $360M cash needed for payoff (from operations or revolver).</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee">
+        <td style="padding:6px"><strong>May 15, 2031</strong><br><span style="color:#b8860b">4.625% notes mature</span></td>
+        <td style="padding:6px">$500M unsecured gone. Rating step-up covenant risk eliminated (already +175bps from downgrades). Restricted payment baskets expand further. ~$45M/yr additional interest savings.</td>
+        <td style="padding:6px"><strong>Full capital allocation flexibility.</strong> Remaining $640M is long-dated (2033-2045), low-coupon, no step-up provisions. Company can increase dividends, execute buybacks, or distribute SLB proceeds as special dividend.</td>
+      </tr>
+      <tr>
+        <td style="padding:6px"><strong>POST-2031</strong></td>
+        <td style="padding:6px">Remaining debt: 6.0% 2033 ($112M), 6.88% 2037 ($101M), 5.55% 2045 ($427M). No secured debt. No step-up covenants. Manageable interest burden (~$40M/yr).</td>
+        <td style="padding:6px">Residual debt fully serviceable from ongoing operations even in bear case. Clean balance sheet enables REIT conversion, spin-off, or full SLB program.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="callout-gold callout">
+    <strong>The sequence matters:</strong> 4.25% notes (✓ repaid FY2025) → 10% secured notes (Jun 2030, releases collateral) → 4.625% notes (May 2031, removes step-up risk). After May 2031, Kohl's has $640M of quiet long-dated debt and full freedom to monetize $5B+ of unencumbered RE. Special dividend potential: ~$42.37/share vs $13.04 stock.
+  </div>
 </div>
 
 <div class="slide" id="re-lease">
@@ -942,7 +976,7 @@ const projRev = [14.63, 14.55, 14.63, 14.77, 14.99, 15.22];
 const projEbitda = [1.17, 1.25, 1.32, 1.39, 1.5, 1.6];
 const projEps = [1.43, 2.14, 2.68, 3.32, 4.16, 5.19];
 const projInterest = [275, 270, 265, 250, 245, 200];
-const debtTranches = [{"maturity": 2025, "coupon": "4.25%", "amount": 353, "label": "4.25% due 2025"}, {"maturity": 2029, "coupon": "7.25%", "amount": 42, "label": "7.25% due 2029"}, {"maturity": 2030, "coupon": "10.00%", "amount": 360, "label": "10.00% due Jun 1, 2030"}, {"maturity": 2031, "coupon": "4.625%", "amount": 500, "label": "4.625% due 2031"}, {"maturity": 2033, "coupon": "6.00%", "amount": 112, "label": "6.00% due 2033"}, {"maturity": 2037, "coupon": "6.88%", "amount": 101, "label": "6.88% due 2037"}, {"maturity": 2045, "coupon": "5.55%", "amount": 427, "label": "5.55% due 2045"}];
+const debtTranches = [{"maturity": 2029, "coupon": "7.25%", "amount": 42, "label": "7.25% due 2029"}, {"maturity": 2030, "coupon": "10.00%", "amount": 360, "label": "10.00% due Jun 1, 2030"}, {"maturity": 2031, "coupon": "4.625%", "amount": 500, "label": "4.625% due 2031"}, {"maturity": 2033, "coupon": "6.00%", "amount": 112, "label": "6.00% due 2033"}, {"maturity": 2037, "coupon": "6.88%", "amount": 101, "label": "6.88% due 2037"}, {"maturity": 2045, "coupon": "5.55%", "amount": 427, "label": "5.55% due 2045"}];
 const stressScenarios = [{"shock": -10, "revenue_B": 13.3, "gross_profit_B": 4.9, "gm_pct": 36.5, "operating_income_M": -732, "cfo_M": -32, "interest_coverage": -2.5}, {"shock": -20, "revenue_B": 11.8, "gross_profit_B": 4.2, "gm_pct": 35.2, "operating_income_M": -1221, "cfo_M": -521, "interest_coverage": -4.2}, {"shock": -30, "revenue_B": 10.3, "gross_profit_B": 3.5, "gm_pct": 33.5, "operating_income_M": -1711, "cfo_M": -1011, "interest_coverage": -5.9}, {"shock": -40, "revenue_B": 8.9, "gross_profit_B": 2.8, "gm_pct": 31.3, "operating_income_M": -2200, "cfo_M": -1500, "interest_coverage": -7.6}];
 
 // ── Leisure data ──
@@ -1177,16 +1211,32 @@ function initReUnlock() {
     data: { labels: debtLabels, datasets: [{ data: debtAmounts, backgroundColor: debtColors }] },
     options: { plugins:{ legend:{ display:false } }, scales:{ y:{ title:{ display:true, text:'$M' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
   });
-  // SLB waterfall
-  const slbSteps = ['RE Book\n$6.5B', '50% Discount\n-$3.2B', 'Base Proceeds\n$3.2B', 'Txn Costs\n-$97M', 'Retire 2031\n-$500M', 'Special Div\n$2.6B', 'Per Share'];
-  const slbValues = [6.5, -3.2, 3.2, -0.1, -0.5, 2.6, 42.37];
+  // SLB waterfall — stacked floating bars to show true waterfall
+  // Gross proceeds → less txn costs → less secured debt → net distributable
+  const grossM = 3244;
+  const txnM = Math.round(grossM * 0.03);
+  const debtM = 360;
+  const netM = grossM - txnM - debtM;
+  const perSh = Math.round(netM / 114 * 100) / 100;
+
   new Chart(document.getElementById('chart-slb-waterfall'), {
     type: 'bar',
     data: {
-      labels: ['RE Book Value', '50% Haircut', 'Base Proceeds', 'Transaction Costs', 'Retire 2031 Notes', 'Net for Dividend', 'Per Share ($)'],
-      datasets: [{ data: [6.5, 3.3, 3.2, 3.1, 2.6, 2.6, 42.37], backgroundColor: [COLORS.blue, COLORS.red, COLORS.green, COLORS.red, COLORS.red, COLORS.green, COLORS.gold] }]
+      labels: ['RE Book\nValue', 'Sale at\n50% Disc.', 'Less Txn\nCosts (3%)', 'Less Secured\nNotes ($360M)', 'Net\nDistributable', 'Per Share\n(114M sh)'],
+      datasets: [
+        { label: 'Base / Positive', data: [6488, grossM, 0, 0, netM, 0],
+           backgroundColor: [COLORS.blue, COLORS.green, 'transparent', 'transparent', COLORS.green, 'transparent'] },
+        { label: 'Deductions', data: [0, 0, txnM, debtM, 0, 0],
+           backgroundColor: ['transparent', 'transparent', COLORS.red, COLORS.red, 'transparent', 'transparent'] },
+      ]
     },
-    options: { plugins:{ legend:{ display:false } }, scales:{ y:{ title:{ display:true, text:'$B (last bar = $/share)' }, grid:{ color:'rgba(0,0,0,0.08)' } } } }
+    options: {
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: function(ctx) { return ctx.raw ? '$' + ctx.raw + 'M' : ''; } } }
+      },
+      scales: { y: { title: { display: true, text: '$M' }, grid: { color: 'rgba(0,0,0,0.08)' } } }
+    }
   });
 }
 
