@@ -513,20 +513,20 @@ td.blue { color:var(--cg-sapphire-600); }
     </div>
     <div class="col">
       <div class="card">
-        <h3>Internal Inventory Accuracy by Retailer</h3>
+        <h3>AI Agent Inventory Visibility Ranking</h3>
         <table>
-          <tr><th>Retailer</th><th>ERP / Inventory System</th><th>RFID</th><th>Store-Level Accuracy</th></tr>
-          <tr><td>WMT</td><td>Custom proprietary</td><td class="green">Item-level, 14+ depts</td><td class="green">HIGHEST (~98%)</td></tr>
-          <tr><td>AMZN</td><td>Custom (Aurora/IMS)</td><td>Computer vision + robotics</td><td class="green">HIGHEST</td></tr>
-          <tr><td>TGT</td><td>Custom proprietary</td><td class="green">Avery Dennison, nationwide 2016</td><td class="green">HIGH (~95%+)</td></tr>
-          <tr><td class="blue"><strong>KSS</strong></td><td class="blue"><strong>Oracle Retail + BigQuery</strong></td><td class="blue"><strong>Checkpoint, apparel categories</strong></td><td class="blue"><strong>HIGH</strong></td></tr>
-          <tr><td>M</td><td>SAP + Google Cloud</td><td>Item-level since 2011</td><td class="gold">MED-HIGH</td></tr>
-          <tr><td>DG</td><td>Blue Yonder</td><td class="red">None</td><td class="gold">MEDIUM (perpetual inv.)</td></tr>
-          <tr><td>FIVE</td><td>Invent.ai (new 2025)</td><td class="red">None</td><td class="red">LOW (just adopted)</td></tr>
-          <tr><td>TJX</td><td>Oracle Cloud + custom</td><td class="red">None (by design)</td><td class="red">LOW (high SKU churn)</td></tr>
-          <tr><td>ROST</td><td>PeopleSoft (legacy)</td><td class="red">None</td><td class="red">LOWEST (no e-comm, legacy)</td></tr>
+          <tr><th>Retailer</th><th>Stack</th><th>RFID</th><th>AI Visibility</th></tr>
+          <tr><td>WMT</td><td>Custom + Public API</td><td class="green">Item-level (14+ depts)</td><td class="green">HIGHEST</td></tr>
+          <tr><td>AMZN</td><td>Custom (Aurora) + SP-API</td><td>Computer vision</td><td class="green">HIGHEST</td></tr>
+          <tr><td class="blue"><strong>KSS</strong></td><td class="blue"><strong>Oracle + BigQuery</strong></td><td class="blue"><strong>Item-level apparel</strong></td><td class="blue"><strong>HIGH</strong></td></tr>
+          <tr><td>TGT</td><td>Custom + Avery RFID</td><td class="green">Nationwide since 2016</td><td class="green">HIGH</td></tr>
+          <tr><td>M</td><td>SAP + Google Cloud</td><td>Since 2011</td><td class="gold">MED-HIGH</td></tr>
+          <tr><td>DG</td><td>Blue Yonder</td><td class="red">None</td><td class="red">LOW</td></tr>
+          <tr><td>TJX</td><td>Oracle Cloud</td><td class="red">None (by design)</td><td class="red">VERY LOW</td></tr>
+          <tr><td>ROST</td><td>PeopleSoft</td><td class="red">None, no e-comm</td><td class="red">VERY LOW</td></tr>
+          <tr><td>FIVE</td><td>Just adopted Invent.ai</td><td class="red">None</td><td class="red">VERY LOW</td></tr>
         </table>
-        <div style="color:var(--cg-sapphire-700);font-size:11px;margin-top:8px">Internal accuracy = can the store manager see real-time on-hand counts at SKU level? RFID is the dividing line. Without it, perpetual inventory drifts 20-40% from reality (Univ. of Arkansas retail studies). Off-price models (TJX/ROST) have structurally low accuracy due to non-replenishable, one-time-buy inventory.</div>
+        <div style="color:var(--cg-sapphire-700);font-size:11px;margin-top:8px">KSS BigQuery platform is the most AI-native data foundation among department store peers. Off-price (TJX/ROST) are permanently invisible to AI agents by design.</div>
       </div>
     </div>
   </div>
@@ -1340,7 +1340,8 @@ function initAiDisrupt() {
   // Higher = consumers perceive the retailer as offering better deals/value
   const dealPerception = { TJX: 88, ROST: 85, AMZN: 78, WMT: 72, TGT: 62, FIVE: 60, DG: 55, KSS: 45 };
   const brands = [
-    { x: 100-dealPerception.KSS, y: medianPrem.KSS_coupon || -7, label: 'KSS', color: COLORS.kss, r: 14 },
+    { x: 100-dealPerception.KSS, y: medianPrem.KSS || 9, label: 'KSS (sticker)', color: COLORS.kss, r: 14 },
+    { x: 100-dealPerception.KSS, y: medianPrem.KSS_coupon || -7, label: 'KSS (15% coupon)', color: CG.green[500], r: 14 },
     { x: 100-dealPerception.AMZN, y: medianPrem.AMZN || 3, label: 'Amazon', color: COLORS.amzn, r: 10 },
     { x: 100-dealPerception.WMT, y: medianPrem.WMT || 0, label: 'Walmart', color: COLORS.wmt, r: 10 },
     { x: 100-dealPerception.TGT, y: medianPrem.TGT || 12, label: 'Target', color: COLORS.tgt, r: 10 },
@@ -1618,36 +1619,50 @@ function initDemographics() {
 }
 
 function initRecession() {
+  // Normalize: subtract t=0 value so all lines start at 0
+  function normalize(sssData, years) {
+    const out = {};
+    for (const [t, vals] of Object.entries(sssData)) {
+      const base = vals[years[0]] ?? 0;
+      out[t] = {};
+      for (const y of years) {
+        if (vals[y] != null) out[t][y] = Math.round((vals[y] - base) * 10) / 10;
+      }
+    }
+    return out;
+  }
   // GFC chart
   if (Object.keys(gfcSSS).length && document.getElementById('chart-gfc-sss')) {
     const tickers = Object.keys(gfcSSS);
     const years = ['FY2007', 'FY2008', 'FY2009', 'FY2010'];
+    const norm = normalize(gfcSSS, years);
     const colorMap = { KSS: CG.sapphire[500], M: CG.red[500], JWN: CG.copper[500], TJX: CG.raspberry[500], DG: CG.warn[300], WMT: CG.turquoise[400], TGT: CG.red[600], ROST: CG.green[500] };
     const datasets = tickers.map(t => ({
-      label: t, data: years.map(y => gfcSSS[t]?.[y] ?? null),
+      label: t, data: years.map(y => norm[t]?.[y] ?? null),
       borderColor: colorMap[t] || CG.sapphire[700], borderWidth: t === 'KSS' ? 3 : 1.5,
       tension: 0.3, pointRadius: 4, fill: false
     }));
     new Chart(document.getElementById('chart-gfc-sss'), {
       type: 'line',
       data: { labels: years, datasets },
-      options: { scales: { y: { title:{ display:true, text:'Comp SSS (%)' }, grid:{ color:'rgba(0,0,0,0.08)' } } }, plugins:{ legend:{ position:'bottom' } } }
+      options: { scales: { y: { title:{ display:true, text:'SSS Change vs Pre-Recession (pp)' }, grid:{ color:'rgba(0,0,0,0.08)' } } }, plugins:{ legend:{ position:'bottom' } } }
     });
   }
   // COVID chart
   if (Object.keys(covidSSS).length && document.getElementById('chart-covid-sss')) {
     const tickers = Object.keys(covidSSS);
     const years = ['FY2019', 'FY2020', 'FY2021'];
+    const norm = normalize(covidSSS, years);
     const colorMap = { KSS: CG.sapphire[500], M: CG.red[500], JWN: CG.copper[500], TJX: CG.raspberry[500], DG: CG.warn[300], WMT: CG.turquoise[400], TGT: CG.red[600], ROST: CG.green[500] };
     const datasets = tickers.map(t => ({
-      label: t, data: years.map(y => covidSSS[t]?.[y] ?? null),
+      label: t, data: years.map(y => norm[t]?.[y] ?? null),
       borderColor: colorMap[t] || CG.sapphire[700], borderWidth: t === 'KSS' ? 3 : 1.5,
       tension: 0.3, pointRadius: 4, fill: false
     }));
     new Chart(document.getElementById('chart-covid-sss'), {
       type: 'line',
       data: { labels: years, datasets },
-      options: { scales: { y: { title:{ display:true, text:'Comp SSS (%)' }, grid:{ color:'rgba(0,0,0,0.08)' } } }, plugins:{ legend:{ position:'bottom' } } }
+      options: { scales: { y: { title:{ display:true, text:'SSS Change vs Pre-Recession (pp)' }, grid:{ color:'rgba(0,0,0,0.08)' } } }, plugins:{ legend:{ position:'bottom' } } }
     });
   }
 }
