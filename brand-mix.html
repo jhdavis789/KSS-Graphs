@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kohl's (KSS) Proprietary Brand Sales Mix — Quarterly</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'SF Mono','Fira Code','Cascadia Code',Consolas,monospace; background: #F7F7F7; color: #383838; font-size: 13px; }
+  .back-link { display: inline-block; padding: 10px 32px 0; font-size: 12px; color: #009CDC; text-decoration: none; }
+  .back-link:hover { text-decoration: underline; }
+  .header { padding: 16px 32px 8px; }
+  .header h1 { font-size: 22px; font-weight: 600; color: #383838; }
+  .header .subtitle { font-size: 13px; color: #6F6F6F; margin-top: 4px; }
+  .chart-container { padding: 16px 32px; height: calc(100vh - 300px); min-height: 420px; }
+  .stats-row { padding: 12px 32px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .stat { background: #fff; border: 1px solid #E2E2E2; border-radius: 6px; padding: 12px 16px; min-width: 130px; }
+  .stat .label { font-size: 11px; color: #6F6F6F; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat .value { font-size: 20px; font-weight: 600; color: #383838; margin-top: 2px; }
+  .stat .change { font-size: 11px; margin-top: 2px; }
+  .stat .neg { color: #DA1944; }
+  .stat .pos { color: #038049; }
+  .legend-row { padding: 8px 32px 0; display: flex; gap: 20px; flex-wrap: wrap; font-size: 11px; color: #6F6F6F; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 24px; height: 3px; border-radius: 2px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .tooltip-panel {
+    display: none; position: fixed; background: #fff; border: 1px solid #E2E2E2;
+    border-radius: 8px; padding: 16px; max-width: 460px; z-index: 100;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12); font-size: 13px; color: #383838;
+  }
+  .tooltip-panel.visible { display: block; }
+  .tooltip-panel h3 { font-size: 15px; color: #383838; margin-bottom: 6px; }
+  .tooltip-panel .pct { font-size: 32px; font-weight: 700; margin-bottom: 6px; }
+  .tooltip-panel .pct.quarterly { color: #009CDC; }
+  .tooltip-panel .pct.annual { color: #B58976; }
+  .tooltip-panel .quote { color: #6F6F6F; line-height: 1.5; margin-bottom: 8px; font-style: italic; font-size: 12px; }
+  .tooltip-panel .meta { font-size: 11px; color: #6F6F6F; line-height: 1.6; }
+  .tooltip-panel .meta a { color: #009CDC; text-decoration: none; }
+  .tooltip-panel .meta a:hover { text-decoration: underline; }
+  .tooltip-panel .badge { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 500; }
+  .badge-quarterly { background: rgba(0,156,220,0.1); color: #009CDC; }
+  .badge-annual { background: rgba(181,137,118,0.12); color: #B58976; }
+  .badge-estimated { background: rgba(218,25,68,0.08); color: #DA1944; }
+  .close-btn { position: absolute; top: 8px; right: 12px; background: none; border: none; color: #ADADAD; font-size: 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to KSS Pitch</a>
+<div class="header">
+  <h1>Kohl's (KSS) — Private & Exclusive Brand Sales Mix</h1>
+  <div class="subtitle">
+    Quarterly data FY2007–FY2012 from 10-Q/10-K text &bull;
+    Annual data FY2013–FY2025 from 10-K filings + earnings call transcripts &bull;
+    Click any point for source
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat">
+    <div class="label">All-Time Peak</div>
+    <div class="value">55%</div>
+    <div class="change">FY2012 Q2 (quarterly)</div>
+  </div>
+  <div class="stat">
+    <div class="label">Annual Peak</div>
+    <div class="value">52%</div>
+    <div class="change">FY2012–13</div>
+  </div>
+  <div class="stat">
+    <div class="label">Trough (FY2024)</div>
+    <div class="value">31%</div>
+    <div class="change neg">-21pp from annual peak</div>
+  </div>
+  <div class="stat">
+    <div class="label">Margin Rule</div>
+    <div class="value">10–15 bps</div>
+    <div class="change">gross margin per 100bps brand gain</div>
+  </div>
+  <div class="stat">
+    <div class="label">Seasonality</div>
+    <div class="value">Q2 high</div>
+    <div class="change">Q4 (holiday) lowest — national brands dominate gifts</div>
+  </div>
+</div>
+
+<div class="chart-container">
+  <canvas id="brandChart"></canvas>
+</div>
+
+<div class="legend-row">
+  <div class="legend-item"><div class="legend-swatch" style="background:#009CDC;"></div> Quarterly (from 10-Q text)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#B58976;"></div> Annual (from 10-K + earnings call transcripts)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:transparent;border:2px dashed #DA1944;"></div> Estimated</div>
+  <div class="legend-item" style="margin-left:auto;"><a href="index.html" style="color:#009CDC;text-decoration:none;font-size:12px;">&larr; Back to Pitch</a></div>
+</div>
+
+<div class="tooltip-panel" id="tooltip"></div>
+
+<script>
+// === DATA ===
+// Quarterly data from 10-Q/10-K filings (FY2007-FY2012)
+// Annual data from 10-K filings (FY2013-FY2024)
+const DATA = [
+  // FY2007 — quarterly
+  { label:"FY07\nQ1", fy:"FY2007", q:"Q1", pct:35.9, type:"quarterly", period:"May 5, 2007",
+    quote:"Private and exclusive brands as a percentage of total sales increased for the quarter.",
+    bps: null, filing:"10-Q", filingDate:"Jun 8, 2007",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312507132443/0001193125-07-132443-index.htm" },
+  { label:"Q2", fy:"FY2007", q:"Q2", pct:36.6, type:"quarterly", period:"Aug 4, 2007",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 320 basis points for the quarter to 36.6%.",
+    bps:320, filing:"10-Q", filingDate:"Sep 7, 2007",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312507197449/0001193125-07-197449-index.htm" },
+  { label:"Q3", fy:"FY2007", q:"Q3", pct:38.9, type:"quarterly", period:"Nov 3, 2007",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 350 basis points for the quarter.",
+    bps:350, filing:"10-Q", filingDate:"Dec 7, 2007",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312507261368/0001193125-07-261368-index.htm" },
+  { label:"Q4", fy:"FY2007", q:"Q4", pct:39.2, type:"quarterly", period:"Feb 2, 2008",
+    quote:"Sales of private and exclusive brands reached 39.2% of net sales for 2007, an increase of over 300 basis points over 2006.",
+    bps:300, filing:"10-K", filingDate:"Mar 21, 2008",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312508062622/d10k.htm" },
+
+  // FY2008
+  { label:"FY08\nQ1", fy:"FY2008", q:"Q1", pct:42.0, type:"quarterly", period:"May 3, 2008",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 430 basis points for the quarter to 42%.",
+    bps:430, filing:"10-Q", filingDate:"Jun 6, 2008",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312508129648/0001193125-08-129648-index.htm" },
+  { label:"Q2", fy:"FY2008", q:"Q2", pct:43.3, type:"quarterly", period:"Aug 2, 2008",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 430 basis points for the quarter.",
+    bps:430, filing:"10-Q", filingDate:"Sep 5, 2008",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312508191169/0001193125-08-191169-index.htm" },
+  { label:"Q3", fy:"FY2008", q:"Q3", pct:42.0, type:"quarterly", period:"Nov 1, 2008",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 336 basis points for the quarter.",
+    bps:336, filing:"10-Q", filingDate:"Dec 5, 2008",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312508248817/0001193125-08-248817-index.htm" },
+  { label:"Q4", fy:"FY2008", q:"Q4", pct:42.0, type:"quarterly", period:"Jan 31, 2009",
+    quote:"Sales of private and exclusive brands reached approximately 42% of net sales for 2008, an increase of over 260 basis points over 2007.",
+    bps:260, filing:"10-K", filingDate:"Mar 20, 2009",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312509059797/d10k.htm" },
+
+  // FY2009
+  { label:"FY09\nQ1", fy:"FY2009", q:"Q1", pct:44.0, type:"quarterly", period:"May 2, 2009",
+    quote:"Exclusive and private brand sales as a percentage of total sales increased approximately 200 basis points to 44% for the quarter.",
+    bps:200, filing:"10-Q", filingDate:"Jun 5, 2009",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312509126201/0001193125-09-126201-index.htm" },
+  { label:"Q2", fy:"FY2009", q:"Q2", pct:46.0, type:"quarterly", period:"Aug 1, 2009",
+    quote:"Exclusive and private brand sales as a percentage of total sales increased approximately 200 basis points to 46% for the quarter.",
+    bps:200, filing:"10-Q", filingDate:"Sep 4, 2009",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312509187625/0001193125-09-187625-index.htm" },
+  { label:"Q3", fy:"FY2009", q:"Q3", pct:45.0, type:"quarterly", period:"Oct 31, 2009",
+    quote:"Exclusive and private brand sales as a percentage of total sales increased approximately 266 basis points to 45% for the quarter.",
+    bps:266, filing:"10-Q", filingDate:"Dec 4, 2009",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312509247407/0001193125-09-247407-index.htm" },
+  { label:"Q4", fy:"FY2009", q:"Q4", pct:44.0, type:"quarterly", period:"Jan 30, 2010",
+    quote:"Exclusive and private brand sales as a percentage of total sales increased approximately 220 basis points to 44.3% for 2009.",
+    bps:220, filing:"10-K", filingDate:"Mar 19, 2010",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312510061795/d10k.htm" },
+
+  // FY2010
+  { label:"FY10\nQ1", fy:"FY2010", q:"Q1", pct:47.2, type:"quarterly", period:"May 1, 2010",
+    quote:"Exclusive and private brand sales as a percentage of total sales increased approximately 268 basis points to 47.2% for the quarter.",
+    bps:268, filing:"10-Q", filingDate:"Jun 4, 2010",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312510132984/0001193125-10-132984-index.htm" },
+  { label:"Q2", fy:"FY2010", q:"Q2", pct:49.0, type:"quarterly", period:"Jul 31, 2010",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 300 basis points for the quarter to 49%.",
+    bps:300, filing:"10-Q", filingDate:"Sep 3, 2010",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312510204835/0001193125-10-204835-index.htm" },
+  { label:"Q3", fy:"FY2010", q:"Q3", pct:48.0, type:"quarterly", period:"Oct 30, 2010",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 300 basis points for the quarter.",
+    bps:300, filing:"10-Q", filingDate:"Dec 9, 2010",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312510277331/0001193125-10-277331-index.htm" },
+  { label:"Q4", fy:"FY2010", q:"Q4", pct:48.0, type:"quarterly", period:"Jan 29, 2011",
+    quote:"Sales of private and exclusive brands reached 48% of net sales for 2010, an increase of approximately 290 basis points over 2009.",
+    bps:290, filing:"10-K", filingDate:"Mar 18, 2011",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312511071252/d10k.htm" },
+
+  // FY2011
+  { label:"FY11\nQ1", fy:"FY2011", q:"Q1", pct:50.0, type:"quarterly", period:"Apr 30, 2011",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 240 basis points to 50% of sales for the quarter.",
+    bps:240, filing:"10-Q", filingDate:"Jun 1, 2011",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312511156160/0001193125-11-156160-index.htm" },
+  { label:"Q2", fy:"FY2011", q:"Q2", pct:52.0, type:"quarterly", period:"Jul 30, 2011",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 300 basis points for the quarter to 52%.",
+    bps:300, filing:"10-Q", filingDate:"Sep 13, 2011",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312511246861/0001193125-11-246861-index.htm" },
+  { label:"Q3", fy:"FY2011", q:"Q3", pct:51.0, type:"quarterly", period:"Oct 29, 2011",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 270 basis points for the quarter to 51%.",
+    bps:270, filing:"10-Q", filingDate:"Dec 2, 2011",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312511328862/0001193125-11-328862-index.htm" },
+  { label:"Q4", fy:"FY2011", q:"Q4", pct:50.0, type:"quarterly", period:"Jan 28, 2012",
+    quote:"Sales of private and exclusive brands reached 50% of net sales in 2011, an increase of approximately 240 basis points over 2010. (Source: FY2012 10-K)",
+    bps:240, filing:"10-K", filingDate:"Mar 16, 2012",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312512119732/d284706d10k.htm" },
+
+  // FY2012
+  { label:"FY12\nQ1", fy:"FY2012", q:"Q1", pct:53.0, type:"quarterly", period:"Apr 28, 2012",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 300 basis points to 53% for the quarter.",
+    bps:300, filing:"10-Q", filingDate:"Jun 1, 2012",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312512257240/0001193125-12-257240-index.htm" },
+  { label:"Q2", fy:"FY2012", q:"Q2", pct:55.0, type:"quarterly", period:"Jul 28, 2012",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 220 basis points for the quarter to 55%.",
+    bps:220, filing:"10-Q", filingDate:"Aug 31, 2012",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000119312512377585/0001193125-12-377585-index.htm" },
+  { label:"Q3", fy:"FY2012", q:"Q3", pct:53.0, type:"quarterly", period:"Oct 27, 2012",
+    quote:"Private and exclusive brands as a percentage of total sales increased approximately 150 basis points to 53% for the quarter.",
+    bps:150, filing:"10-Q", filingDate:"Nov 30, 2012",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000144530512003775/0001445305-12-003775-index.htm" },
+  { label:"Q4", fy:"FY2012", q:"Q4", pct:52.0, type:"quarterly", period:"Feb 2, 2013",
+    quote:"Private and exclusive brand penetration increased approximately 160 basis points to 52% of sales for the year.",
+    bps:160, filing:"10-K", filingDate:"Mar 22, 2013",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000088563913000004/kohls_10kx2012.htm" },
+
+  // === ANNUAL DATA ONLY (FY2013-FY2024) ===
+  // After FY2012, Kohl's stopped disclosing quarterly brand mix % in text. Brand type charts became images.
+
+  { label:"FY13", fy:"FY2013", q:"Annual", pct:52, type:"annual", period:"Feb 1, 2014",
+    quote:"Brand Type table: Private & Exclusive 52%, National 48%. 'Continue to rebalance our mix between private and exclusive brands and national brands to drive sales growth.'",
+    bps:null, filing:"10-K", filingDate:"Mar 21, 2014",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000088563914000007/kohls_10kx2013.htm" },
+  { label:"FY14", fy:"FY2014", q:"Annual", pct:50, type:"estimated", period:"Jan 31, 2015",
+    quote:"Brand type chart in filing (image). 'Greatness Agenda' launched, emphasizing national brands to drive customer traffic.",
+    bps:null, filing:"10-K", filingDate:"Mar 20, 2015",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000088563915000007/kohls_10kx2014.htm",
+    note:"Estimated: between 52% peak and confirmed 48% in FY2015" },
+  { label:"FY15", fy:"FY2015", q:"Annual", pct:48, type:"annual", period:"Jan 30, 2016",
+    quote:"National brand sales increased 6.2% and represented 52% of our sales in 2015. [Private = 48%]",
+    bps:null, filing:"10-K", filingDate:"Mar 18, 2016",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000088563916000033/kohls_10kx2015.htm" },
+  { label:"FY16", fy:"FY2016", q:"Annual", pct:46, type:"annual", period:"Jan 28, 2017",
+    quote:"National brands 'up from 54% in fiscal 2016' per FY2018 10-K comparison. [Private = 46%]",
+    bps:null, filing:"10-K", filingDate:"Mar 17, 2017",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000088563917000007/kohls_10kx2016.htm" },
+  { label:"FY17", fy:"FY2017", q:"Annual", pct:42, type:"estimated", period:"Feb 3, 2018",
+    quote:"Brand type chart in filing (image). Q4 national brand penetration reached 62%. Full-year estimated ~58% national.",
+    bps:null, filing:"10-K", filingDate:"Mar 16, 2018",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000156459018006671/kss-10k_20180203.htm",
+    note:"Estimated from Q4 data and trajectory between FY2016 (46%) and FY2018 (39%)" },
+  { label:"FY18", fy:"FY2018", q:"Annual", pct:39, type:"annual", period:"Feb 2, 2019",
+    quote:"'Kohl's derived 61% of its sales from national brands last year.' [Private = 39%]",
+    bps:null, filing:"10-K", filingDate:"Mar 14, 2019",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000156459019009005/kss-10k_20190202.htm" },
+  { label:"FY19", fy:"FY2019", q:"Annual", pct:38, type:"estimated", period:"Feb 1, 2020",
+    quote:"Brand type chart in filing (image). Continued national brand emphasis; Amazon returns partnership launched mid-2019.",
+    bps:null, filing:"10-K", filingDate:"Mar 17, 2020",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000156459020012163/kss-10k_20200201.htm",
+    note:"Estimated from trajectory" },
+  { label:"FY20", fy:"FY2020", q:"Annual", pct:37, type:"estimated", period:"Jan 30, 2021",
+    quote:"Brand type chart in filing (image). COVID-19 disrupted operations; ~40% of stores temporarily closed spring 2020.",
+    bps:null, filing:"10-K", filingDate:"Mar 17, 2021",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000156459021015636/kss-10k_20210130.htm",
+    note:"Estimated from trajectory" },
+  { label:"FY21", fy:"FY2021", q:"Annual", pct:35, type:"annual", period:"Jan 29, 2022",
+    quote:"CFO Jill Timm on Q4 FY2021 earnings call: 'Remember, 65% of our sales are national brands.' [Private = 35%]. Supply chain disruptions caused ~400 bps sales headwind, hitting private brands hardest — women's 'penetrates 70% on private brands' (Michelle Gass, Q3 call). Sephora launched in 200+ stores.",
+    bps:null, filing:"10-K + Earnings Call", filingDate:"Mar 1, 2022",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000095017022004938/kss-20220129.htm" },
+  { label:"FY22", fy:"FY2022", q:"Annual", pct:35, type:"annual", period:"Jan 28, 2023",
+    quote:"CFO Jill Timm on Q4 FY2022 earnings call: '65% of our sales are national brand.' [Private = 35%]. Private brands outperformed national brands for two consecutive quarters (Q2-Q3) as consumers traded down to value. Sephora expanded to 600+ locations.",
+    bps:null, filing:"10-K + Earnings Call", filingDate:"Mar 1, 2023",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000095017023008444/kss-20230128.htm" },
+  { label:"FY23", fy:"FY2023", q:"Annual", pct:34, type:"annual", period:"Feb 3, 2024",
+    quote:"CEO Tom Kingsbury on Q4 FY2023 earnings call: 'As far as private brands as a percent of total, it will probably go down a little bit because we're working really hard on delivering more and more national brands.' National brands ~66%, private ~34%.",
+    bps:null, filing:"10-K + Earnings Call", filingDate:"Mar 12, 2024",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000095017024032048/kss-20240203.htm" },
+  { label:"FY24", fy:"FY2024", q:"Annual", pct:31, type:"annual", period:"Feb 1, 2025",
+    quote:"All-time low. CFO Jill Timm on Q3 call: 'We were down over 20% in our private and exclusive brands...we disappointed them not having brands they wanted at this opening price point.' New CEO Ashley Buchanan (Q4 call): 'We will start by rebalancing our assortment...elevating our focus on our proprietary brands.' 10-15 bps gross margin per 100 bps private brand gain.",
+    bps:null, filing:"10-K + Earnings Call", filingDate:"Mar 11, 2025",
+    url:"https://www.sec.gov/Archives/edgar/data/885639/000095017025042662/kss-20250201.htm" },
+  { label:"FY25", fy:"FY2025", q:"Annual", pct:32, type:"annual", period:"Jan 31, 2026",
+    quote:"CEO Michael Bender on Q4 FY2025 call: 'We are not targeting a specific number from a mix perspective, but proprietary brands are really a focus.' CFO: 'We were really void of an opening price point...as we brought back proprietary brands, we are starting to see that reaction — 120 bps comp improvement Q3 to Q4.' Q2 call: 'Proprietary brands are up 500 bps from Q1.' FY2026 guidance: gross margin driven by 'increased proprietary brand sales.' Launched 'By Kohl's' campaign.",
+    bps:null, filing:"10-K + Earnings Call", filingDate:"Mar 10, 2026",
+    url:"https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000885639&type=10-K&dateb=20260501&owner=include&count=1",
+    note:"Estimated ~32% based on recovery trajectory; management confirmed proprietary brands improving but 'not targeting a specific number'" },
+];
+
+const EVENTS = [
+  { idx: 4, label: "Great Recession begins", color: "#DA1944" },
+  { idx: 21, label: "Q2 peak: 55%", color: "#009CDC" },
+  { idx: 24, label: "Plateau — 'rebalancing' begins", color: "#B58976" },
+  { idx: 25, label: "Greatness Agenda", color: "#B58976" },
+  { idx: 29, label: "National brand push: Nike/UA/Skechers", color: "#B58976" },
+  { idx: 33, label: "COVID-19", color: "#DA1944" },
+  { idx: 34, label: "Sephora launch", color: "#E06AAA" },
+  { idx: 36, label: "Private brand inventory -20%", color: "#DA1944" },
+  { idx: 37, label: "New CEO: reverse course", color: "#3EA561" },
+  { idx: 38, label: "'By Kohl's' campaign", color: "#3EA561" },
+];
+
+// Build chart data
+const labels = DATA.map(d => d.label);
+const values = DATA.map(d => d.pct);
+
+// Color each point
+const pointColors = DATA.map(d => {
+  if (d.type === 'estimated') return '#DA1944';
+  if (d.type === 'annual') return '#B58976';
+  return '#009CDC';
+});
+
+const pointBorders = pointColors.slice();
+const pointRadii = DATA.map(d => d.type === 'quarterly' ? 4.5 : 7);
+const pointStyles = DATA.map(d => d.type === 'quarterly' ? 'circle' : 'rectRounded');
+
+// Segment colors
+function segColor(ctx) {
+  const i = ctx.p1DataIndex;
+  if (i <= 23) return '#009CDC'; // quarterly era
+  if (DATA[i].type === 'estimated') return '#DA194488';
+  return '#B58976';
+}
+
+// Annotation plugin
+const annotPlugin = {
+  id: 'eventAnnotations',
+  afterDraw(chart) {
+    const { ctx: c, scales: { x, y } } = chart;
+    EVENTS.forEach(evt => {
+      const xPos = x.getPixelForValue(evt.idx);
+      c.save();
+      c.strokeStyle = evt.color + '66';
+      c.lineWidth = 1;
+      c.setLineDash([3, 3]);
+      c.beginPath();
+      c.moveTo(xPos, y.top);
+      c.lineTo(xPos, y.bottom);
+      c.stroke();
+      c.setLineDash([]);
+      c.fillStyle = evt.color + 'cc';
+      c.font = '10px SF Mono, Fira Code, Consolas, monospace';
+      c.textAlign = 'center';
+      c.save();
+      c.translate(xPos, y.top - 4);
+      c.fillText(evt.label, 0, 0);
+      c.restore();
+      c.restore();
+    });
+    // Draw era labels at bottom
+    c.save();
+    c.font = '10px SF Mono, Fira Code, Consolas, monospace';
+    c.textAlign = 'center';
+    const yPos = y.bottom + 36;
+    // Quarterly era
+    const x1 = x.getPixelForValue(0);
+    const x2 = x.getPixelForValue(23);
+    c.fillStyle = '#009CDC44';
+    c.fillRect(x1, y.bottom + 2, x2 - x1, 2);
+    c.fillStyle = '#009CDCaa';
+    c.fillText('← Quarterly disclosure in 10-Q text →', (x1 + x2) / 2, yPos);
+    // Annual era
+    const x3 = x.getPixelForValue(24);
+    const x4 = x.getPixelForValue(DATA.length - 1);
+    c.fillStyle = '#B5897644';
+    c.fillRect(x3, y.bottom + 2, x4 - x3, 2);
+    c.fillStyle = '#B58976aa';
+    c.fillText('← Annual only (brand charts = images) →', (x3 + x4) / 2, yPos);
+    c.restore();
+  }
+};
+
+const ctx = document.getElementById('brandChart').getContext('2d');
+const chart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [{
+      label: 'Private & Exclusive Brand % of Net Sales',
+      data: values,
+      borderColor: '#009CDC',
+      backgroundColor: 'rgba(0,156,220,0.08)',
+      borderWidth: 2,
+      pointBackgroundColor: pointColors,
+      pointBorderColor: pointBorders,
+      pointBorderWidth: 1.5,
+      pointRadius: pointRadii,
+      pointHoverRadius: 9,
+      pointHoverBorderWidth: 3,
+      pointStyle: pointStyles,
+      fill: true,
+      tension: 0.2,
+      segment: { borderColor: segColor }
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: { padding: { bottom: 44 } },
+    interaction: { mode: 'nearest', intersect: true },
+    onClick: (event, elements) => {
+      if (elements.length > 0) showTooltip(elements[0].index, event);
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#fff',
+        borderColor: '#E2E2E2',
+        borderWidth: 1,
+        titleColor: '#383838',
+        bodyColor: '#6F6F6F',
+        padding: 12,
+        cornerRadius: 6,
+        callbacks: {
+          title: (items) => {
+            const d = DATA[items[0].dataIndex];
+            return `${d.fy} ${d.q} — Period ending ${d.period}`;
+          },
+          label: (item) => `Private & Exclusive: ${item.raw}%`,
+          afterLabel: (item) => {
+            const d = DATA[item.dataIndex];
+            let lines = [];
+            if (d.bps) lines.push(`YoY change: +${d.bps} bps`);
+            lines.push('Click for filing details');
+            return lines;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: '#E2E2E240' },
+        ticks: {
+          color: '#6F6F6F',
+          font: { size: 10 },
+          maxRotation: 0,
+          autoSkip: false,
+          callback: function(val, idx) {
+            const l = this.getLabelForValue(val);
+            // Show FY labels + Q4s, skip mid-quarters
+            if (l.includes('FY') || l === 'Q4') return l.replace('\n', ' ');
+            return '';
+          }
+        }
+      },
+      y: {
+        min: 28,
+        max: 58,
+        grid: { color: '#E2E2E260' },
+        ticks: {
+          color: '#6F6F6F',
+          font: { size: 11 },
+          callback: v => v + '%',
+          stepSize: 5
+        },
+        title: {
+          display: true,
+          text: '% of Net Sales (Private & Exclusive Brands)',
+          color: '#6F6F6F',
+          font: { size: 11 }
+        }
+      }
+    }
+  },
+  plugins: [annotPlugin]
+});
+
+// Tooltip panel
+const tooltipEl = document.getElementById('tooltip');
+
+function showTooltip(idx, event) {
+  const d = DATA[idx];
+  const typeClass = d.type === 'quarterly' ? 'quarterly' : 'annual';
+  const badgeClass = d.type === 'estimated' ? 'badge-estimated' : d.type === 'annual' ? 'badge-annual' : 'badge-quarterly';
+  const badgeText = d.type === 'estimated' ? 'Estimated' : d.type === 'annual' ? 'Annual (10-K)' : `Quarterly (${d.filing})`;
+
+  let h = `<button class="close-btn" onclick="document.getElementById('tooltip').classList.remove('visible')">&times;</button>`;
+  h += `<h3>${d.fy} ${d.q} &mdash; Period ending ${d.period}</h3>`;
+  h += `<div class="pct ${typeClass}">${d.pct}%</div>`;
+  h += `<div class="quote">"${d.quote}"</div>`;
+  if (d.note) h += `<div style="color:#DA1944;font-size:11px;margin-bottom:6px;">${d.note}</div>`;
+  if (d.bps) h += `<div style="font-size:12px;margin-bottom:6px;">YoY change: <strong>+${d.bps} bps</strong></div>`;
+  h += `<div class="meta">`;
+  h += `<span class="badge ${badgeClass}">${badgeText}</span><br>`;
+  h += `Filed: ${d.filingDate || 'See EDGAR'}<br>`;
+  h += `<a href="${d.url}" target="_blank" rel="noopener">View ${d.filing} on SEC EDGAR &rarr;</a>`;
+  h += `</div>`;
+
+  tooltipEl.innerHTML = h;
+  let left = event.native.clientX + 16;
+  let top = event.native.clientY - 60;
+  if (left + 460 > window.innerWidth) left = event.native.clientX - 476;
+  if (top + 350 > window.innerHeight) top = window.innerHeight - 360;
+  if (top < 10) top = 10;
+  tooltipEl.style.left = left + 'px';
+  tooltipEl.style.top = top + 'px';
+  tooltipEl.classList.add('visible');
+}
+
+document.addEventListener('click', (e) => {
+  if (!tooltipEl.contains(e.target) && e.target.tagName !== 'CANVAS') {
+    tooltipEl.classList.remove('visible');
+  }
+});
+</script>
+</body>
+</html>
