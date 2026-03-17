@@ -1,0 +1,79 @@
+{
+  "charts": {
+    "workingHours": {
+      "title": "Decline in Annual Working Hours per Worker (1870-2017)",
+      "source": "Our World in Data / Huberman & Minns (2007) / Penn World Table 10.0",
+      "sourceUrl": "https://ourworldindata.org/grapher/annual-working-hours-per-worker",
+      "note": "Huberman & Minns for 1870-1938 (full-time production workers, non-agricultural); PWT for 1950+ (all employed persons)",
+      "years": [1870, 1900, 1913, 1929, 1938, 1950, 1960, 1970, 1980, 1990, 2000, 2017],
+      "countries": {
+        "United States": [2964, 2720, 2622, 2342, 2062, 1867, 1795, 1711, 1610, 1590, 1580, 1757],
+        "United Kingdom": [2755, 2624, 2624, 2286, 2267, 1958, 1913, 1815, 1660, 1635, 1700, 1681],
+        "Germany": [3284, 2890, 2584, 2228, 2316, 2316, 2081, 1907, 1643, 1578, 1452, 1354],
+        "France": [2945, 2588, 2588, 2297, 1848, 1926, 1919, 1838, 1683, 1557, 1523, 1514],
+        "Japan": [2945, 2750, 2588, 2364, 2391, 2166, 2095, 2137, 2095, 2031, 1821, 1710]
+      }
+    },
+    "recreationSpending": {
+      "title": "US Recreation Spending as % of Personal Consumption (1959-2023)",
+      "source": "Bureau of Economic Analysis / FRED Series DRRLRC1A027NBEA",
+      "sourceUrl": "https://fred.stlouisfed.org/series/DRRLRC1A027NBEA",
+      "note": "Recreation includes sports, entertainment, streaming, travel, outdoor activities, gaming, and related goods/services",
+      "years": [1959, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2019, 2020, 2023],
+      "values": [5.6, 5.9, 6.2, 6.5, 6.3, 6.7, 7.0, 7.3, 7.8, 7.6, 7.4, 7.9, 8.2, 7.0, 8.4]
+    },
+    "timeUse": {
+      "title": "How Americans Spend Their Week: 1965 vs 2003",
+      "source": "Aguiar & Hurst (2007), QJE 122(3) / American Time Use Survey",
+      "sourceUrl": "https://academic.oup.com/qje/article-abstract/122/3/969/1879557",
+      "note": "Non-retired adults aged 21-65. Leisure = socializing, relaxing, recreation, TV, exercise. Changes: market work -3.2 hrs, non-market work -4.6 hrs, leisure +5.1 hrs.",
+      "categories": ["Market Work", "Non-market Work", "Child Care", "Leisure", "Personal Care", "Education"],
+      "data": {
+        "1965": [33.6, 23.7, 3.4, 34.5, 69.3, 3.5],
+        "2003": [30.4, 19.1, 4.3, 39.6, 71.6, 3.0]
+      }
+    },
+    "gdpVsHours": {
+      "title": "GDP per Capita vs Annual Hours Worked (2022)",
+      "source": "OECD / World Bank",
+      "sourceUrl": "https://data-explorer.oecd.org/s/27a",
+      "note": "Richer countries systematically work fewer hours. Germany ($49k GDP, 1,341 hrs) vs Mexico ($11k GDP, 2,128 hrs).",
+      "countries": [
+        {"name": "Mexico", "gdp": 11091, "hours": 2128},
+        {"name": "Colombia", "gdp": 6624, "hours": 2405},
+        {"name": "Costa Rica", "gdp": 13070, "hours": 2149},
+        {"name": "Chile", "gdp": 16502, "hours": 1963},
+        {"name": "Greece", "gdp": 20867, "hours": 1886},
+        {"name": "Poland", "gdp": 18321, "hours": 1830},
+        {"name": "South Korea", "gdp": 32423, "hours": 1901},
+        {"name": "Portugal", "gdp": 24561, "hours": 1769},
+        {"name": "Israel", "gdp": 54659, "hours": 1898},
+        {"name": "United States", "gdp": 76399, "hours": 1811},
+        {"name": "Japan", "gdp": 33815, "hours": 1607},
+        {"name": "Italy", "gdp": 34085, "hours": 1694},
+        {"name": "Canada", "gdp": 54966, "hours": 1680},
+        {"name": "New Zealand", "gdp": 47304, "hours": 1752},
+        {"name": "Australia", "gdp": 64491, "hours": 1707},
+        {"name": "Spain", "gdp": 30104, "hours": 1644},
+        {"name": "United Kingdom", "gdp": 46125, "hours": 1532},
+        {"name": "Finland", "gdp": 50563, "hours": 1518},
+        {"name": "Ireland", "gdp": 103685, "hours": 1659},
+        {"name": "Sweden", "gdp": 55873, "hours": 1444},
+        {"name": "France", "gdp": 40886, "hours": 1511},
+        {"name": "Switzerland", "gdp": 93260, "hours": 1533},
+        {"name": "Austria", "gdp": 52085, "hours": 1442},
+        {"name": "Belgium", "gdp": 50114, "hours": 1435},
+        {"name": "Netherlands", "gdp": 57428, "hours": 1427},
+        {"name": "Norway", "gdp": 106149, "hours": 1425},
+        {"name": "Denmark", "gdp": 67803, "hours": 1372},
+        {"name": "Germany", "gdp": 48756, "hours": 1341}
+      ]
+    }
+  },
+  "stats": {
+    "hoursDecline": {"label": "Working Hours Decline", "value": "~50%", "detail": "Since 1870 (avg across 5 countries)"},
+    "leisureGain": {"label": "Weekly Leisure Gained", "value": "+5.1 hrs", "detail": "Per adult, 1965-2003 (Aguiar & Hurst)"},
+    "recSpending": {"label": "Recreation % of Spending", "value": "8.4%", "detail": "Up from 5.6% in 1959 (BEA)"},
+    "germanyHours": {"label": "Germany 2022", "value": "1,341 hrs", "detail": "Lowest in OECD ($49k GDP/cap)"}
+  }
+}
